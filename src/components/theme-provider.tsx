@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, useMemo, type ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import i18n from '@/lib/i18n';
 import { ACCENT_COLORS } from '@/lib/constants';
 
 type Theme = 'light' | 'dark';
@@ -39,7 +39,6 @@ const defaultSettings: GuestSettings = {
 };
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const { i18n } = useTranslation();
   const [settings, setSettings] = useState<GuestSettings>(defaultSettings);
 
   useEffect(() => {
@@ -86,7 +85,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     } catch (error) {
       console.error('Failed to apply guest settings', error);
     }
-  }, [settings, i18n]);
+  }, [settings]);
 
   const value = useMemo(
     () => ({
