@@ -1,3 +1,15 @@
+import BotStats from '@/components/home/bot-stats';
+import FeaturesDisplay from '@/components/home/features-display';
+import { FaqSection } from '@/components/home/faq-section';
+import HeroSection from '@/components/home/hero-section';
+
 export default function Home() {
-  return <></>;
+  return (
+    <div className="flex flex-col items-center overflow-hidden">
+      <HeroSection />
+      <BotStats />
+      <FeaturesDisplay />
+      <FaqSection />
+    </div>
+  );
 }
