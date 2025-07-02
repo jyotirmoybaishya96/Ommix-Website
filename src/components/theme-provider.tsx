@@ -1,10 +1,11 @@
+
 'use client';
 
 import { createContext, useContext, useState, useEffect, useMemo, type ReactNode } from 'react';
 import i18n from '@/lib/i18n';
 import { ACCENT_COLORS } from '@/lib/constants';
 
-type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark' | 'system';
 type FontSize = 'sm' | 'base' | 'lg';
 type Language = 'en' | 'es' | 'hi';
 
@@ -18,6 +19,7 @@ type SettingsProviderState = {
   accentColor: string;
   setAccentColor: (color: string) => void;
   resetSettings: () => void;
+  isMounted: boolean;
 };
 
 const SettingsProviderContext = createContext<SettingsProviderState | undefined>(undefined);
@@ -32,7 +34,7 @@ type GuestSettings = {
 };
 
 const defaultSettings: GuestSettings = {
-  theme: 'light',
+  theme: 'system',
   fontSize: 'base',
   language: 'en',
   accentColor: ACCENT_COLORS[0].color,
@@ -40,6 +42,7 @@ const defaultSettings: GuestSettings = {
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<GuestSettings>(defaultSettings);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     let loadedSettings: GuestSettings;
@@ -47,8 +50,6 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       const storedSettings = localStorage.getItem(GUEST_SETTINGS_KEY);
       if (storedSettings) {
         loadedSettings = { ...defaultSettings, ...JSON.parse(storedSettings) };
-      } else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
-        loadedSettings = { ...defaultSettings, theme: 'dark' };
       } else {
         loadedSettings = defaultSettings;
       }
@@ -57,35 +58,38 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       loadedSettings = defaultSettings;
     }
     setSettings(loadedSettings);
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
+    if (!isMounted) return;
+
     try {
       localStorage.setItem(GUEST_SETTINGS_KEY, JSON.stringify(settings));
 
       const root = document.documentElement;
       
-      // Apply theme
       root.classList.remove('light', 'dark');
-      root.classList.add(settings.theme);
 
-      // Apply font size
-      if (settings.fontSize === 'sm') root.style.fontSize = '87.5%'; // 14px
-      else if (settings.fontSize === 'lg') root.style.fontSize = '112.5%'; // 18px
-      else root.style.fontSize = '100%'; // 16px
+      let effectiveTheme = settings.theme;
+      if (effectiveTheme === 'system') {
+        effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.classList.add(effectiveTheme);
 
-      // Apply accent color
+      root.style.fontSize = settings.fontSize === 'sm' ? '87.5%' : settings.fontSize === 'lg' ? '112.5%' : '100%';
       root.style.setProperty('--primary', settings.accentColor);
       root.style.setProperty('--ring', settings.accentColor);
 
-      // Apply language
       if (i18n.language !== settings.language) {
         i18n.changeLanguage(settings.language);
       }
+      
+      document.body.style.transition = 'background-color 0.5s ease-in-out, color 0.5s ease-in-out';
     } catch (error) {
       console.error('Failed to apply guest settings', error);
     }
-  }, [settings]);
+  }, [settings, isMounted]);
 
   const value = useMemo(
     () => ({
@@ -96,14 +100,11 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       setAccentColor: (accentColor: string) => setSettings(s => ({ ...s, accentColor })),
       resetSettings: () => {
         localStorage.removeItem(GUEST_SETTINGS_KEY);
-        const newSettings = {
-          ...defaultSettings,
-          theme: window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-        };
-        setSettings(newSettings);
+        setSettings(defaultSettings);
       },
+      isMounted,
     }),
-    [settings]
+    [settings, isMounted]
   );
 
   return <SettingsProviderContext.Provider value={value}>{children}</SettingsProviderContext.Provider>;

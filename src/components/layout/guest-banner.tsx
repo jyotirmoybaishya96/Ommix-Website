@@ -1,13 +1,16 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Info, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useSettings } from '../theme-provider';
 
 export function GuestBanner() {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslation();
+  const { isMounted } = useSettings();
 
   useEffect(() => {
     const guestBannerDismissed = localStorage.getItem('guest-banner-dismissed');
@@ -21,7 +24,7 @@ export function GuestBanner() {
     localStorage.setItem('guest-banner-dismissed', 'true');
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || !isMounted) return null;
 
   return (
     <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-primary/10 px-6 py-2.5 text-primary sm:px-3.5 sm:before:flex-1">

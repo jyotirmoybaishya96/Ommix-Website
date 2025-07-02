@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -16,26 +17,34 @@ export function Header() {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const pathname = usePathname();
   const { t, i18n } = useTranslation();
-  
-  // This seems unused, but it's a trick to force re-render when language changes
-  const { language } = useSettings();
-  useEffect(() => {
-  }, [language]);
+  const { isMounted } = useSettings();
 
+  useEffect(() => {
+    // This is to force a re-render when the language changes,
+    // which is now handled correctly by the provider.
+  }, [isMounted, i18n.language]);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const getLinkLabel = (label: string) => {
+    const defaultValue = label.charAt(0).toUpperCase() + label.slice(1);
+    if (!isMounted) {
+      return defaultValue;
+    }
+    return t(`header.${label}`, { defaultValue });
+  };
 
   const navItems = NAV_LINKS.map((link) => (
     <Button key={link.href} variant={pathname === link.href ? 'secondary' : 'ghost'} asChild>
       <Link href={link.href} onClick={closeMobileMenu}>
-        {t(`header.${link.label}` as any, { defaultValue: link.label.charAt(0).toUpperCase() + link.label.slice(1) })}
+        {getLinkLabel(link.label)}
       </Link>
     </Button>
   ));
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container mx-auto flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2" onClick={closeMobileMenu}>
           <Bot className="h-8 w-8 text-primary" />
           <span className="font-headline text-2xl font-bold">Omnix</span>
@@ -44,7 +53,7 @@ export function Header() {
         <nav className="hidden items-center gap-2 md:flex">
           {navItems}
           <Button asChild>
-            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{t('header.invite')}</a>
+            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{isMounted ? t('header.invite') : 'Invite'}</a>
           </Button>
           <Sheet open={isSettingsOpen} onOpenChange={setSettingsOpen}>
             <SheetTrigger asChild>
@@ -55,9 +64,9 @@ export function Header() {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>{t('header.settings.title')}</SheetTitle>
+                <SheetTitle>{isMounted ? t('header.settings.title') : 'Settings'}</SheetTitle>
                 <SheetDescription>
-                  {t('header.settings.description')}
+                  {isMounted ? t('header.settings.description') : 'Customize your experience.'}
                 </SheetDescription>
               </SheetHeader>
               <SettingsPanel />
@@ -75,17 +84,17 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle>
-                  <Link href="/" className="flex items-center gap-2 text-left" onClick={closeMobileMenu}>
-                    <Bot className="h-8 w-8 text-primary" />
-                    <span className="font-headline text-2xl font-bold">Omnix</span>
-                  </Link>
-                </SheetTitle>
+                  <SheetTitle>
+                    <Link href="/" className="flex items-center gap-2 text-left" onClick={closeMobileMenu}>
+                      <Bot className="h-8 w-8 text-primary" />
+                      <span className="font-headline text-2xl font-bold">Omnix</span>
+                    </Link>
+                  </SheetTitle>
               </SheetHeader>
               <nav className="mt-8 flex flex-col gap-4">
                 {navItems}
                  <Button asChild className='mt-4'>
-                    <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{t('header.invite')}</a>
+                    <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{isMounted ? t('header.invite') : 'Invite'}</a>
                 </Button>
                 <div className='mt-4 border-t pt-4'>
                    <SettingsPanel />

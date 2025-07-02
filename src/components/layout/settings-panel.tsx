@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useSettings } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Moon, Sun, Text, Check } from 'lucide-react';
+import { Moon, Sun, Text, Check, Monitor } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ACCENT_COLORS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -22,6 +23,7 @@ export function SettingsPanel() {
     accentColor,
     setAccentColor,
     resetSettings,
+    isMounted,
   } = useSettings();
   const { t } = useTranslation();
   const { toast } = useToast();
@@ -33,6 +35,39 @@ export function SettingsPanel() {
     });
   };
 
+  if (!isMounted) {
+    // Render a skeleton or placeholder while waiting for the client to mount
+    // to avoid hydration mismatch.
+    return (
+        <div className="space-y-8 py-4 animate-pulse">
+            <div className="space-y-3">
+                <div className="h-4 bg-muted rounded w-20"></div>
+                <div className="h-9 bg-muted rounded-lg"></div>
+            </div>
+            <div className="space-y-3">
+                <div className="h-4 bg-muted rounded w-24"></div>
+                <div className="h-9 bg-muted rounded-lg"></div>
+            </div>
+            <div className="space-y-3">
+                <div className="h-4 bg-muted rounded w-20"></div>
+                <div className="h-9 bg-muted rounded-lg"></div>
+            </div>
+            <div className="space-y-3">
+                <div className="h-4 bg-muted rounded w-28"></div>
+                <div className="flex flex-wrap gap-3">
+                    <div className="h-8 w-8 rounded-full bg-muted"></div>
+                    <div className="h-8 w-8 rounded-full bg-muted"></div>
+                    <div className="h-8 w-8 rounded-full bg-muted"></div>
+                    <div className="h-8 w-8 rounded-full bg-muted"></div>
+                    <div className="h-8 w-8 rounded-full bg-muted"></div>
+                </div>
+            </div>
+            <Separator className="!mt-10" />
+            <div className="h-10 bg-muted rounded-md w-full"></div>
+        </div>
+    );
+  }
+
   return (
     <div className="space-y-8 py-4">
       <div className="space-y-3">
@@ -43,6 +78,9 @@ export function SettingsPanel() {
           </Button>
           <Button variant={theme === 'dark' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setTheme('dark')}>
             <Moon className="mr-2 h-4 w-4" /> {t('settings_panel.theme_dark')}
+          </Button>
+           <Button variant={theme === 'system' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setTheme('system')}>
+            <Monitor className="mr-2 h-4 w-4" /> {t('settings_panel.theme_system')}
           </Button>
         </div>
       </div>
