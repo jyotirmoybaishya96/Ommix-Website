@@ -1,21 +1,36 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useSettings } from '@/components/theme-provider';
 
 interface FeatureCanvasProps {
   title: string;
-  width: number;
-  height: number;
-  className?: string;
 }
 
-export function FeatureCanvas({ title, width, height, className }: FeatureCanvasProps) {
+export function FeatureCanvas({ title }: FeatureCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const { theme, accentColor, isMounted } = useSettings();
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (!isMounted) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      if (!entries || entries.length === 0) return;
+      const { width, height } = entries[0].contentRect;
+      setDimensions({ width, height });
+    });
+
+    resizeObserver.observe(container);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted || dimensions.width === 0 || dimensions.height === 0) return;
+
+    const { width, height } = dimensions;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -23,7 +38,6 @@ export function FeatureCanvas({ title, width, height, className }: FeatureCanvas
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // It's safer to get computed style to ensure we have the final values
     const style = getComputedStyle(document.documentElement);
     const backgroundHsl = style.getPropertyValue('--background').trim();
     const foregroundHsl = style.getPropertyValue('--foreground').trim();
@@ -35,7 +49,6 @@ export function FeatureCanvas({ title, width, height, className }: FeatureCanvas
     const mutedColor = `hsl(${mutedHsl})`;
     const primaryColor = `hsl(${primaryHsl})`;
 
-    // Handle High-DPI displays
     const dpr = window.devicePixelRatio || 1;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -43,17 +56,14 @@ export function FeatureCanvas({ title, width, height, className }: FeatureCanvas
     canvas.style.height = `${height}px`;
     ctx.scale(dpr, dpr);
 
-    // Clear canvas
     ctx.clearRect(0, 0, width, height);
     
-    // Background gradient
     const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, mutedColor);
     gradient.addColorStop(1, bgColor);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Aesthetic shapes
     ctx.strokeStyle = primaryColor;
     ctx.globalAlpha = 0.2;
     ctx.lineWidth = 2;
@@ -62,7 +72,7 @@ export function FeatureCanvas({ title, width, height, className }: FeatureCanvas
       ctx.arc(
         Math.random() * width,
         Math.random() * height,
-        Math.random() * 40 + 20,
+        Math.random() * (width / 12.5) + (width / 25), // Responsive radius
         0,
         Math.PI * 2
       );
@@ -70,22 +80,23 @@ export function FeatureCanvas({ title, width, height, className }: FeatureCanvas
     }
     ctx.globalAlpha = 1.0;
 
-    // Text styling
     ctx.fillStyle = foregroundColor;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
-    // Auto-adjust font size
-    let fontSize = 52;
+    let fontSize = Math.max(20, Math.floor(width / 12));
     do {
       fontSize--;
       ctx.font = `bold ${fontSize}px "Space Grotesk", sans-serif`;
-    } while (ctx.measureText(title).width > width - 80 && fontSize > 20);
+    } while (ctx.measureText(title).width > width - (width / 5) && fontSize > 20);
 
-    // Draw text
     ctx.fillText(title, width / 2, height / 2);
 
-  }, [title, width, height, theme, accentColor, isMounted]);
+  }, [title, dimensions, theme, accentColor, isMounted]);
 
-  return <canvas ref={canvasRef} className={className} />;
+  return (
+    <div ref={containerRef} className="absolute inset-0 h-full w-full">
+      <canvas ref={canvasRef} />
+    </div>
+  );
 }

@@ -38,12 +38,9 @@ export default function FeaturesDisplay() {
                       {feature.description}
                     </CardContent>
                   </CardHeader>
-                  <div className="flex items-center justify-center p-4">
+                  <div className="relative w-full overflow-hidden rounded-lg bg-muted/50" style={{aspectRatio: '500 / 300'}}>
                     <FeatureCanvas
                       title={feature.title}
-                      width={500}
-                      height={300}
-                      className="rounded-lg"
                     />
                   </div>
                 </div>
