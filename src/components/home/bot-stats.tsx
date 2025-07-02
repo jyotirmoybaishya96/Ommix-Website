@@ -1,62 +1,77 @@
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BOT_STATS } from '@/lib/constants';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const initialStats = BOT_STATS.map(stat => ({
-  ...stat,
-  numericValue: parseFloat(stat.value.replace(/,/g, '').replace('+', '').replace('M', '000000').replace('ms', '')),
-}));
+type LiveStats = {
+  servers: number;
+  users: number;
+  ping: number;
+  uptime: string;
+};
+
+const statKeyMap: { [label: string]: keyof LiveStats } = {
+  'Servers': 'servers',
+  'Users': 'users',
+  'Ping': 'ping',
+  'Uptime': 'uptime',
+};
 
 export default function BotStats() {
-  const [stats, setStats] = useState(initialStats);
-  const [uptime, setUptime] = useState({ d: 0, h: 0, m: 0 });
-  const [startTime] = useState(Date.now());
+  const [liveStats, setLiveStats] = useState<LiveStats | null>(null);
 
   useEffect(() => {
-    const intervals = [
-      setInterval(() => {
-        setStats(prevStats => prevStats.map(stat => (stat.label === 'Servers' ? { ...stat, numericValue: stat.numericValue + 1 } : stat)));
-      }, 8000),
-      setInterval(() => {
-        setStats(prevStats => prevStats.map(stat => (stat.label === 'Users' ? { ...stat, numericValue: stat.numericValue + Math.floor(Math.random() * 5 + 3) } : stat)));
-      }, 2000),
-      setInterval(() => {
-        setStats(prevStats => prevStats.map(stat => (stat.label === 'Ping' ? { ...stat, numericValue: 45 + Math.floor(Math.random() * 10) - 5 } : stat)));
-      }, 3000),
-      setInterval(() => {
-        const now = Date.now();
-        const diff = (now - startTime) / 1000;
-        const d = Math.floor(diff / (24 * 3600));
-        const h = Math.floor((diff % (24 * 3600)) / 3600);
-        const m = Math.floor((diff % 3600) / 60);
-        setUptime({ d, h, m });
-      }, 60000)
-    ];
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/stats');
+        if (!response.ok) {
+          throw new Error('Failed to fetch stats');
+        }
+        const data: LiveStats = await response.json();
+        setLiveStats(data);
+      } catch (error) {
+        console.error("Error fetching bot stats:", error);
+        // In a real app, you might set an error state here
+      }
+    };
 
-    return () => intervals.forEach(clearInterval);
-  }, [startTime]);
+    fetchStats(); // Fetch immediately on component mount
+    const intervalId = setInterval(fetchStats, 5000); // Poll every 5 seconds
 
-  const getStatDisplayValue = (stat: typeof stats[0]) => {
-    if (stat.label === 'Uptime') {
-      return `${uptime.d}d ${uptime.h}h ${uptime.m}m`;
+    return () => clearInterval(intervalId); // Cleanup interval on unmount
+  }, []);
+
+  const getStatDisplayValue = (label: string) => {
+    if (!liveStats) {
+      return <Skeleton className="h-9 w-28" />;
     }
-    if (stat.label === 'Ping') {
-      return `${Math.round(stat.numericValue)}ms`;
+
+    const key = statKeyMap[label];
+    const value = liveStats[key];
+
+    switch (label) {
+      case 'Servers':
+        return `${Number(value).toLocaleString()}+`;
+      case 'Users':
+        return `${(Number(value) / 1000000).toFixed(1)}M+`;
+      case 'Ping':
+        return `${value}ms`;
+      case 'Uptime':
+        return String(value);
+      default:
+        return 'N/A';
     }
-    if (stat.numericValue > 1000000) {
-      return `${(stat.numericValue / 1000000).toFixed(1)}M+`;
-    }
-    return `${Math.round(stat.numericValue).toLocaleString()}+`;
   };
 
   return (
     <section className="w-full bg-muted/50 py-16 sm:py-24">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-          {stats.map((stat, index) => (
+          {BOT_STATS.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 50 }}
@@ -70,7 +85,9 @@ export default function BotStats() {
                   <CardTitle className="font-headline text-lg">{stat.label}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-headline text-3xl font-bold">{getStatDisplayValue(stat)}</p>
+                  <p className="font-headline text-3xl font-bold h-9 flex items-center justify-center">
+                    {getStatDisplayValue(stat.label)}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
