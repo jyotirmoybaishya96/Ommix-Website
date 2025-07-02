@@ -7,11 +7,31 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 import { FEATURES } from '@/lib/constants';
 import { FeatureCanvas } from './feature-canvas';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function FeaturesDisplay() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
   return (
     <section id="features" className="w-full py-16 sm:py-24">
       <div className="container mx-auto">
@@ -25,6 +45,7 @@ export default function FeaturesDisplay() {
         </div>
         
         <Carousel
+          setApi={setApi}
           opts={{
             align: 'start',
             loop: true,
@@ -60,6 +81,20 @@ export default function FeaturesDisplay() {
           <CarouselPrevious className="hidden sm:flex" />
           <CarouselNext className="hidden sm:flex" />
         </Carousel>
+
+        <div className="mt-6 flex justify-center gap-3">
+          {Array.from({ length: count }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={cn(
+                'h-2 rounded-full transition-all duration-300 ease-in-out',
+                current === index ? 'w-6 bg-primary' : 'w-2 bg-muted-foreground/50'
+              )}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
