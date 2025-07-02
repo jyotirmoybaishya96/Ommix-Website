@@ -44,11 +44,13 @@ export function FaqSection() {
             AI-powered FAQ page
           </Link>.
         </p>
-        <Accordion type="single" collapsible className="mt-8 w-full text-left">
+        <Accordion type="single" collapsible className="mt-12 w-full space-y-3 text-left">
           {FAQ_DATA.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="font-headline text-lg hover:no-underline">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-base text-muted-foreground">
+            <AccordionItem key={index} value={`item-${index}`} className="rounded-lg border bg-card shadow-sm transition-shadow duration-300 hover:shadow-md data-[state=open]:shadow-lg">
+              <AccordionTrigger className="w-full px-6 py-5 text-left font-headline text-lg hover:no-underline">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-5 text-base text-muted-foreground">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
