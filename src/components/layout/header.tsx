@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Cog, Menu, Bot } from 'lucide-react';
 import { NAV_LINKS, DISCORD_INVITE_URL } from '@/lib/constants';
 import { SettingsPanel } from './settings-panel';
@@ -69,6 +69,12 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Settings</SheetTitle>
+                  <SheetDescription>
+                    Customize the appearance of the application.
+                  </SheetDescription>
+                </SheetHeader>
                 <SettingsPanel />
               </SheetContent>
             </Sheet>
