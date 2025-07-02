@@ -3,6 +3,7 @@ import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Li
 export const NAV_LINKS = [
   { href: "/", label: "home" },
   { href: "/#features", label: "features" },
+  { href: "/premium", label: "premium" },
   { href: "/team", label: "team" },
   { href: "/support", label: "support" },
   { href: "/faq", label: "faq" },
@@ -119,4 +120,44 @@ export const ACCENT_COLORS = [
   { name: 'Blue', color: '221.2 83.2% 53.3%' },
   { name: 'Green', color: '142.1 76.2% 36.3%' },
   { name: 'Rose', color: '346.8 77.2% 49.8%' },
+];
+
+export const PREMIUM_FEATURES = [
+  {
+    category: 'Core Functionality',
+    features: [
+      { name: 'Server Limit', free: '1 Server', premium: 'Up to 10 Servers' },
+      { name: 'Basic Moderation Commands', free: true, premium: true },
+      { name: 'Ticketing System', free: true, premium: true },
+      { name: 'Welcome & Leave Messages', free: true, premium: true },
+      { name: 'Basic Auto-Mod (Spam, Links)', free: true, premium: true },
+    ],
+  },
+  {
+    category: 'Music',
+    features: [
+      { name: 'Music Quality', free: 'Standard', premium: 'High Fidelity' },
+      { name: '24/7 Playback', free: false, premium: true },
+      { name: 'Volume Control', free: false, premium: true },
+      { name: 'Playlists', free: '1 playlist', premium: 'Unlimited playlists' },
+    ]
+  },
+  {
+    category: 'Advanced Features',
+    features: [
+      { name: 'Advanced Anti-Nuke System', free: false, premium: true },
+      { name: 'AI-Powered Auto-Mod', free: false, premium: true },
+      { name: 'Custom Branding & Embeds', free: false, premium: true },
+      { name: 'Auto-Publishing', free: false, premium: true },
+      { name: 'Advanced Server Logging', free: false, premium: true },
+      { name: 'Custom Commands', free: false, premium: true },
+    ],
+  },
+  {
+    category: 'Support',
+    features: [
+      { name: 'Community Support', free: true, premium: true },
+      { name: 'Priority Support', free: false, premium: true },
+    ],
+  },
 ];
