@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -7,6 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 export function PremiumPlans() {
   const [isYearly, setIsYearly] = useState(false);
@@ -166,8 +168,8 @@ export function PremiumPlans() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button className="w-full smooth-hover">
-                {plans.premium.buttonText}
+              <Button asChild className="w-full smooth-hover">
+                <Link href="/purchase">{plans.premium.buttonText}</Link>
               </Button>
             </CardFooter>
           </Card>
