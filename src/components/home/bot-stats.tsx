@@ -85,9 +85,9 @@ export default function BotStats() {
                   <CardTitle className="font-headline text-lg">{stat.label}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-headline text-3xl font-bold h-9 flex items-center justify-center">
+                  <div className="font-headline text-3xl font-bold h-9 flex items-center justify-center">
                     {getStatDisplayValue(stat.label)}
-                  </p>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
