@@ -1,11 +1,11 @@
-import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi, HelpCircle } from "lucide-react";
+import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi } from "lucide-react";
 
 export const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/#features", label: "Features" },
-  { href: "/team", label: "Team" },
-  { href: "/support", label: "Support" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/", label: "home" },
+  { href: "/#features", label: "features" },
+  { href: "/team", label: "team" },
+  { href: "/support", label: "support" },
+  { href: "/faq", label: "faq" },
 ];
 
 export const DISCORD_INVITE_URL = "https://discord.com/invite/example";
@@ -112,4 +112,12 @@ export const BOT_STATS = [
   { label: 'Users', value: '1.2M+', Icon: Users },
   { label: 'Uptime', value: '99.9%', Icon: Clock },
   { label: 'Ping', value: '45ms', Icon: Wifi },
+];
+
+export const ACCENT_COLORS = [
+  { name: 'Default', color: '282.4 100% 41.4%' }, // #9400D3
+  { name: 'Teal', color: '180 100% 25.1%' }, // #008080
+  { name: 'Blue', color: '221.2 83.2% 53.3%' },
+  { name: 'Green', color: '142.1 76.2% 36.3%' },
+  { name: 'Rose', color: '346.8 77.2% 49.8%' },
 ];

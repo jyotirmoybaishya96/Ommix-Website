@@ -1,0 +1,41 @@
+{
+  "header": {
+    "home": "Inicio",
+    "features": "Características",
+    "team": "Equipo",
+    "support": "Soporte",
+    "faq": "FAQ",
+    "invite": "Invitar a Omnix",
+    "settings": {
+      "title": "Configuración",
+      "description": "Personaliza la apariencia de la aplicación."
+    },
+    "mobileMenu": {
+      "title": "Navegación"
+    }
+  },
+  "hero": {
+    "title": "El <1>Bot de Discord</1> Todo en Uno",
+    "subtitle": "Eleva tu servidor con moderación potente, anti-nuke, tickets, música y mucho más. Omnix es el único bot que necesitarás.",
+    "invite_button": "Invitar a Discord",
+    "learn_more_button": "Aprende Más"
+  },
+  "guest_banner": {
+    "message": "Estás usando el panel como invitado. Para gestionar la configuración real del servidor, por favor inicia sesión con Discord.",
+    "login_button": "Iniciar sesión con Discord",
+    "continue_button": "Continuar como Invitado"
+  },
+  "settings_panel": {
+    "theme": "Tema",
+    "theme_light": "Claro",
+    "theme_dark": "Oscuro",
+    "font_size": "Tamaño de Fuente",
+    "font_size_small": "Pequeño",
+    "font_size_default": "Predeterminado",
+    "font_size_large": "Grande",
+    "language": "Idioma",
+    "accent_color": "Color de Acento",
+    "reset": "Restablecer Configuración",
+    "reset_success": "La configuración ha sido restablecida."
+  }
+}

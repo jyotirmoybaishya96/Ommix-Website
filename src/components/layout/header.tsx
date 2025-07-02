@@ -6,20 +6,29 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescri
 import { Cog, Menu, Bot } from 'lucide-react';
 import { NAV_LINKS, DISCORD_INVITE_URL } from '@/lib/constants';
 import { SettingsPanel } from './settings-panel';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+import { useSettings } from '../theme-provider';
 
 export function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const pathname = usePathname();
+  const { t, i18n } = useTranslation();
+  
+  // This seems unused, but it's a trick to force re-render when language changes
+  const { language } = useSettings();
+  useEffect(() => {
+  }, [language]);
+
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const navItems = NAV_LINKS.map((link) => (
     <Button key={link.href} variant={pathname === link.href ? 'secondary' : 'ghost'} asChild>
       <Link href={link.href} onClick={closeMobileMenu}>
-        {link.label}
+        {t(`header.${link.label}` as any, { defaultValue: link.label.charAt(0).toUpperCase() + link.label.slice(1) })}
       </Link>
     </Button>
   ));
@@ -32,10 +41,10 @@ export function Header() {
           <span className="font-headline text-2xl font-bold">Omnix</span>
         </Link>
         
-        <nav className="hidden items-center gap-4 md:flex">
+        <nav className="hidden items-center gap-2 md:flex">
           {navItems}
           <Button asChild>
-            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">Invite Omnix</a>
+            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{t('header.invite')}</a>
           </Button>
           <Sheet open={isSettingsOpen} onOpenChange={setSettingsOpen}>
             <SheetTrigger asChild>
@@ -46,9 +55,9 @@ export function Header() {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>Settings</SheetTitle>
+                <SheetTitle>{t('header.settings.title')}</SheetTitle>
                 <SheetDescription>
-                  Customize the appearance of the application.
+                  {t('header.settings.description')}
                 </SheetDescription>
               </SheetHeader>
               <SettingsPanel />
@@ -56,7 +65,7 @@ export function Header() {
           </Sheet>
         </nav>
 
-        <div className="md:hidden">
+        <div className="flex items-center md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -75,6 +84,12 @@ export function Header() {
               </SheetHeader>
               <nav className="mt-8 flex flex-col gap-4">
                 {navItems}
+                 <Button asChild className='mt-4'>
+                    <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{t('header.invite')}</a>
+                </Button>
+                <div className='mt-4 border-t pt-4'>
+                   <SettingsPanel />
+                </div>
               </nav>
             </SheetContent>
           </Sheet>

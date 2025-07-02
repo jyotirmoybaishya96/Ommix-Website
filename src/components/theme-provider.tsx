@@ -1,80 +1,119 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, useMemo, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ACCENT_COLORS } from '@/lib/constants';
 
 type Theme = 'light' | 'dark';
 type FontSize = 'sm' | 'base' | 'lg';
+type Language = 'en' | 'es' | 'hi';
 
-type ThemeProviderState = {
+type SettingsProviderState = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   fontSize: FontSize;
   setFontSize: (size: FontSize) => void;
+  language: Language;
+  setLanguage: (language: Language) => void;
+  accentColor: string;
+  setAccentColor: (color: string) => void;
+  resetSettings: () => void;
 };
 
-const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
+const SettingsProviderContext = createContext<SettingsProviderState | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
-  const [fontSize, setFontSizeState] = useState<FontSize>('base');
+const GUEST_SETTINGS_KEY = 'omnix-guest-settings';
+
+type GuestSettings = {
+  theme: Theme;
+  fontSize: FontSize;
+  language: Language;
+  accentColor: string;
+};
+
+const defaultSettings: GuestSettings = {
+  theme: 'light',
+  fontSize: 'base',
+  language: 'en',
+  accentColor: ACCENT_COLORS[0].color,
+};
+
+export function SettingsProvider({ children }: { children: ReactNode }) {
+  const { i18n } = useTranslation();
+  const [settings, setSettings] = useState<GuestSettings>(defaultSettings);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('omnix-theme') as Theme | null;
-    const storedFontSize = localStorage.getItem('omnix-font-size') as FontSize | null;
-
-    if (storedTheme) {
-      setThemeState(storedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setThemeState('dark');
+    let loadedSettings: GuestSettings;
+    try {
+      const storedSettings = localStorage.getItem(GUEST_SETTINGS_KEY);
+      if (storedSettings) {
+        loadedSettings = { ...defaultSettings, ...JSON.parse(storedSettings) };
+      } else if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
+        loadedSettings = { ...defaultSettings, theme: 'dark' };
+      } else {
+        loadedSettings = defaultSettings;
+      }
+    } catch (error) {
+      console.error('Failed to parse guest settings from localStorage', error);
+      loadedSettings = defaultSettings;
     }
-
-    if (storedFontSize) {
-      setFontSizeState(storedFontSize);
-    }
+    setSettings(loadedSettings);
   }, []);
 
-  const applyTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    localStorage.setItem('omnix-theme', newTheme);
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(newTheme);
-  };
-
-  const applyFontSize = (newSize: FontSize) => {
-    setFontSizeState(newSize);
-    localStorage.setItem('omnix-font-size', newSize);
-    const root = document.documentElement;
-    if (newSize === 'sm') root.style.fontSize = '87.5%'; // 14px
-    else if (newSize === 'lg') root.style.fontSize = '112.5%'; // 18px
-    else root.style.fontSize = '100%'; // 16px
-  };
-
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
-  
-  useEffect(() => {
-    applyFontSize(fontSize);
-  }, [fontSize]);
+    try {
+      localStorage.setItem(GUEST_SETTINGS_KEY, JSON.stringify(settings));
 
-  const value = useMemo(() => ({
-    theme,
-    setTheme: applyTheme,
-    fontSize,
-    setFontSize: applyFontSize,
-  }), [theme, fontSize]);
+      const root = document.documentElement;
+      
+      // Apply theme
+      root.classList.remove('light', 'dark');
+      root.classList.add(settings.theme);
 
-  return (
-    <ThemeProviderContext.Provider value={value}>
-      {children}
-    </ThemeProviderContext.Provider>
+      // Apply font size
+      if (settings.fontSize === 'sm') root.style.fontSize = '87.5%'; // 14px
+      else if (settings.fontSize === 'lg') root.style.fontSize = '112.5%'; // 18px
+      else root.style.fontSize = '100%'; // 16px
+
+      // Apply accent color
+      root.style.setProperty('--primary', settings.accentColor);
+      root.style.setProperty('--ring', settings.accentColor);
+
+      // Apply language
+      if (i18n.language !== settings.language) {
+        i18n.changeLanguage(settings.language);
+      }
+    } catch (error) {
+      console.error('Failed to apply guest settings', error);
+    }
+  }, [settings, i18n]);
+
+  const value = useMemo(
+    () => ({
+      ...settings,
+      setTheme: (theme: Theme) => setSettings(s => ({ ...s, theme })),
+      setFontSize: (fontSize: FontSize) => setSettings(s => ({ ...s, fontSize })),
+      setLanguage: (language: Language) => setSettings(s => ({ ...s, language })),
+      setAccentColor: (accentColor: string) => setSettings(s => ({ ...s, accentColor })),
+      resetSettings: () => {
+        localStorage.removeItem(GUEST_SETTINGS_KEY);
+        const newSettings = {
+          ...defaultSettings,
+          theme: window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+        };
+        setSettings(newSettings);
+      },
+    }),
+    [settings]
   );
+
+  return <SettingsProviderContext.Provider value={value}>{children}</SettingsProviderContext.Provider>;
 }
 
-export const useTheme = () => {
-  const context = useContext(ThemeProviderContext);
+export const useSettings = () => {
+  const context = useContext(SettingsProviderContext);
   if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error('useSettings must be used within a SettingsProvider');
   }
   return context;
 };
