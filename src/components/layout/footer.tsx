@@ -1,4 +1,4 @@
-import { NAV_LINKS, SOCIAL_LINKS } from '@/lib/constants';
+import { NAV_LINKS, SOCIAL_LINKS, LEGAL_LINKS } from '@/lib/constants';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="bg-muted/50">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div>
             <h3 className="font-headline text-2xl font-bold text-primary">Omnix</h3>
             <p className="mt-2 text-muted-foreground">The only Discord bot you'll ever need.</p>
@@ -15,6 +15,18 @@ export function Footer() {
             <h4 className="font-headline text-lg font-semibold">Quick Links</h4>
             <ul className="mt-4 space-y-2">
               {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-muted-foreground hover:text-primary">
+                    {link.label.charAt(0).toUpperCase() + link.label.slice(1)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-headline text-lg font-semibold">Legal</h4>
+            <ul className="mt-4 space-y-2">
+              {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-muted-foreground hover:text-primary">
                     {link.label}

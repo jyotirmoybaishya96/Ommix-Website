@@ -8,6 +8,11 @@ export const NAV_LINKS = [
   { href: "/faq", label: "faq" },
 ];
 
+export const LEGAL_LINKS = [
+  { href: "/legal?tab=terms", label: "Terms of Service" },
+  { href: "/legal?tab=privacy", label: "Privacy Policy" },
+];
+
 export const DISCORD_INVITE_URL = "https://discord.com/invite/example";
 
 export const FEATURES = [
@@ -15,31 +20,37 @@ export const FEATURES = [
     title: "Anti-Nuke",
     description: "Our advanced Anti-Nuke system protects your server from malicious raids and unauthorized administrative actions, ensuring its safety and stability around the clock.",
     Icon: ShieldAlert,
+    aiHint: "security shield"
   },
   {
     title: "Auto-Mod",
     description: "Automate server moderation with our customizable Auto-Mod. It filters spam, removes inappropriate content, and manages user behavior, freeing up your moderation team.",
     Icon: ShieldCheck,
+    aiHint: "robot hammer"
   },
   {
     title: "Ticketing",
     description: "A seamless ticketing system for user support. Members can create private support channels with a single click, allowing your staff to address issues efficiently.",
     Icon: Ticket,
+    aiHint: "support ticket"
   },
   {
     title: "Moderation",
     description: "Powerful and easy-to-use moderation commands. From kicking and banning to muting members, Omnix provides all the tools you need to maintain a healthy community.",
     Icon: User,
+    aiHint: "judge gavel"
   },
   {
     title: "Music",
     description: "High-quality music streaming for your voice channels. Enjoy your favorite tunes with friends with our feature-rich, easy-to-use music player.",
     Icon: Music,
+    aiHint: "music notes"
   },
   {
     title: "And More...",
     description: "Omnix is packed with dozens of other features, including welcome messages, logging, utility commands, and much more to enhance your Discord server.",
     Icon: Bot,
+    aiHint: "plus icon"
   },
 ];
 
