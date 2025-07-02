@@ -4,7 +4,7 @@ import { useSettings } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Moon, Sun, Text, Check, Languages } from 'lucide-react';
+import { Moon, Sun, Text, Check } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ACCENT_COLORS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -34,12 +34,10 @@ export function SettingsPanel() {
   };
 
   return (
-    <div className="grid gap-6 py-4">
-      <div className="grid grid-cols-3 items-center gap-4">
-        <Label htmlFor="theme" className="text-left">
-          {t('settings_panel.theme')}
-        </Label>
-        <div className="col-span-2 flex items-center justify-start rounded-lg border p-1">
+    <div className="space-y-8 py-4">
+      <div className="space-y-3">
+        <Label>{t('settings_panel.theme')}</Label>
+        <div className="flex items-center rounded-lg border p-1">
           <Button variant={theme === 'light' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setTheme('light')}>
             <Sun className="mr-2 h-4 w-4" /> {t('settings_panel.theme_light')}
           </Button>
@@ -48,12 +46,10 @@ export function SettingsPanel() {
           </Button>
         </div>
       </div>
-      <Separator />
-      <div className="grid grid-cols-3 items-center gap-4">
-        <Label htmlFor="font-size" className="text-left">
-          {t('settings_panel.font_size')}
-        </Label>
-        <div className="col-span-2 flex items-center justify-start rounded-lg border p-1">
+      
+      <div className="space-y-3">
+        <Label>{t('settings_panel.font_size')}</Label>
+        <div className="flex items-center rounded-lg border p-1">
           <Button variant={fontSize === 'sm' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setFontSize('sm')}>
             <Text className="mr-2 h-3 w-3" /> {t('settings_panel.font_size_small')}
           </Button>
@@ -65,35 +61,31 @@ export function SettingsPanel() {
           </Button>
         </div>
       </div>
-      <Separator />
-      <div className="grid grid-cols-3 items-center gap-4">
-        <Label htmlFor="language" className="text-left">
-          {t('settings_panel.language')}
-        </Label>
-        <div className="col-span-2">
-          <Select value={language} onValueChange={value => setLanguage(value as any)}>
-            <SelectTrigger>
-              <SelectValue placeholder={t('settings_panel.language')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="en">English</SelectItem>
-              <SelectItem value="es">Español</SelectItem>
-              <SelectItem value="hi">हिन्दी</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+      
+      <div className="space-y-3">
+        <Label>{t('settings_panel.language')}</Label>
+        <Select value={language} onValueChange={value => setLanguage(value as any)}>
+          <SelectTrigger>
+            <SelectValue placeholder={t('settings_panel.language')} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="en">English</SelectItem>
+            <SelectItem value="es">Español</SelectItem>
+            <SelectItem value="hi">हिन्दी</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
-      <Separator />
-      <div className="grid grid-cols-3 items-start gap-4">
-        <Label className="pt-2 text-left">{t('settings_panel.accent_color')}</Label>
-        <div className="col-span-2 flex flex-wrap gap-2">
+      
+      <div className="space-y-3">
+        <Label>{t('settings_panel.accent_color')}</Label>
+        <div className="flex flex-wrap gap-3">
           {ACCENT_COLORS.map(color => (
             <button
               key={color.name}
               type="button"
               onClick={() => setAccentColor(color.color)}
               className={cn(
-                'flex h-8 w-8 items-center justify-center rounded-full border-2',
+                'flex h-8 w-8 items-center justify-center rounded-full border-2 transition-transform hover:scale-110',
                 accentColor === color.color ? 'border-foreground' : 'border-transparent'
               )}
               style={{ backgroundColor: `hsl(${color.color})` }}
@@ -104,8 +96,10 @@ export function SettingsPanel() {
           ))}
         </div>
       </div>
-      <Separator />
-      <Button variant="outline" onClick={handleReset}>
+      
+      <Separator className="!mt-10" />
+
+      <Button variant="outline" onClick={handleReset} className="w-full">
         {t('settings_panel.reset')}
       </Button>
     </div>
