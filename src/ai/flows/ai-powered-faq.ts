@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { FEATURES } from '@/lib/constants';
 
 const AiPoweredFAQInputSchema = z.object({
   question: z.string().describe('The question to ask about the Discord bot.'),
@@ -25,11 +26,18 @@ export async function aiPoweredFAQ(input: AiPoweredFAQInput): Promise<AiPoweredF
   return aiPoweredFAQFlow(input);
 }
 
+const featuresContext = FEATURES.map(f => `- ${f.title}: ${f.description}`).join('\n');
+
 const prompt = ai.definePrompt({
   name: 'aiPoweredFAQPrompt',
   input: {schema: AiPoweredFAQInputSchema},
   output: {schema: AiPoweredFAQOutputSchema},
-  prompt: `You are an AI assistant designed to answer questions about a Discord bot. Please provide a helpful and informative answer to the following question:\n\nQuestion: {{{question}}}`,
+  prompt: `You are an AI assistant for a Discord bot called "Omnix", designed to answer frequently asked questions. Use the following information about Omnix's features to provide a helpful and informative answer.
+
+Bot Features:
+${featuresContext}
+
+Question: {{{question}}}`,
 });
 
 const aiPoweredFAQFlow = ai.defineFlow(
