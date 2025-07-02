@@ -88,8 +88,8 @@ export default function FeaturesDisplay() {
               key={index}
               onClick={() => api?.scrollTo(index)}
               className={cn(
-                'h-2 rounded-full transition-all duration-300 ease-in-out',
-                current === index ? 'w-6 bg-primary' : 'w-2 bg-muted-foreground/50'
+                'h-[8px] rounded-full transition-all duration-300 ease-in-out',
+                current === index ? 'w-[24px] bg-primary' : 'w-[8px] bg-muted-foreground/50'
               )}
               aria-label={`Go to slide ${index + 1}`}
             />
