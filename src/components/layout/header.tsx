@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -11,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { useSettings } from '../theme-provider';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -62,14 +62,18 @@ export function Header() {
                 <span className="sr-only">Open Settings</span>
               </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="flex flex-col">
               <SheetHeader>
                 <SheetTitle>{isMounted ? t('header.settings.title') : 'Settings'}</SheetTitle>
                 <SheetDescription>
                   {isMounted ? t('header.settings.description') : 'Customize your experience.'}
                 </SheetDescription>
               </SheetHeader>
-              <SettingsPanel />
+              <ScrollArea className="flex-grow">
+                <div className="pr-4">
+                  <SettingsPanel />
+                </div>
+              </ScrollArea>
             </SheetContent>
           </Sheet>
         </nav>
@@ -82,7 +86,7 @@ export function Header() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
+            <SheetContent side="right" className="flex flex-col">
               <SheetHeader>
                   <SheetTitle>
                     <Link href="/" className="flex items-center gap-2 text-left" onClick={closeMobileMenu}>
@@ -91,15 +95,17 @@ export function Header() {
                     </Link>
                   </SheetTitle>
               </SheetHeader>
-              <nav className="mt-8 flex flex-col gap-4">
-                {navItems}
-                 <Button asChild className='mt-4'>
-                    <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{isMounted ? t('header.invite') : 'Invite'}</a>
-                </Button>
-                <div className='mt-4 border-t pt-4'>
-                   <SettingsPanel />
-                </div>
-              </nav>
+              <ScrollArea className="flex-grow">
+                <nav className="flex flex-col gap-4 pt-4 pr-4">
+                  {navItems}
+                   <Button asChild className='mt-4'>
+                      <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{isMounted ? t('header.invite') : 'Invite'}</a>
+                  </Button>
+                  <div className='mt-4 border-t pt-4'>
+                     <SettingsPanel />
+                  </div>
+                </nav>
+              </ScrollArea>
             </SheetContent>
           </Sheet>
         </div>
