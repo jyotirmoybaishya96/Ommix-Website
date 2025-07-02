@@ -5,59 +5,53 @@ import { BOT_STATS } from '@/lib/constants';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-type Stat = {
-  label: string;
-  value: string;
-  Icon: React.ElementType;
-};
-
-const initialStatsData = BOT_STATS.map(stat => ({
+const initialStats = BOT_STATS.map(stat => ({
   ...stat,
-  numericValue: parseFloat(stat.value.replace(/,/g, ''))
+  numericValue: parseFloat(stat.value.replace(/,/g, '').replace('+', '').replace('M', '000000').replace('ms', '')),
 }));
 
 export default function BotStats() {
-  const [stats, setStats] = useState(initialStatsData);
-  const [uptime, setUptime] = useState('99.9%');
+  const [stats, setStats] = useState(initialStats);
+  const [uptime, setUptime] = useState({ d: 0, h: 0, m: 0 });
   const [startTime] = useState(Date.now());
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStats(prevStats =>
-        prevStats.map(stat => {
-          if (stat.label === 'Uptime') return stat;
-          const change = Math.floor(Math.random() * (stat.numericValue * 0.005)) - Math.floor(stat.numericValue * 0.0025);
-          const newNumericValue = Math.max(0, stat.numericValue + change);
-          return {
-            ...stat,
-            numericValue: newNumericValue,
-            value: stat.label === 'Ping' ? `${Math.round(newNumericValue)}ms` : Math.round(newNumericValue).toLocaleString(),
-          };
-        })
-      );
-    }, 2500);
+    const intervals = [
+      setInterval(() => {
+        setStats(prevStats => prevStats.map(stat => (stat.label === 'Servers' ? { ...stat, numericValue: stat.numericValue + 1 } : stat)));
+      }, 8000),
+      setInterval(() => {
+        setStats(prevStats => prevStats.map(stat => (stat.label === 'Users' ? { ...stat, numericValue: stat.numericValue + Math.floor(Math.random() * 5 + 3) } : stat)));
+      }, 2000),
+      setInterval(() => {
+        setStats(prevStats => prevStats.map(stat => (stat.label === 'Ping' ? { ...stat, numericValue: 45 + Math.floor(Math.random() * 10) - 5 } : stat)));
+      }, 3000),
+      setInterval(() => {
+        const now = Date.now();
+        const diff = (now - startTime) / 1000;
+        const d = Math.floor(diff / (24 * 3600));
+        const h = Math.floor((diff % (24 * 3600)) / 3600);
+        const m = Math.floor((diff % 3600) / 60);
+        setUptime({ d, h, m });
+      }, 60000)
+    ];
 
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const uptimeInterval = setInterval(() => {
-      const now = Date.now();
-      const diff = (now - startTime) / 1000;
-      const d = Math.floor(diff / (24 * 3600));
-      const h = Math.floor((diff % (24 * 3600)) / 3600);
-      const m = Math.floor((diff % 3600) / 60);
-      setUptime(`${d}d ${h}h ${m}m`);
-    }, 60000);
-    return () => clearInterval(uptimeInterval);
+    return () => intervals.forEach(clearInterval);
   }, [startTime]);
 
-
-  const getStatDisplayValue = (stat: any) => {
-    if (stat.label === 'Uptime') return uptime;
-    return stat.value;
+  const getStatDisplayValue = (stat: typeof stats[0]) => {
+    if (stat.label === 'Uptime') {
+      return `${uptime.d}d ${uptime.h}h ${uptime.m}m`;
+    }
+    if (stat.label === 'Ping') {
+      return `${Math.round(stat.numericValue)}ms`;
+    }
+    if (stat.numericValue > 1000000) {
+      return `${(stat.numericValue / 1000000).toFixed(1)}M+`;
+    }
+    return `${Math.round(stat.numericValue).toLocaleString()}+`;
   };
-  
+
   return (
     <section className="w-full bg-muted/50 py-16 sm:py-24">
       <div className="container mx-auto">

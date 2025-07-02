@@ -4,6 +4,7 @@ export const NAV_LINKS = [
   { href: "/", label: "home" },
   { href: "/#features", label: "features" },
   { href: "/premium", label: "premium" },
+  { href: "/status", label: "status" },
   { href: "/team", label: "team" },
   { href: "/support", label: "support" },
   { href: "/faq", label: "faq" },
@@ -119,7 +120,7 @@ export const ACCENT_COLORS = [
   { name: 'Teal', color: '180 100% 25.1%' }, // #008080
   { name: 'Blue', color: '221.2 83.2% 53.3%' },
   { name: 'Green', color: '142.1 76.2% 36.3%' },
-  { name: 'Rose', color: '346.8 77.2% 49.8%' },
+  { name: "Rose", color: '346.8 77.2% 49.8%' },
 ];
 
 export const PREMIUM_FEATURES = [
