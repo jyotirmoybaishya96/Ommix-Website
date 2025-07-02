@@ -6,12 +6,10 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescri
 import { Cog, Menu, Bot } from 'lucide-react';
 import { NAV_LINKS, DISCORD_INVITE_URL } from '@/lib/constants';
 import { SettingsPanel } from './settings-panel';
-import { useIsMobile } from '@/hooks/use-mobile';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export function Header() {
-  const isMobile = useIsMobile();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const pathname = usePathname();
@@ -29,16 +27,41 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" onClick={closeMobileMenu}>
           <Bot className="h-8 w-8 text-primary" />
           <span className="font-headline text-2xl font-bold">Omnix</span>
         </Link>
         
-        {isMobile ? (
+        <nav className="hidden items-center gap-4 md:flex">
+          {navItems}
+          <Button asChild>
+            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">Invite Omnix</a>
+          </Button>
+          <Sheet open={isSettingsOpen} onOpenChange={setSettingsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Cog />
+                <span className="sr-only">Open Settings</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Settings</SheetTitle>
+                <SheetDescription>
+                  Customize the appearance of the application.
+                </SheetDescription>
+              </SheetHeader>
+              <SettingsPanel />
+            </SheetContent>
+          </Sheet>
+        </nav>
+
+        <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu />
+                <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
@@ -55,31 +78,7 @@ export function Header() {
               </nav>
             </SheetContent>
           </Sheet>
-        ) : (
-          <nav className="hidden items-center gap-4 md:flex">
-            {navItems}
-            <Button asChild>
-              <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">Invite Omnix</a>
-            </Button>
-            <Sheet open={isSettingsOpen} onOpenChange={setSettingsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Cog />
-                  <span className="sr-only">Open Settings</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <SheetHeader>
-                  <SheetTitle>Settings</SheetTitle>
-                  <SheetDescription>
-                    Customize the appearance of the application.
-                  </SheetDescription>
-                </SheetHeader>
-                <SettingsPanel />
-              </SheetContent>
-            </Sheet>
-          </nav>
-        )}
+        </div>
       </div>
     </header>
   );

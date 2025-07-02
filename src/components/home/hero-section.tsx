@@ -12,7 +12,7 @@ export default function HeroSection() {
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
           Elevate your server with powerful moderation, anti-nuke, ticketing, music, and much more. Omnix is the only bot you'll ever need.
         </p>
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button size="lg" asChild className="smooth-hover">
             <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
               Invite to Discord
