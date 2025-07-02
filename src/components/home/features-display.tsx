@@ -1,7 +1,9 @@
+'use client';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FEATURES } from '@/lib/constants';
-import Image from 'next/image';
+import { FeatureCanvas } from './feature-canvas';
 
 export default function FeaturesDisplay() {
   return (
@@ -36,14 +38,12 @@ export default function FeaturesDisplay() {
                       {feature.description}
                     </CardContent>
                   </CardHeader>
-                  <div className="p-4">
-                    <Image
-                      src={feature.image}
-                      alt={`${feature.title} feature`}
+                  <div className="flex items-center justify-center p-4">
+                    <FeatureCanvas
+                      title={feature.title}
                       width={500}
                       height={300}
-                      className="rounded-lg object-cover"
-                      data-ai-hint={feature.aiHint}
+                      className="rounded-lg"
                     />
                   </div>
                 </div>

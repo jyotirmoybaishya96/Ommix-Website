@@ -15,43 +15,31 @@ export const FEATURES = [
     title: "Anti-Nuke",
     description: "Our advanced Anti-Nuke system protects your server from malicious raids and unauthorized administrative actions, ensuring its safety and stability around the clock.",
     Icon: ShieldAlert,
-    image: "https://placehold.co/500x300.png",
-    aiHint: "server protection",
   },
   {
     title: "Auto-Mod",
     description: "Automate server moderation with our customizable Auto-Mod. It filters spam, removes inappropriate content, and manages user behavior, freeing up your moderation team.",
     Icon: ShieldCheck,
-    image: "https://placehold.co/500x300.png",
-    aiHint: "automation bot",
   },
   {
     title: "Ticketing",
     description: "A seamless ticketing system for user support. Members can create private support channels with a single click, allowing your staff to address issues efficiently.",
     Icon: Ticket,
-    image: "https://placehold.co/500x300.png",
-    aiHint: "customer support",
   },
   {
     title: "Moderation",
     description: "Powerful and easy-to-use moderation commands. From kicking and banning to muting members, Omnix provides all the tools you need to maintain a healthy community.",
     Icon: User,
-    image: "https://placehold.co/500x300.png",
-    aiHint: "community management",
   },
   {
     title: "Music",
     description: "High-quality music streaming for your voice channels. Enjoy your favorite tunes with friends with our feature-rich, easy-to-use music player.",
     Icon: Music,
-    image: "https://placehold.co/500x300.png",
-    aiHint: "headphones audio",
   },
   {
     title: "And More...",
     description: "Omnix is packed with dozens of other features, including welcome messages, logging, utility commands, and much more to enhance your Discord server.",
     Icon: Bot,
-    image: "https://placehold.co/500x300.png",
-    aiHint: "network abstract",
   },
 ];
 
