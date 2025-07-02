@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FEATURES } from '@/lib/constants';
 import Image from 'next/image';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 export default function FeaturesDisplay() {
   return (
@@ -14,14 +15,17 @@ export default function FeaturesDisplay() {
           Omnix is designed with a comprehensive suite of tools to provide the ultimate server management experience.
         </p>
         <Tabs defaultValue={FEATURES[0].title} className="mt-8">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
-            {FEATURES.map((feature) => (
-              <TabsTrigger key={feature.title} value={feature.title}>
-                <feature.Icon className="mr-2 h-4 w-4" />
-                {feature.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+          <ScrollArea className="w-full whitespace-nowrap">
+            <TabsList className="inline-flex w-max sm:w-full sm:grid sm:grid-cols-3 md:grid-cols-6">
+              {FEATURES.map((feature) => (
+                <TabsTrigger key={feature.title} value={feature.title}>
+                  <feature.Icon className="mr-2 h-4 w-4" />
+                  {feature.title}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            <ScrollBar orientation="horizontal" className="sm:hidden" />
+          </ScrollArea>
           {FEATURES.map((feature) => (
             <TabsContent key={feature.title} value={feature.title}>
               <Card className="mt-4 text-left">
