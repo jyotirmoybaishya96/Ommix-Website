@@ -61,7 +61,7 @@ export default function StatusPage() {
                 <h1 className="font-headline text-4xl font-bold md:text-5xl">Bot Status & Analytics</h1>
                 <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
                     Live metrics and analytics for the Omnix bot.
-                p>
+                </p>
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
