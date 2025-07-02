@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Table,
   TableBody,
@@ -8,21 +10,58 @@ import {
 } from "@/components/ui/table";
 import { PREMIUM_FEATURES } from "@/lib/constants";
 import { Check, X } from "lucide-react";
+import { motion } from 'framer-motion';
 
 function FeatureCell({ value, isFree }: { value: string | boolean; isFree?: boolean }) {
   if (typeof value === 'boolean') {
     if (value) {
-      return <Check className={`mx-auto h-5 w-5 ${isFree ? 'text-green-500' : 'text-primary'}`} />;
+      return (
+        <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.2, type: 'spring' }} viewport={{ once: true }}>
+          <Check className={`mx-auto h-5 w-5 ${isFree ? 'text-green-500' : 'text-primary'}`} />
+        </motion.div>
+      );
     }
-    return <X className="mx-auto h-5 w-5 text-destructive" />;
+    return (
+      <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.2, type: 'spring' }} viewport={{ once: true }}>
+        <X className="mx-auto h-5 w-5 text-destructive" />
+      </motion.div>
+    );
   }
   return <span className="text-sm text-foreground">{value}</span>;
 }
 
 
 export function FeatureComparison() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut'
+      }
+    },
+  };
+
   return (
-    <div className="mt-16 sm:mt-24">
+    <motion.div 
+      className="mt-16 sm:mt-24"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <h2 className="text-center font-headline text-3xl font-bold md:text-4xl">
         Full Feature Comparison
       </h2>
@@ -36,14 +75,20 @@ export function FeatureComparison() {
             </TableRow>
           </TableHeader>
           {PREMIUM_FEATURES.map((category) => (
-            <TableBody key={category.category}>
-              <TableRow className="bg-muted/50 hover:bg-muted/50">
+            <motion.tbody 
+              key={category.category}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.tr variants={itemVariants} className="bg-muted/50 hover:bg-muted/50">
                 <TableCell colSpan={3} className="font-headline text-base font-semibold text-foreground">
                   {category.category}
                 </TableCell>
-              </TableRow>
+              </motion.tr>
               {category.features.map((feature) => (
-                <TableRow key={feature.name}>
+                <motion.tr variants={itemVariants} key={feature.name}>
                   <TableCell className="font-medium text-muted-foreground">{feature.name}</TableCell>
                   <TableCell className="text-center">
                     <FeatureCell value={feature.free} isFree />
@@ -51,12 +96,12 @@ export function FeatureComparison() {
                   <TableCell className="text-center">
                     <FeatureCell value={feature.premium} />
                   </TableCell>
-                </TableRow>
+                </motion.tr>
               ))}
-            </TableBody>
+            </motion.tbody>
           ))}
         </Table>
       </div>
-    </div>
+    </motion.div>
   );
 }
