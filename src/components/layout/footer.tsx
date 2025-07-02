@@ -29,7 +29,7 @@ export function Footer() {
               {SOCIAL_LINKS.map((social) => (
                 <Button key={social.name} variant="ghost" size="icon" asChild>
                   <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
-                    <social.icon className="h-5 w-5" />
+                    <social.Icon className="h-5 w-5" />
                   </a>
                 </Button>
               ))}
