@@ -108,13 +108,6 @@ export const SOCIAL_LINKS = [
     { name: "Twitter", Icon: Twitter, href: "#" },
 ];
 
-export const BOT_STATS = [
-  { label: 'Servers', value: '2,500+', Icon: Server },
-  { label: 'Users', value: '1.2M+', Icon: Users },
-  { label: 'Uptime', value: '99.9%', Icon: Clock },
-  { label: 'Ping', value: '45ms', Icon: Wifi },
-];
-
 export const ACCENT_COLORS = [
   { name: 'Default', color: '282.4 100% 41.4%' }, // #9400D3
   { name: 'Teal', color: '180 100% 25.1%' }, // #008080

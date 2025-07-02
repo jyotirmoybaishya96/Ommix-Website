@@ -1,77 +1,105 @@
-
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BOT_STATS } from '@/lib/constants';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Server, Users, Wifi, Clock } from 'lucide-react';
 
-type LiveStats = {
-  servers: number;
+type BotStats = {
+  guilds: number;
   users: number;
+  channels: number;
   ping: number;
-  uptime: string;
+  uptime: number; // in seconds
 };
 
-const statKeyMap: { [label: string]: keyof LiveStats } = {
-  'Servers': 'servers',
-  'Users': 'users',
-  'Ping': 'ping',
-  'Uptime': 'uptime',
+const formatTime = (seconds: number): string => {
+  if (isNaN(seconds) || seconds < 0) {
+    return '0d 0h 0m';
+  }
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  return `${d}d ${h}h ${m}m`;
 };
+
+const StatBox = ({
+  label,
+  value,
+  Icon,
+  isLoading,
+}: {
+  label: string;
+  value: string;
+  Icon: React.ElementType;
+  isLoading: boolean;
+}) => (
+  <Card className="smooth-hover text-center">
+    <CardHeader className="flex flex-col items-center justify-center gap-2">
+      <Icon className="h-8 w-8 text-primary" />
+      <CardTitle className="font-headline text-lg">{label}</CardTitle>
+    </CardHeader>
+    <CardContent>
+      {isLoading ? (
+        <Skeleton className="mx-auto h-9 w-28" />
+      ) : (
+        <div className="font-headline text-3xl font-bold h-9 flex items-center justify-center">
+          {value}
+        </div>
+      )}
+    </CardContent>
+  </Card>
+);
 
 export default function BotStats() {
-  const [liveStats, setLiveStats] = useState<LiveStats | null>(null);
+  const [stats, setStats] = useState<BotStats | null>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch('/api/stats');
-        if (!response.ok) {
-          throw new Error('Failed to fetch stats');
-        }
-        const data: LiveStats = await response.json();
-        setLiveStats(data);
+        const res = await fetch('/api/stats');
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        setStats(data);
       } catch (error) {
-        console.error("Error fetching bot stats:", error);
-        // In a real app, you might set an error state here
+        console.error('Failed to load stats:', error);
       }
     };
 
-    fetchStats(); // Fetch immediately on component mount
-    const intervalId = setInterval(fetchStats, 5000); // Poll every 5 seconds
-
-    return () => clearInterval(intervalId); // Cleanup interval on unmount
+    fetchStats();
+    const interval = setInterval(fetchStats, 5000); // Refresh every 5 seconds
+    return () => clearInterval(interval);
   }, []);
 
-  const getStatDisplayValue = (label: string) => {
-    if (!liveStats) {
-      return <Skeleton className="h-9 w-28" />;
-    }
-
-    const key = statKeyMap[label];
-    const value = liveStats[key];
-
-    switch (label) {
-      case 'Servers':
-        return `${Number(value).toLocaleString()}+`;
-      case 'Users':
-        return `${(Number(value) / 1000000).toFixed(1)}M+`;
-      case 'Ping':
-        return `${value}ms`;
-      case 'Uptime':
-        return String(value);
-      default:
-        return 'N/A';
-    }
-  };
+  const statItems = [
+    {
+      label: 'Servers',
+      value: stats ? stats.guilds.toLocaleString() : '0',
+      Icon: Server,
+    },
+    {
+      label: 'Users',
+      value: stats ? stats.users.toLocaleString() : '0',
+      Icon: Users,
+    },
+    {
+      label: 'Ping',
+      value: stats ? `${stats.ping}ms` : '0ms',
+      Icon: Wifi,
+    },
+    {
+      label: 'Uptime',
+      value: stats ? formatTime(stats.uptime) : '0d 0h 0m',
+      Icon: Clock,
+    },
+  ];
 
   return (
     <section className="w-full bg-muted/50 py-16 sm:py-24">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-          {BOT_STATS.map((stat, index) => (
+          {statItems.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 50 }}
@@ -79,17 +107,12 @@ export default function BotStats() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="smooth-hover text-center">
-                <CardHeader className="flex flex-col items-center justify-center gap-2">
-                  <stat.Icon className="h-8 w-8 text-primary" />
-                  <CardTitle className="font-headline text-lg">{stat.label}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="font-headline text-3xl font-bold h-9 flex items-center justify-center">
-                    {getStatDisplayValue(stat.label)}
-                  </div>
-                </CardContent>
-              </Card>
+              <StatBox
+                label={stat.label}
+                value={stat.value}
+                Icon={stat.Icon}
+                isLoading={!stats}
+              />
             </motion.div>
           ))}
         </div>
