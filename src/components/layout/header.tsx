@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Cog, Menu, Bot } from 'lucide-react';
 import { NAV_LINKS, DISCORD_INVITE_URL } from '@/lib/constants';
 import { SettingsPanel } from './settings-panel';
@@ -42,7 +42,15 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
-              <nav className="flex h-full flex-col justify-center gap-4">
+              <SheetHeader>
+                <SheetTitle>
+                  <Link href="/" className="flex items-center gap-2 text-left" onClick={closeMobileMenu}>
+                    <Bot className="h-8 w-8 text-primary" />
+                    <span className="font-headline text-2xl font-bold">Omnix</span>
+                  </Link>
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="mt-8 flex flex-col gap-4">
                 {navItems}
               </nav>
             </SheetContent>
