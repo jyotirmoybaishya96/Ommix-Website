@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useSettings } from '@/components/theme-provider';
@@ -76,52 +75,58 @@ export function SettingsPanel() {
         <div className="space-y-8">
           <div className="space-y-3">
             <Label>{t('settings_panel.theme', { defaultValue: 'Theme' })}</Label>
-            <div className="flex items-center rounded-lg border p-1">
-              <Button variant={theme === 'light' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setTheme('light')}>
-                <Sun className="mr-2 h-4 w-4" /> {t('settings_panel.theme_light', { defaultValue: 'Light' })}
-              </Button>
-              <Button variant={theme === 'dark' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setTheme('dark')}>
-                <Moon className="mr-2 h-4 w-4" /> {t('settings_panel.theme_dark', { defaultValue: 'Dark' })}
-              </Button>
-              <Button variant={theme === 'system' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setTheme('system')}>
-                <Monitor className="mr-2 h-4 w-4" /> {t('settings_panel.theme_system', { defaultValue: 'System' })}
-              </Button>
+            <div className="overflow-x-auto pb-2 -mb-2">
+              <div className="inline-flex w-max items-center rounded-lg border p-1 space-x-1">
+                <Button variant={theme === 'light' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setTheme('light')}>
+                  <Sun className="mr-2 h-4 w-4" /> {t('settings_panel.theme_light', { defaultValue: 'Light' })}
+                </Button>
+                <Button variant={theme === 'dark' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setTheme('dark')}>
+                  <Moon className="mr-2 h-4 w-4" /> {t('settings_panel.theme_dark', { defaultValue: 'Dark' })}
+                </Button>
+                <Button variant={theme === 'system' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setTheme('system')}>
+                  <Monitor className="mr-2 h-4 w-4" /> {t('settings_panel.theme_system', { defaultValue: 'System' })}
+                </Button>
+              </div>
             </div>
           </div>
           
           <div className="space-y-3">
             <Label>{t('settings_panel.font_size', { defaultValue: 'Font Size' })}</Label>
-            <div className="flex items-center rounded-lg border p-1">
-              <Button variant={fontSize === 'sm' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setFontSize('sm')}>
-                <Text className="mr-2 h-3 w-3" /> {t('settings_panel.font_size_small', { defaultValue: 'Small' })}
-              </Button>
-              <Button variant={fontSize === 'base' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setFontSize('base')}>
-                <Text className="mr-2 h-4 w-4" /> {t('settings_panel.font_size_default', { defaultValue: 'Default' })}
-              </Button>
-              <Button variant={fontSize === 'lg' ? 'secondary' : 'ghost'} size="sm" className="w-full" onClick={() => setFontSize('lg')}>
-                <Text className="mr-2 h-5 w-5" /> {t('settings_panel.font_size_large', { defaultValue: 'Large' })}
-              </Button>
+            <div className="overflow-x-auto pb-2 -mb-2">
+              <div className="inline-flex w-max items-center rounded-lg border p-1 space-x-1">
+                <Button variant={fontSize === 'sm' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setFontSize('sm')}>
+                  <Text className="mr-2 h-3 w-3" /> {t('settings_panel.font_size_small', { defaultValue: 'Small' })}
+                </Button>
+                <Button variant={fontSize === 'base' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setFontSize('base')}>
+                  <Text className="mr-2 h-4 w-4" /> {t('settings_panel.font_size_default', { defaultValue: 'Default' })}
+                </Button>
+                <Button variant={fontSize === 'lg' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setFontSize('lg')}>
+                  <Text className="mr-2 h-5 w-5" /> {t('settings_panel.font_size_large', { defaultValue: 'Large' })}
+                </Button>
+              </div>
             </div>
           </div>
           
           <div className="space-y-3">
             <Label>{t('settings_panel.accent_color', { defaultValue: 'Accent Color' })}</Label>
-            <div className="flex flex-wrap gap-3">
-              {ACCENT_COLORS.map(color => (
-                <button
-                  key={color.name}
-                  type="button"
-                  onClick={() => setAccentColor(color.color)}
-                  className={cn(
-                    'flex h-8 w-8 items-center justify-center rounded-full border-2 transition-transform hover:scale-110',
-                    accentColor === color.color ? 'border-foreground' : 'border-transparent'
-                  )}
-                  style={{ backgroundColor: `hsl(${color.color})` }}
-                  aria-label={color.name}
-                >
-                  {accentColor === color.color && <Check className="h-5 w-5 text-primary-foreground" />}
-                </button>
-              ))}
+            <div className="overflow-x-auto pb-2 -mb-2">
+              <div className="flex w-max flex-nowrap gap-3">
+                {ACCENT_COLORS.map(color => (
+                  <button
+                    key={color.name}
+                    type="button"
+                    onClick={() => setAccentColor(color.color)}
+                    className={cn(
+                      'flex h-8 w-8 items-center justify-center rounded-full border-2 transition-transform hover:scale-110 flex-shrink-0',
+                      accentColor === color.color ? 'border-foreground' : 'border-transparent'
+                    )}
+                    style={{ backgroundColor: `hsl(${color.color})` }}
+                    aria-label={color.name}
+                  >
+                    {accentColor === color.color && <Check className="h-5 w-5 text-primary-foreground" />}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
