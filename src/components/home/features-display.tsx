@@ -1,100 +1,81 @@
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from '@/components/ui/carousel';
 import { FEATURES } from '@/lib/constants';
 import { FeatureCanvas } from './feature-canvas';
-import { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 export default function FeaturesDisplay() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
 
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-
-    api.on('select', () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
 
   return (
     <section id="features" className="w-full py-16 sm:py-24">
       <div className="container mx-auto">
-        <div className="text-center">
+        <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+        >
           <h2 className="font-headline text-3xl font-bold md:text-4xl">
             Packed with Features
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
             Omnix is designed with a comprehensive suite of tools to provide the ultimate server management experience.
           </p>
-        </div>
+        </motion.div>
         
-        <Carousel
-          setApi={setApi}
-          opts={{
-            align: 'start',
-            loop: true,
-          }}
-          className="mt-8 w-full"
+        <motion.div 
+          className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
-          <CarouselContent className="-ml-4">
-            {FEATURES.map((feature, index) => (
-              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="h-full p-1">
-                  <Card className="flex h-full flex-col text-left transition-all duration-300 hover:border-primary hover:shadow-lg">
-                    <CardHeader>
-                      <div className="flex items-center gap-4">
-                        <feature.Icon className="h-8 w-8 shrink-0 text-primary" />
-                        <CardTitle className="font-headline text-2xl">
-                          {feature.title}
-                        </CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="flex flex-grow flex-col gap-4 pt-0">
-                      <div className="relative w-full overflow-hidden rounded-lg bg-muted/50" style={{aspectRatio: '500 / 300'}}>
-                        <FeatureCanvas title={feature.title} />
-                      </div>
-                      <p className="flex-grow text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
-        </Carousel>
-
-        <div className="mt-6 flex justify-center gap-3">
-          {Array.from({ length: count }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => api?.scrollTo(index)}
-              className={cn(
-                'h-[8px] rounded-full transition-all duration-300 ease-in-out',
-                current === index ? 'w-[24px] bg-primary' : 'w-[8px] bg-muted-foreground/50'
-              )}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+          {FEATURES.map((feature, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card className="group flex h-full flex-col text-left transition-all duration-300 hover:border-primary hover:shadow-2xl hover:-translate-y-2">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      <feature.Icon className="h-8 w-8 shrink-0 text-primary transition-all duration-300 group-hover:text-primary-foreground group-hover:bg-primary rounded-md p-1" />
+                    </motion.div>
+                    <CardTitle className="font-headline text-2xl">
+                      {feature.title}
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex flex-grow flex-col gap-4 pt-0">
+                  <div className="relative w-full overflow-hidden rounded-lg bg-muted/50" style={{aspectRatio: '500 / 300'}}>
+                    <FeatureCanvas title={feature.title} />
+                  </div>
+                  <p className="flex-grow text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

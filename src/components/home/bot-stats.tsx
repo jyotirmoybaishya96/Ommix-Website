@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,7 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Server, Users, Wifi, Clock } from 'lucide-react';
 
-type BotStats = {
+type BotStatsData = {
   guilds: number;
   users: number;
   channels: number;
@@ -35,16 +36,16 @@ const StatBox = ({
   Icon: React.ElementType;
   isLoading: boolean;
 }) => (
-  <Card className="smooth-hover text-center">
-    <CardHeader className="flex flex-col items-center justify-center gap-2">
-      <Icon className="h-8 w-8 text-primary" />
+  <Card className="border-primary-foreground/20 bg-white/10 text-center text-primary-foreground backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20">
+    <CardHeader className="flex flex-col items-center justify-center gap-2 pb-2">
+      <Icon className="h-8 w-8" />
       <CardTitle className="font-headline text-lg">{label}</CardTitle>
     </CardHeader>
     <CardContent>
       {isLoading ? (
-        <Skeleton className="mx-auto h-9 w-28" />
+        <Skeleton className="mx-auto h-9 w-28 bg-white/20" />
       ) : (
-        <div className="font-headline text-3xl font-bold h-9 flex items-center justify-center">
+        <div className="flex h-9 items-center justify-center font-headline text-3xl font-bold">
           {value}
         </div>
       )}
@@ -53,7 +54,7 @@ const StatBox = ({
 );
 
 export default function BotStats() {
-  const [stats, setStats] = useState<BotStats | null>(null);
+  const [stats, setStats] = useState<BotStatsData | null>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -96,15 +97,29 @@ export default function BotStats() {
   ];
 
   return (
-    <section className="w-full bg-muted/50 py-16 sm:py-24">
+    <section className="w-full bg-gradient-to-b from-card to-muted py-16 sm:py-24">
       <div className="container mx-auto">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-headline text-3xl font-bold md:text-4xl">
+            Powering Thousands of Communities
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            Omnix is trusted by a rapidly growing number of servers, providing reliable and powerful tools for communities of all sizes.
+          </p>
+        </motion.div>
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
           {statItems.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               viewport={{ once: true }}
             >
               <StatBox
