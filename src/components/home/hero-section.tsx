@@ -5,6 +5,7 @@ import { DISCORD_INVITE_URL } from '@/lib/constants';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { useSettings } from '../theme-provider';
 
 const AnimatedWords = ({ text }: { text: string }) => {
   const words = text.split(" ");
@@ -61,6 +62,7 @@ const AnimatedWords = ({ text }: { text: string }) => {
 
 export default function HeroSection() {
   const { t } = useTranslation();
+  const { isMounted } = useSettings();
   const heroTitle = t('hero.title', { defaultValue: "The All-in-One Discord Bot" });
 
   const containerVariants = {
@@ -91,7 +93,11 @@ export default function HeroSection() {
         <h1
           className="font-headline text-5xl font-bold tracking-tighter text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          <AnimatedWords text={heroTitle} />
+          {isMounted ? (
+            <AnimatedWords text={heroTitle} />
+          ) : (
+            "The All-in-One Discord Bot"
+          )}
         </h1>
         <motion.p
           variants={itemVariants}
