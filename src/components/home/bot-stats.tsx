@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, useSpring } from 'framer-motion';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Server, Users, Wifi, Clock } from 'lucide-react';
@@ -25,7 +25,7 @@ const formatTime = (seconds: number): string => {
 
 function AnimatedCounter({ value, isTime = false }: { value: number; isTime?: boolean }) {
   const [displayValue, setDisplayValue] = useState(0);
-  const ref = React.useRef(null);
+  const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const springValue = useSpring(0, {
     damping: 20,
@@ -73,7 +73,7 @@ export default function BotStats() {
   const statItems = [
     { label: 'Servers', value: stats?.guilds ?? 0, Icon: Server },
     { label: 'Users', value: stats?.users ?? 0, Icon: Users },
-    { label: 'Ping', value: stats?.ping ?? 0, suffix: 'ms' },
+    { label: 'Ping', value: stats?.ping ?? 0, Icon: Wifi, suffix: 'ms' },
     { label: 'Uptime', value: stats?.uptime ?? 0, isTime: true, Icon: Clock },
   ];
   
