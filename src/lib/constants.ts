@@ -1,8 +1,9 @@
+
 import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi } from "lucide-react";
 
 export const NAV_LINKS = [
   { href: "/", label: "home" },
-  { href: "/#features", label: "features" },
+  { href: "/features", label: "features" },
   { href: "/premium", label: "premium" },
   { href: "/status", label: "status" },
   { href: "/team", label: "team" },
