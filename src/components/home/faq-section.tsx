@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
+import { motion } from 'framer-motion';
 
 const FAQ_DATA = [
   {
@@ -35,29 +36,44 @@ export function FaqSection() {
   return (
     <section id="faq" className="w-full bg-muted/50 py-16 sm:py-24">
       <div className="container mx-auto max-w-3xl text-center">
-        <h2 className="font-headline text-3xl font-bold md:text-4xl">
-          Frequently Asked Questions
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-          Find answers to common questions about Omnix. For more specific queries, visit our{' '}
-          <Link href="/faq" className="text-primary hover:underline">
-            AI-powered FAQ page
-          </Link>.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-headline text-3xl font-bold md:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            Find answers to common questions about Omnix. For more specific queries, visit our{' '}
+            <Link href="/faq" className="text-primary hover:underline">
+              AI-powered FAQ page
+            </Link>.
+          </p>
+        </motion.div>
+        
         <Accordion type="single" collapsible className="mt-12 w-full space-y-4 text-left">
           {FAQ_DATA.map((faq, index) => (
-            <AccordionItem 
-              key={index} 
-              value={`item-${index}`} 
-              className="overflow-hidden rounded-lg border bg-card shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg data-[state=open]:border-primary data-[state=open]:shadow-xl"
+             <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              <AccordionTrigger className="w-full px-6 py-5 text-left font-headline text-lg transition-colors hover:no-underline data-[state=open]:bg-primary/5 data-[state=open]:text-primary">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-5 text-base text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+              <AccordionItem 
+                value={`item-${index}`} 
+                className="overflow-hidden rounded-lg border bg-card shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg data-[state=open]:border-primary data-[state=open]:shadow-xl"
+              >
+                <AccordionTrigger className="w-full px-6 py-5 text-left font-headline text-lg transition-colors hover:no-underline data-[state=open]:bg-primary/5 data-[state=open]:text-primary">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-5 text-base text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
       </div>
