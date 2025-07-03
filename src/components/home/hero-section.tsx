@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { DISCORD_INVITE_URL } from '@/lib/constants';
 import Link from 'next/link';
-import { Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 
 const AnimatedWords = ({ text }: { text: string }) => {
@@ -60,6 +60,8 @@ const AnimatedWords = ({ text }: { text: string }) => {
 
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+  const heroTitle = t('hero.title', { defaultValue: "The All-in-One Discord Bot" });
 
   const containerVariants = {
     initial: {},
@@ -89,9 +91,7 @@ export default function HeroSection() {
         <h1
           className="font-headline text-5xl font-bold tracking-tighter text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          <Trans i18nKey="hero.title">
-            <AnimatedWords text="The All-in-One Discord Bot" />
-          </Trans>
+          <AnimatedWords text={heroTitle} />
         </h1>
         <motion.p
           variants={itemVariants}
