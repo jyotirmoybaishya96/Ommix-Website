@@ -1,44 +1,79 @@
-
 'use client';
 
 import { Button } from '@/components/ui/button';
 import { DISCORD_INVITE_URL } from '@/lib/constants';
 import Link from 'next/link';
-import { useTranslation, Trans } from 'react-i18next';
-import { useSettings } from '../theme-provider';
+import { Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 
-const AnimatedBlob = ({ className, animationProps }: any) => (
-  <motion.div
-    variants={{
-      initial: { scale: 0, opacity: 0 },
-      animate: { scale: 1, opacity: 1 },
-    }}
-    className={cn(
-      "absolute rounded-full bg-gradient-to-tr from-primary/10 to-accent/10 blur-3xl",
-      className
-    )}
-    {...animationProps}
-  />
-);
+const AnimatedWords = ({ text }: { text: string }) => {
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      style={{ overflow: "hidden", display: "flex", flexWrap: "wrap", justifyContent: 'center' }}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {words.map((word, index) => (
+        <motion.span
+          variants={child}
+          style={{ marginRight: "0.5rem" }}
+          key={index}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+
 
 export default function HeroSection() {
-  const { t } = useTranslation();
-  const { isMounted } = useSettings();
 
   const containerVariants = {
     initial: {},
     animate: {
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.3,
+        delayChildren: 0.5,
       },
     },
   };
 
   const itemVariants = {
     initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
   };
 
   return (
@@ -46,54 +81,38 @@ export default function HeroSection() {
       initial="initial"
       animate="animate"
       variants={containerVariants}
-      className="relative w-full overflow-hidden py-20 text-center md:py-32 lg:py-40"
+      className="relative w-full overflow-hidden py-32 text-center md:py-40 lg:py-48"
     >
-      <div className="absolute inset-0 -z-10">
-        <AnimatedBlob 
-          className="h-[300px] w-[500px] top-0 left-0 -translate-x-1/2 -translate-y-1/2" 
-          animationProps={{ transition: { delay: 0.1, duration: 0.8, ease: "easeOut" } }} 
-        />
-        <AnimatedBlob 
-          className="bottom-0 right-0 h-[300px] w-[300px] translate-x-1/2 translate-y-1/2" 
-          animationProps={{ transition: { delay: 0.2, duration: 1.0, ease: "easeOut" } }}
-        />
-         <AnimatedBlob 
-          className="top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2"
-          animationProps={{ transition: { delay: 0.3, duration: 1.2, ease: "easeOut" } }}
-        />
-      </div>
+      <div className="aurora-background" />
 
-      <div className="container relative z-0 mx-auto">
+      <div className="container relative z-10 mx-auto">
+        <h1
+          className="font-headline text-5xl font-bold tracking-tighter text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
+        >
+          <Trans i18nKey="hero.title">
+            <AnimatedWords text="The All-in-One Discord Bot" />
+          </Trans>
+        </h1>
+        <motion.p
+          variants={itemVariants}
+          className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl"
+        >
+          Omnix provides powerful moderation, anti-nuke, ticketing, music, and more to elevate your Discord server.
+        </motion.p>
         <motion.div
           variants={itemVariants}
-          className="mx-auto max-w-4xl rounded-2xl border border-black/10 bg-card/30 p-6 shadow-2xl shadow-black/10 backdrop-blur-lg dark:border-white/10 sm:p-10"
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <h1
-            className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            <Trans i18nKey="hero.title">
-              The All-in-One <span className="text-primary">Discord Bot</span>
-            </Trans>
-          </h1>
-          <p
-            className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground"
-          >
-            {t('hero.subtitle', 'Omnix provides powerful moderation, anti-nuke, ticketing, music, and more to elevate your Discord server.')}
-          </p>
-          <div
-            className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
-          >
-            <Button size="lg" asChild className="smooth-hover">
-              <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
-                {t('hero.invite_button', 'Invite to Discord')}
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="smooth-hover">
-              <Link href="/features">
-                {t('hero.learn_more_button', 'Learn More')}
-              </Link>
-            </Button>
-          </div>
+          <Button size="lg" asChild className="smooth-hover shadow-lg shadow-primary/20">
+            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
+              Invite to Discord
+            </a>
+          </Button>
+          <Button size="lg" variant="outline" asChild className="smooth-hover border-foreground/20 bg-background/50 backdrop-blur-sm">
+            <Link href="/features">
+              Explore Features
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </motion.section>

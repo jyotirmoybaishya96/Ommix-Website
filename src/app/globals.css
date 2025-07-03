@@ -96,4 +96,62 @@
   .smooth-hover {
     @apply transition-transform duration-300 ease-in-out hover:scale-[1.03];
   }
+
+  .aurora-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .aurora-background::before,
+  .aurora-background::after {
+    content: "";
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    opacity: 0.3;
+    mix-blend-mode: multiply;
+    filter: blur(100px);
+    animation: aurora-flow 20s linear infinite;
+  }
+  
+  .dark .aurora-background::before,
+  .dark .aurora-background::after {
+    mix-blend-mode: screen;
+    opacity: 0.4;
+  }
+
+
+  .aurora-background::before {
+    background-color: hsl(var(--primary) / 0.5);
+    top: -400px;
+    left: -400px;
+  }
+
+  .aurora-background::after {
+    background-color: hsl(var(--accent) / 0.5);
+    bottom: -400px;
+    right: -400px;
+    animation-delay: -10s;
+  }
+
+  @keyframes aurora-flow {
+    0%, 100% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateX(100px) translateY(-50px) rotate(45deg);
+    }
+    50% {
+      transform: translateX(0) translateY(100px) rotate(90deg);
+    }
+    75% {
+      transform: translateX(-100px) translateY(-50px) rotate(135deg);
+    }
+  }
 }
