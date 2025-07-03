@@ -36,14 +36,14 @@ const StatBox = ({
   Icon: React.ElementType;
   isLoading: boolean;
 }) => (
-  <Card className="border-primary-foreground/20 bg-white/10 text-center text-primary-foreground backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20">
+  <Card className="border-card-foreground/10 bg-card/60 text-center text-foreground backdrop-blur-lg transition-all duration-300 hover:scale-105 hover:bg-card/75 shadow-xl shadow-primary/5">
     <CardHeader className="flex flex-col items-center justify-center gap-2 pb-2">
-      <Icon className="h-8 w-8" />
+      <Icon className="h-8 w-8 text-primary" />
       <CardTitle className="font-headline text-lg">{label}</CardTitle>
     </CardHeader>
     <CardContent>
       {isLoading ? (
-        <Skeleton className="mx-auto h-9 w-28 bg-white/20" />
+        <Skeleton className="mx-auto h-9 w-28 bg-muted" />
       ) : (
         <div className="flex h-9 items-center justify-center font-headline text-3xl font-bold">
           {value}

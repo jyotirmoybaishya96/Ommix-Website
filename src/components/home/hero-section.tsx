@@ -64,34 +64,36 @@ export default function HeroSection() {
       </div>
 
       <div className="container relative z-0 mx-auto">
-        <motion.h1 
+        <motion.div
           variants={itemVariants}
-          className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+          className="mx-auto max-w-4xl rounded-2xl border border-black/10 bg-card/30 p-6 shadow-2xl shadow-black/10 backdrop-blur-lg dark:border-white/10 sm:p-10"
         >
-          <Trans i18nKey="hero.title">
-            The All-in-One <span className="text-primary">Discord Bot</span>
-          </Trans>
-        </motion.h1>
-        <motion.p 
-          variants={itemVariants}
-          className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground"
-        >
-          {t('hero.subtitle', 'Omnix provides powerful moderation, anti-nuke, ticketing, music, and more to elevate your Discord server.')}
-        </motion.p>
-        <motion.div 
-          variants={itemVariants}
-          className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
-        >
-          <Button size="lg" asChild className="smooth-hover">
-            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
-              {t('hero.invite_button', 'Invite to Discord')}
-            </a>
-          </Button>
-          <Button size="lg" variant="outline" asChild className="smooth-hover">
-            <Link href="/features">
-              {t('hero.learn_more_button', 'Learn More')}
-            </Link>
-          </Button>
+          <h1
+            className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+          >
+            <Trans i18nKey="hero.title">
+              The All-in-One <span className="text-primary">Discord Bot</span>
+            </Trans>
+          </h1>
+          <p
+            className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground"
+          >
+            {t('hero.subtitle', 'Omnix provides powerful moderation, anti-nuke, ticketing, music, and more to elevate your Discord server.')}
+          </p>
+          <div
+            className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"
+          >
+            <Button size="lg" asChild className="smooth-hover">
+              <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
+                {t('hero.invite_button', 'Invite to Discord')}
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="smooth-hover">
+              <Link href="/features">
+                {t('hero.learn_more_button', 'Learn More')}
+              </Link>
+            </Button>
+          </div>
         </motion.div>
       </div>
     </motion.section>
