@@ -1,5 +1,5 @@
 
-import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi } from "lucide-react";
+import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi, CheckCircle } from "lucide-react";
 
 export const NAV_LINKS = [
   { href: "/", label: "home" },
@@ -23,37 +23,73 @@ export const FEATURES = [
     title: "Anti-Nuke",
     description: "Our advanced Anti-Nuke system protects your server from malicious raids and unauthorized administrative actions, ensuring its safety and stability around the clock.",
     Icon: ShieldAlert,
-    aiHint: "security shield"
+    aiHint: "security shield",
+    details: [
+        "Monitors for rapid administrative actions like mass bans, kicks, or channel deletions.",
+        "Configurable sensitivity levels to match your server's activity.",
+        "Automatically locks down the server and alerts owners when a threat is detected.",
+        "Whitelist trusted admins to prevent false positives.",
+    ]
   },
   {
     title: "Auto-Mod",
     description: "Automate server moderation with our customizable Auto-Mod. It filters spam, removes inappropriate content, and manages user behavior, freeing up your moderation team.",
     Icon: ShieldCheck,
-    aiHint: "robot hammer"
+    aiHint: "robot hammer",
+    details: [
+        "Advanced filters for spam, excessive mentions, caps, and profanity.",
+        "Auto-deletes harmful links and files.",
+        "Set up custom keyword filters to keep conversations on-topic.",
+        "Configurable punishments: warn, mute, or ban users automatically."
+    ]
   },
   {
     title: "Ticketing",
     description: "A seamless ticketing system for user support. Members can create private support channels with a single click, allowing your staff to address issues efficiently.",
     Icon: Ticket,
-    aiHint: "support ticket"
+    aiHint: "support ticket",
+    details: [
+        "Users can open a ticket with a simple command or button click.",
+        "Creates a private channel between the user and your support staff.",
+        "Transcripts of tickets can be saved for your records.",
+        "Fully customizable messages, categories, and support roles."
+    ]
   },
   {
     title: "Moderation",
     description: "Powerful and easy-to-use moderation commands. From kicking and banning to muting members, Omnix provides all the tools you need to maintain a healthy community.",
     Icon: User,
-    aiHint: "judge gavel"
+    aiHint: "judge gavel",
+    details: [
+        "Comprehensive set of commands: ban, kick, mute, warn, and more.",
+        "Moderation case logging creates a history for each user.",
+        "Timed mutes and bans with clear, automated unmute/unban actions.",
+        "Bulk message deletion tools for quick channel cleanup."
+    ]
   },
   {
     title: "Music",
     description: "High-quality music streaming for your voice channels. Enjoy your favorite tunes with friends with our feature-rich, easy-to-use music player.",
     Icon: Music,
-    aiHint: "music notes"
+    aiHint: "music notes",
+    details: [
+        "Lag-free, high-fidelity audio streaming from sources like YouTube and Spotify.",
+        "Supports playlists, song queuing, and lyrics.",
+        "DJ roles to control who can manage the music queue.",
+        "Premium users get access to volume control, 24/7 playback, and more."
+    ]
   },
   {
     title: "And More...",
     description: "Omnix is packed with dozens of other features, including welcome messages, logging, utility commands, and much more to enhance your Discord server.",
     Icon: Bot,
-    aiHint: "plus icon"
+    aiHint: "plus icon",
+    details: [
+        "Customizable welcome and leave messages with banner images.",
+        "Detailed logging for all server events.",
+        "Utility commands for user info, server stats, and more.",
+        "Reaction roles to let users self-assign roles."
+    ]
   },
 ];
 

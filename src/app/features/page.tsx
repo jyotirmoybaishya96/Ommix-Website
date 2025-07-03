@@ -10,11 +10,19 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from '@/components/ui/carousel';
-import { FEATURES } from '@/lib/constants';
+import { DISCORD_INVITE_URL, FEATURES } from '@/lib/constants';
 import { FeatureCanvas } from '@/components/home/feature-canvas';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Bot } from 'lucide-react';
+import { Bot, CheckCircle } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 
 export default function FeaturesPage() {
@@ -98,6 +106,63 @@ export default function FeaturesPage() {
             />
           ))}
         </div>
+
+        <div className="mx-auto mt-16 max-w-4xl sm:mt-24">
+            <div className="text-center">
+                <h2 className="font-headline text-3xl font-bold md:text-4xl">A Closer Look</h2>
+                <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+                    Dive into the specifics of what makes Omnix the right choice for your community.
+                </p>
+            </div>
+
+            <Accordion type="single" collapsible className="mt-12 w-full space-y-4">
+                {FEATURES.map((feature, index) => (
+                    <AccordionItem 
+                    key={index} 
+                    value={`item-${index}`} 
+                    className="overflow-hidden rounded-lg border bg-card shadow-sm transition-all duration-300 ease-in-out hover:shadow-md data-[state=open]:border-primary data-[state=open]:shadow-lg"
+                    >
+                    <AccordionTrigger className="w-full px-6 py-5 text-left font-headline text-lg transition-colors hover:no-underline data-[state=open]:bg-primary/5 data-[state=open]:text-primary">
+                        <div className="flex items-center gap-4">
+                            <feature.Icon className="h-6 w-6 shrink-0" />
+                            {feature.title}
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 text-base text-muted-foreground">
+                        <p className="mb-4">{feature.description}</p>
+                        <ul className="space-y-3">
+                            {feature.details.map((detail, detailIndex) => (
+                                <li key={detailIndex} className="flex items-start gap-3">
+                                    <CheckCircle className="h-5 w-5 mt-0.5 shrink-0 text-primary" />
+                                    <span>{detail}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </AccordionContent>
+                    </AccordionItem>
+                ))}
+            </Accordion>
+        </div>
+
+        <div className="mt-16 rounded-lg bg-muted/50 p-8 text-center sm:mt-24">
+            <h2 className="font-headline text-3xl font-bold">Ready to Elevate Your Server?</h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+                Join thousands of other communities who trust Omnix for powerful, reliable, and easy-to-use server management.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+                <Button size="lg" asChild className="smooth-hover">
+                    <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
+                        Invite to Discord
+                    </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="smooth-hover">
+                    <Link href="/premium">
+                        Compare Plans
+                    </Link>
+                </Button>
+            </div>
+        </div>
+
       </div>
   );
 }
