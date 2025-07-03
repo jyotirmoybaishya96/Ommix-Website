@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useSettings } from '@/components/theme-provider';
@@ -6,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Moon, Sun, Text, Check, Monitor } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ACCENT_COLORS } from '@/lib/constants';
+import { ACCENT_COLORS, FEATURES } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
@@ -67,9 +68,10 @@ export function SettingsPanel() {
 
   return (
     <Tabs defaultValue="customization" className="w-full pt-2">
-      <TabsList className="grid w-full grid-cols-2">
+      <TabsList className="grid w-full grid-cols-3">
         <TabsTrigger value="customization">{t('settings_panel.tabs.customization', { defaultValue: 'Customization' })}</TabsTrigger>
         <TabsTrigger value="general">{t('settings_panel.tabs.general', { defaultValue: 'General' })}</TabsTrigger>
+        <TabsTrigger value="features">{t('settings_panel.tabs.features', { defaultValue: 'Features' })}</TabsTrigger>
       </TabsList>
       <TabsContent value="customization" className="pt-6">
         <div className="space-y-8">
@@ -152,6 +154,27 @@ export function SettingsPanel() {
           <Button variant="outline" onClick={handleReset} className="w-full">
             {t('settings_panel.reset', { defaultValue: 'Reset All Settings' })}
           </Button>
+        </div>
+      </TabsContent>
+      <TabsContent value="features" className="pt-6">
+        <div className="space-y-6">
+          <div className="space-y-1">
+            <h3 className="font-semibold">{t('settings_panel.features.title', {defaultValue: 'Omnix Features'})}</h3>
+            <p className="text-sm text-muted-foreground">{t('settings_panel.features.description', {defaultValue: 'A summary of the core features available.'})}</p>
+          </div>
+          <div className="space-y-6">
+            {FEATURES.map((feature) => (
+              <div key={feature.title} className="flex items-start gap-4">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <feature.Icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold">{feature.title}</p>
+                  <p className="text-sm text-muted-foreground">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </TabsContent>
     </Tabs>
