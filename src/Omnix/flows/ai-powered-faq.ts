@@ -8,7 +8,7 @@
  * - AiPoweredFAQOutput - The return type for the aiPoweredFAQ function.
  */
 
-import {omnix} from '@/Omnix/genkit';
+import {ai} from '@/Omnix/genkit';
 import {z} from 'genkit';
 import { FEATURES } from '@/lib/constants';
 
@@ -28,7 +28,7 @@ export async function aiPoweredFAQ(input: AiPoweredFAQInput): Promise<AiPoweredF
 
 const featuresContext = FEATURES.map(f => `- ${f.title}: ${f.description}`).join('\n');
 
-const prompt = omnix.definePrompt({
+const prompt = ai.definePrompt({
   name: 'aiPoweredFAQPrompt',
   input: {schema: AiPoweredFAQInputSchema},
   output: {schema: AiPoweredFAQOutputSchema},
@@ -40,7 +40,7 @@ ${featuresContext}
 Question: {{{question}}}`,
 });
 
-const aiPoweredFAQFlow = omnix.defineFlow(
+const aiPoweredFAQFlow = ai.defineFlow(
   {
     name: 'aiPoweredFAQFlow',
     inputSchema: AiPoweredFAQInputSchema,

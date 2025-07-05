@@ -8,7 +8,7 @@
  * - AskQuestionOutput - The return type for the askQuestion function.
  */
 
-import {omnix} from '@/Omnix/genkit';
+import {ai} from '@/Omnix/genkit';
 import {z} from 'genkit';
 import { FEATURES } from '@/lib/constants';
 
@@ -28,7 +28,7 @@ export async function askQuestion(input: AskQuestionInput): Promise<AskQuestionO
 
 const featuresContext = FEATURES.map(f => `- ${f.title}: ${f.description}`).join('\n');
 
-const prompt = omnix.definePrompt({
+const prompt = ai.definePrompt({
   name: 'askQuestionPrompt',
   input: {schema: AskQuestionInputSchema},
   output: {schema: AskQuestionOutputSchema},
@@ -40,7 +40,7 @@ ${featuresContext}
 Question: {{{question}}}`,
 });
 
-const askQuestionFlow = omnix.defineFlow(
+const askQuestionFlow = ai.defineFlow(
   {
     name: 'askQuestionFlow',
     inputSchema: AskQuestionInputSchema,
