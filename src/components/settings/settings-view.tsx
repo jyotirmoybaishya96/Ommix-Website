@@ -148,6 +148,12 @@ export function SettingsView() {
                         <SelectItem value="none">{t('settings_panel.effect_none', { defaultValue: 'None' })}</SelectItem>
                         <SelectItem value="aurora">{t('settings_panel.effect_aurora', { defaultValue: 'Aurora' })}</SelectItem>
                         <SelectItem value="snowfall">{t('settings_panel.effect_snowfall', { defaultValue: 'Snowfall' })}</SelectItem>
+                        <SelectItem value="bubbles">{t('settings_panel.effect_bubbles', { defaultValue: 'Bubbles' })}</SelectItem>
+                        <SelectItem value="confetti">{t('settings_panel.effect_confetti', { defaultValue: 'Confetti' })}</SelectItem>
+                        <SelectItem value="static">{t('settings_panel.effect_static', { defaultValue: 'Static Noise' })}</SelectItem>
+                        <SelectItem value="stars">{t('settings_panel.effect_stars', { defaultValue: 'Shooting Stars' })}</SelectItem>
+                        <SelectItem value="grid">{t('settings_panel.effect_grid', { defaultValue: 'Subtle Grid' })}</SelectItem>
+                        <SelectItem value="gradient">{t('settings_panel.effect_gradient', { defaultValue: 'Moving Gradient' })}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

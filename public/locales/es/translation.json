@@ -6,22 +6,15 @@
     "status": "Estado",
     "team": "Equipo",
     "support": "Soporte",
-    "faq": "Preguntas",
+    "faq": "FAQ",
     "settings": "Ajustes",
-    "invite": "Invitar"
-  },
-  "guest_banner": {
-    "message": "Actualmente navegas como invitado. Inicia sesión para una experiencia personalizada.",
-    "login_button": "Iniciar Sesión",
-    "continue_button": "Continuar como Invitado"
-  },
-  "hero": {
-    "title": "El Bot de <1>Discord</1> Todo en Uno"
+    "invite": "Invitar a Discord"
   },
   "settings_panel": {
     "tabs": {
       "customization": "Personalización",
-      "general": "General"
+      "general": "General",
+      "features": "Características"
     },
     "theme": "Tema",
     "theme_light": "Claro",
@@ -32,12 +25,26 @@
     "font_size_default": "Predeterminado",
     "font_size_large": "Grande",
     "accent_color": "Color de Acento",
-    "language": "Idioma",
-    "reset": "Restablecer Ajustes",
-    "reset_success": "Los ajustes han sido restablecidos.",
     "background_effect": "Efecto de Fondo",
     "effect_none": "Ninguno",
     "effect_aurora": "Aurora",
-    "effect_snowfall": "Nevada"
+    "effect_snowfall": "Nevada",
+    "effect_bubbles": "Burbujas",
+    "effect_confetti": "Confeti",
+    "effect_static": "Ruido Estático",
+    "effect_stars": "Estrellas Fugaces",
+    "effect_grid": "Cuadrícula Sutil",
+    "effect_gradient": "Gradiente en Movimiento",
+    "language": "Idioma",
+    "reset": "Restablecer Ajustes",
+    "reset_success": "Los ajustes han sido restablecidos."
+  },
+  "guest_banner": {
+    "message": "Esta es una vista previa de invitado. Inicia sesión para guardar tus ajustes.",
+    "login_button": "Iniciar Sesión",
+    "continue_button": "Continuar como Invitado"
+  },
+  "hero": {
+    "title": "El Bot de <1>Discord</1> Todo en Uno"
   }
 }

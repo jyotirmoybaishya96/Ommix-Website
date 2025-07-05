@@ -8,20 +8,13 @@
     "support": "Support",
     "faq": "FAQ",
     "settings": "Settings",
-    "invite": "Invite"
-  },
-  "guest_banner": {
-    "message": "You are currently browsing as a guest. Log in for a personalized experience.",
-    "login_button": "Log In",
-    "continue_button": "Continue as Guest"
-  },
-  "hero": {
-    "title": "The All-in-One <1>Discord Bot</1>"
+    "invite": "Invite to Discord"
   },
   "settings_panel": {
     "tabs": {
       "customization": "Customization",
-      "general": "General"
+      "general": "General",
+      "features": "Features"
     },
     "theme": "Theme",
     "theme_light": "Light",
@@ -32,12 +25,26 @@
     "font_size_default": "Default",
     "font_size_large": "Large",
     "accent_color": "Accent Color",
-    "language": "Language",
-    "reset": "Reset All Settings",
-    "reset_success": "Settings have been reset.",
     "background_effect": "Background Effect",
     "effect_none": "None",
     "effect_aurora": "Aurora",
-    "effect_snowfall": "Snowfall"
+    "effect_snowfall": "Snowfall",
+    "effect_bubbles": "Bubbles",
+    "effect_confetti": "Confetti",
+    "effect_static": "Static Noise",
+    "effect_stars": "Shooting Stars",
+    "effect_grid": "Subtle Grid",
+    "effect_gradient": "Moving Gradient",
+    "language": "Language",
+    "reset": "Reset All Settings",
+    "reset_success": "Settings have been reset."
+  },
+  "guest_banner": {
+    "message": "This is a guest preview. Log in to save your settings.",
+    "login_button": "Log In",
+    "continue_button": "Continue as Guest"
+  },
+  "hero": {
+    "title": "The All-in-One <1>Discord Bot</1>"
   }
 }

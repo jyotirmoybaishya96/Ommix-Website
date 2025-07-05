@@ -8,7 +8,7 @@ import { ACCENT_COLORS } from '@/lib/constants';
 type Theme = 'light' | 'dark' | 'system';
 type FontSize = 'sm' | 'base' | 'lg';
 type Language = 'en' | 'es' | 'hi';
-type BackgroundEffect = 'none' | 'aurora' | 'snowfall';
+type BackgroundEffect = 'none' | 'aurora' | 'snowfall' | 'bubbles' | 'confetti' | 'static' | 'stars' | 'grid' | 'gradient';
 
 type SettingsProviderState = {
   theme: Theme;
