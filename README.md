@@ -1,11 +1,23 @@
-# Omnix - The All-in-One Discord Bot
+<p align="center">
+  <img src="https://placehold.co/128x128.png" alt="Omnix Logo" width="128" height="128" data-ai-hint="bot logo">
+</p>
 
-[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Genkit](https://img.shields.io/badge/Genkit-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://firebase.google.com/docs/genkit)
+<h1 align="center">Omnix</h1>
 
-Welcome to the official web interface for **Omnix**, the ultimate Discord bot designed to elevate your server management experience. Omnix is packed with powerful, reliable, and easy-to-use tools for moderation, community engagement, AI-powered assistance, and extensive customization.
+<p align="center">The ultimate Discord bot designed to elevate your server management experience.</p>
+
+<p align="center">
+  <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></a>
+  <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer"><img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></a>
+  <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"><img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"></a>
+  <a href="https://firebase.google.com/docs/genkit" target="_blank" rel="noopener noreferrer"><img alt="Genkit" src="https://img.shields.io/badge/Genkit-4285F4?style=for-the-badge&logo=google&logoColor=white"></a>
+</p>
+
+<p align="center">
+  <img src="https://placehold.co/800x250.png" alt="Omnix Application Banner" data-ai-hint="application banner">
+</p>
+
+Welcome to the official web interface for **Omnix**, a powerful, reliable, and easy-to-use platform for server moderation, community engagement, AI assistance, and extensive customization.
 
 <img src="https://placehold.co/1200x600.png" alt="Omnix Hero Section" data-ai-hint="website homepage" />
 *<p align="center">A preview of the Omnix homepage.</p>*
@@ -40,15 +52,18 @@ Follow these steps to get the project up and running on your local machine for d
 
 ### Prerequisites
 
+You'll need the following software installed on your machine:
+
 -   [Node.js](https://nodejs.org/en/) (v18 or newer recommended)
 -   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+-   [Git](https://git-scm.com/)
 
 ### Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
-    cd <repository-folder>
+    git clone https://github.com/your-username/omnix-web.git
+    cd omnix-web
     ```
 
 2.  **Install dependencies:**
@@ -57,13 +72,16 @@ Follow these steps to get the project up and running on your local machine for d
     ```
 
 3.  **Set up environment variables:**
-    You'll need a Google AI API key to use the Genkit features.
+    Create a `.env` file by copying the example file:
     ```bash
-    # Create a .env file in the root of the project
     cp .env.example .env
     ```
-    Then, add your API key to the `.env` file:
+    Then, open the `.env` file and add your Google AI API key:
     ```env
+    # The port for the development server
+    PORT=9002
+
+    # Your Google AI API Key for Genkit features
     GOOGLE_API_KEY=your_google_ai_api_key_here
     ```
 
@@ -72,7 +90,7 @@ Follow these steps to get the project up and running on your local machine for d
     npm run dev
     ```
 
-The application should now be running at [http://localhost:9002](http://localhost:9002).
+The application should now be running at `http://localhost:9002` (or whichever port you specified in `.env`).
 
 ## 📜 Available Scripts
 
@@ -87,6 +105,9 @@ In the project directory, you can run:
 ## 🤝 Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
