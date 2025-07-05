@@ -19,7 +19,8 @@ export const LEGAL_LINKS = [
   { href: "/legal?tab=privacy", label: "Privacy Policy" },
 ];
 
-export const DISCORD_INVITE_URL = "https://discord.com/invite/example";
+export const DISCORD_INVITE_URL = "https://discord.com/oauth2/authorize?client_id=1208464388948893796";
+export const SUPPORT_SERVER_URL = "https://discord.gg/NTePbyDBVX";
 
 export const FEATURES = [
   {
@@ -337,7 +338,7 @@ export const TEAM_MEMBERS = [
 
 export const SOCIAL_LINKS = [
     { name: "GitHub", Icon: Github, href: "#" },
-    { name: "Discord", Icon: Bot, href: DISCORD_INVITE_URL },
+    { name: "Discord", Icon: Bot, href: SUPPORT_SERVER_URL },
     { name: "Twitter", Icon: Twitter, href: "#" },
 ];
 

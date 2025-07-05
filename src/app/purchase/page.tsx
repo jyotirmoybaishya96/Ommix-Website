@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { Copy, Check, QrCode, ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { DISCORD_INVITE_URL } from '@/lib/constants';
+import { SUPPORT_SERVER_URL } from '@/lib/constants';
 
 const UPI_ID = 'jyotimoy-baishya@fam';
 const PREMIUM_PRICE = '₹799/mo';
@@ -112,7 +112,7 @@ export default function PurchasePage() {
                 </Link>
               </Button>
               <Button asChild className="w-full">
-                <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">
+                <a href={SUPPORT_SERVER_URL} target="_blank" rel="noopener noreferrer">
                   Go to Discord
                 </a>
               </Button>
