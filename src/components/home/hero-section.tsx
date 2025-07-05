@@ -6,11 +6,38 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useSettings } from '../theme-provider';
+import { cn } from '@/lib/utils';
 
-const AnimatedWords = ({ text }: { text: string }) => {
-  const words = text.split(" ");
+export default function HeroSection() {
+  const { t } = useTranslation();
+  const { isMounted } = useSettings();
+  const heroTitle = t('hero.title', { defaultValue: "The All-in-One <1>Discord Bot</1>" });
 
-  const container = {
+  // Logic to parse the string and prepare words for animation
+  const parts = heroTitle.split(/<\/?1>/); // Splits by <1> or </1>
+  const words = parts.flatMap((part, index) => {
+    if (!part) return [];
+    const isPrimary = index === 1; // The part inside <1>...</1>
+    return part.trim().split(' ').map(word => ({ text: word, isPrimary }));
+  });
+
+  const containerVariants = {
+    initial: {},
+    animate: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const itemVariants = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  };
+
+  // Animation variants for the title words
+  const titleContainer = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -18,7 +45,7 @@ const AnimatedWords = ({ text }: { text: string }) => {
     }),
   };
 
-  const child = {
+  const titleChild = {
     visible: {
       opacity: 1,
       y: 0,
@@ -40,47 +67,6 @@ const AnimatedWords = ({ text }: { text: string }) => {
   };
 
   return (
-    <motion.div
-      style={{ overflow: "hidden", display: "flex", flexWrap: "wrap", justifyContent: 'center' }}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      {words.map((word, index) => (
-        <motion.span
-          variants={child}
-          style={{ marginRight: "0.5rem" }}
-          key={index}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};
-
-
-export default function HeroSection() {
-  const { t } = useTranslation();
-  const { isMounted } = useSettings();
-  const heroTitle = t('hero.title', { defaultValue: "The All-in-One Discord Bot" });
-
-  const containerVariants = {
-    initial: {},
-    animate: {
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.5,
-      },
-    },
-  };
-
-  const itemVariants = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-  };
-
-  return (
     <motion.section 
       initial="initial"
       animate="animate"
@@ -94,7 +80,23 @@ export default function HeroSection() {
           className="font-headline text-5xl font-bold tracking-tighter text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
         >
           {isMounted ? (
-            <AnimatedWords text={heroTitle} />
+            <motion.div
+              style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}
+              variants={titleContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              {words.map((word, index) => (
+                <motion.span
+                  variants={titleChild}
+                  style={{ marginRight: "0.5rem" }}
+                  className={cn(word.isPrimary && "text-primary")}
+                  key={index}
+                >
+                  {word.text}
+                </motion.span>
+              ))}
+            </motion.div>
           ) : (
             "The All-in-One Discord Bot"
           )}
