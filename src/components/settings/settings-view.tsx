@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useSettings } from '@/components/theme-provider';
@@ -14,6 +15,18 @@ import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+
+const backgroundEffectsOptions = [
+    { value: 'none', labelKey: 'settings_panel.effect_none', Icon: Ban },
+    { value: 'aurora', labelKey: 'settings_panel.effect_aurora', Icon: Sunrise },
+    { value: 'snowfall', labelKey: 'settings_panel.effect_snowfall', Icon: Snowflake },
+    { value: 'bubbles', labelKey: 'settings_panel.effect_bubbles', Icon: Droplets },
+    { value: 'confetti', labelKey: 'settings_panel.effect_confetti', Icon: PartyPopper },
+    { value: 'static', labelKey: 'settings_panel.effect_static', Icon: Radio },
+    { value: 'stars', labelKey: 'settings_panel.effect_stars', Icon: Sparkles },
+    { value: 'grid', labelKey: 'settings_panel.effect_grid', Icon: Grid3x3 },
+    { value: 'gradient', labelKey: 'settings_panel.effect_gradient', Icon: Palette },
+];
 
 export function SettingsView() {
   const {
@@ -41,6 +54,8 @@ export function SettingsView() {
       description: t('settings_panel.reset_success'),
     });
   };
+  
+  const selectedEffect = backgroundEffectsOptions.find(e => e.value === backgroundEffect);
 
   if (!isMounted) {
     return (
@@ -201,19 +216,27 @@ export function SettingsView() {
                 <Label>{t('settings_panel.background_effect')}</Label>
                 <Select value={backgroundEffect} onValueChange={value => setBackgroundEffect(value as any)}>
                     <SelectTrigger>
-                        <Paintbrush className="mr-2 h-4 w-4 text-muted-foreground" />
-                        <SelectValue placeholder={t('settings_panel.background_effect')} />
+                         {selectedEffect ? (
+                            <div className="flex items-center gap-2">
+                                <selectedEffect.Icon className="h-4 w-4 text-muted-foreground" />
+                                <span>{t(selectedEffect.labelKey)}</span>
+                            </div>
+                         ) : (
+                           <div className="flex items-center gap-2">
+                             <Paintbrush className="h-4 w-4 text-muted-foreground" />
+                             <span>{t('settings_panel.background_effect')}</span>
+                           </div>
+                         )}
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="none"><Ban className="mr-2 h-4 w-4" />{t('settings_panel.effect_none')}</SelectItem>
-                        <SelectItem value="aurora"><Sunrise className="mr-2 h-4 w-4" />{t('settings_panel.effect_aurora')}</SelectItem>
-                        <SelectItem value="snowfall"><Snowflake className="mr-2 h-4 w-4" />{t('settings_panel.effect_snowfall')}</SelectItem>
-                        <SelectItem value="bubbles"><Droplets className="mr-2 h-4 w-4" />{t('settings_panel.effect_bubbles')}</SelectItem>
-                        <SelectItem value="confetti"><PartyPopper className="mr-2 h-4 w-4" />{t('settings_panel.effect_confetti')}</SelectItem>
-                        <SelectItem value="static"><Radio className="mr-2 h-4 w-4" />{t('settings_panel.effect_static')}</SelectItem>
-                        <SelectItem value="stars"><Sparkles className="mr-2 h-4 w-4" />{t('settings_panel.effect_stars')}</SelectItem>
-                        <SelectItem value="grid"><Grid3x3 className="mr-2 h-4 w-4" />{t('settings_panel.effect_grid')}</SelectItem>
-                        <SelectItem value="gradient"><Palette className="mr-2 h-4 w-4" />{t('settings_panel.effect_gradient')}</SelectItem>
+                        {backgroundEffectsOptions.map((effect) => (
+                             <SelectItem key={effect.value} value={effect.value}>
+                                <div className="flex items-center gap-2">
+                                    <effect.Icon className="h-4 w-4" />
+                                    <span>{t(effect.labelKey)}</span>
+                                </div>
+                            </SelectItem>
+                        ))}
                     </SelectContent>
                 </Select>
             </div>
@@ -230,8 +253,10 @@ export function SettingsView() {
                 <Label>{t('settings_panel.language')}</Label>
                 <Select value={language} onValueChange={value => setLanguage(value as any)}>
                 <SelectTrigger>
-                    <Languages className="mr-2 h-4 w-4 text-muted-foreground" />
+                  <div className="flex items-center gap-2">
+                    <Languages className="h-4 w-4 text-muted-foreground" />
                     <SelectValue placeholder={t('settings_panel.language')} />
+                  </div>
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value="en">English</SelectItem>
@@ -278,3 +303,4 @@ export function SettingsView() {
     </div>
   );
 }
+
