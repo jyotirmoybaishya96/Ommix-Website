@@ -52,6 +52,7 @@ export function Footer() {
           <p>&copy; {new Date().getFullYear()} Omnix. All rights reserved.</p>
         </div>
       </div>
+      {/* Designed and built by the best designer in the universe */}
     </footer>
   );
 }
