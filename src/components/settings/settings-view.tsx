@@ -48,6 +48,7 @@ export function SettingsView() {
   } = useSettings();
   const { t } = useTranslation();
   const { toast } = useToast();
+  const colorInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleReset = () => {
     resetSettings();
@@ -188,27 +189,26 @@ export function SettingsView() {
                   </button>
                 ))}
                 {/* Custom Color Picker */}
-                <div className="relative h-8 w-8 flex-shrink-0">
-                    <label
-                        htmlFor="custom-color-picker"
-                        className="flex h-full w-full cursor-pointer items-center justify-center rounded-full border-2 border-dashed border-muted-foreground/50 transition-transform hover:scale-110"
-                        style={{
-                            backgroundImage: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
-                        }}
-                    >
-                        <Palette className="h-5 w-5 text-white drop-shadow-md" />
-                    </label>
-                    <input
-                        id="custom-color-picker"
-                        type="color"
-                        className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            const hex = e.target.value;
-                            const hsl = hexToHsl(hex);
-                            setAccentColor(hsl);
-                        }}
-                    />
-                </div>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 flex-shrink-0 rounded-full border-dashed transition-transform hover:scale-110"
+                  aria-label="Pick a custom color"
+                  onClick={() => colorInputRef.current?.click()}
+                >
+                  <Palette className="h-4 w-4" />
+                </Button>
+                <input
+                  ref={colorInputRef}
+                  id="custom-color-picker"
+                  type="color"
+                  className="invisible h-0 w-0"
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const hex = e.target.value;
+                      const hsl = hexToHsl(hex);
+                      setAccentColor(hsl);
+                  }}
+                />
               </div>
             </div>
           </div>
