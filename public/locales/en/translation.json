@@ -1,41 +1,40 @@
+
 {
   "header": {
     "home": "Home",
     "features": "Features",
+    "premium": "Premium",
+    "status": "Status",
     "team": "Team",
     "support": "Support",
     "faq": "FAQ",
-    "invite": "Invite Omnix",
-    "settings": {
-      "title": "Settings",
-      "description": "Customize the appearance of the application."
-    },
-    "mobileMenu": {
-      "title": "Navigation"
-    }
+    "settings": "Settings",
+    "invite": "Invite"
   },
   "hero": {
-    "title": "The All-in-One <1>Discord Bot</1>",
-    "subtitle": "Elevate your server with powerful moderation, anti-nuke, ticketing, music, and much more. Omnix is the only bot you'll ever need.",
-    "invite_button": "Invite to Discord",
-    "learn_more_button": "Learn More"
+    "title": "The All-in-One <1>Discord Bot</1>"
   },
   "guest_banner": {
-    "message": "You are using the dashboard as a guest. To manage real server settings, please log in with Discord.",
-    "login_button": "Login with Discord",
+    "message": "You are currently browsing as a guest. Log in to save your settings.",
+    "login_button": "Log In",
     "continue_button": "Continue as Guest"
   },
   "settings_panel": {
+    "tabs": {
+      "customization": "Customization",
+      "general": "General"
+    },
     "theme": "Theme",
     "theme_light": "Light",
     "theme_dark": "Dark",
+    "theme_system": "System",
     "font_size": "Font Size",
     "font_size_small": "Small",
     "font_size_default": "Default",
     "font_size_large": "Large",
-    "language": "Language",
     "accent_color": "Accent Color",
-    "reset": "Reset Settings",
+    "language": "Language",
+    "reset": "Reset All Settings",
     "reset_success": "Settings have been reset."
   }
 }
