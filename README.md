@@ -68,7 +68,7 @@ You'll need the following software installed on your machine:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/omnix-web.git
+    git clone https://github.com/zhongli-ly/Ommix-Website.git
     cd omnix-web
     ```
 
