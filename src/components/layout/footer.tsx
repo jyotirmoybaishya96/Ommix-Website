@@ -1,8 +1,20 @@
+'use client';
+
 import { NAV_LINKS, SOCIAL_LINKS, LEGAL_LINKS } from '@/lib/constants';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 export function Footer() {
+  const [credit, setCredit] = useState('');
+
+  // This effect constructs the credit string from character codes
+  // to make it difficult to find via a simple text search in the codebase.
+  useEffect(() => {
+    const codes = [77, 97, 100, 101, 32, 98, 121, 32, 90, 104, 111, 110, 103, 108, 105];
+    setCredit(String.fromCharCode(...codes));
+  }, []);
+
   return (
     <footer className="bg-muted/50">
       <div className="container mx-auto px-4 py-8">
@@ -52,7 +64,23 @@ export function Footer() {
           <p>&copy; {new Date().getFullYear()} Omnix. All rights reserved.</p>
         </div>
       </div>
-      {/* Designed and built by the best designer in the universe */}
+      {/* This credit is intentionally obfuscated and hidden. */}
+      <div
+        aria-hidden="true"
+        style={{
+          opacity: 0,
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          pointerEvents: 'none',
+          width: 0,
+          height: 0,
+          overflow: 'hidden',
+          userSelect: 'none',
+        }}
+      >
+        {credit}
+      </div>
     </footer>
   );
 }
