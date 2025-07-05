@@ -9,6 +9,7 @@ type Theme = 'light' | 'dark' | 'system';
 type FontSize = 'sm' | 'base' | 'lg';
 type Language = 'en' | 'es' | 'hi';
 type BackgroundEffect = 'none' | 'aurora' | 'snowfall' | 'bubbles' | 'confetti' | 'static' | 'stars' | 'grid' | 'gradient';
+type CardStyle = 'default' | 'glass';
 
 type SettingsProviderState = {
   theme: Theme;
@@ -21,6 +22,8 @@ type SettingsProviderState = {
   setAccentColor: (color: string) => void;
   backgroundEffect: BackgroundEffect;
   setBackgroundEffect: (effect: BackgroundEffect) => void;
+  cardStyle: CardStyle;
+  setCardStyle: (style: CardStyle) => void;
   resetSettings: () => void;
   isMounted: boolean;
 };
@@ -35,6 +38,7 @@ type GuestSettings = {
   language: Language;
   accentColor: string;
   backgroundEffect: BackgroundEffect;
+  cardStyle: CardStyle;
 };
 
 const defaultSettings: GuestSettings = {
@@ -43,6 +47,7 @@ const defaultSettings: GuestSettings = {
   language: 'en',
   accentColor: ACCENT_COLORS[0].color,
   backgroundEffect: 'aurora',
+  cardStyle: 'default',
 };
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
@@ -85,6 +90,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       root.style.fontSize = settings.fontSize === 'sm' ? '87.5%' : settings.fontSize === 'lg' ? '112.5%' : '100%';
       root.style.setProperty('--primary', settings.accentColor);
       root.style.setProperty('--ring', settings.accentColor);
+      root.dataset.cardStyle = settings.cardStyle;
 
       if (i18n.language !== settings.language) {
         i18n.changeLanguage(settings.language);
@@ -104,6 +110,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       setLanguage: (language: Language) => setSettings(s => ({ ...s, language })),
       setAccentColor: (accentColor: string) => setSettings(s => ({ ...s, accentColor })),
       setBackgroundEffect: (backgroundEffect: BackgroundEffect) => setSettings(s => ({ ...s, backgroundEffect })),
+      setCardStyle: (cardStyle: CardStyle) => setSettings(s => ({ ...s, cardStyle })),
       resetSettings: () => {
         localStorage.removeItem(GUEST_SETTINGS_KEY);
         setSettings(defaultSettings);

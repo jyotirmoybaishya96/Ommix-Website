@@ -26,6 +26,8 @@ export function SettingsView() {
     setAccentColor,
     backgroundEffect,
     setBackgroundEffect,
+    cardStyle,
+    setCardStyle,
     resetSettings,
     isMounted,
   } = useSettings();
@@ -35,7 +37,7 @@ export function SettingsView() {
   const handleReset = () => {
     resetSettings();
     toast({
-      description: t('settings_panel.reset_success', { defaultValue: 'Settings have been reset.' }),
+      description: t('settings_panel.reset_success'),
     });
   };
 
@@ -111,46 +113,46 @@ export function SettingsView() {
     <div className="space-y-8">
       <Card>
         <CardHeader>
-          <CardTitle>{t('settings_panel.tabs.customization', { defaultValue: 'Display' })}</CardTitle>
+          <CardTitle>{t('settings_panel.tabs.customization')}</CardTitle>
           <CardDescription>Adjust the appearance of the user interface.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <Label className="flex-shrink-0">{t('settings_panel.theme', { defaultValue: 'Theme' })}</Label>
+            <Label className="flex-shrink-0">{t('settings_panel.theme')}</Label>
             <div className="w-full overflow-x-auto pb-2 -mb-2 sm:w-auto">
               <div className="inline-flex w-max items-center rounded-lg border p-1 space-x-1">
                 <Button variant={theme === 'light' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setTheme('light')}>
-                  <Sun className="mr-2 h-4 w-4" /> {t('settings_panel.theme_light', { defaultValue: 'Light' })}
+                  <Sun className="mr-2 h-4 w-4" /> {t('settings_panel.theme_light')}
                 </Button>
                 <Button variant={theme === 'dark' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setTheme('dark')}>
-                  <Moon className="mr-2 h-4 w-4" /> {t('settings_panel.theme_dark', { defaultValue: 'Dark' })}
+                  <Moon className="mr-2 h-4 w-4" /> {t('settings_panel.theme_dark')}
                 </Button>
                 <Button variant={theme === 'system' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setTheme('system')}>
-                  <Monitor className="mr-2 h-4 w-4" /> {t('settings_panel.theme_system', { defaultValue: 'System' })}
+                  <Monitor className="mr-2 h-4 w-4" /> {t('settings_panel.theme_system')}
                 </Button>
               </div>
             </div>
           </div>
           <Separator />
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <Label className="flex-shrink-0">{t('settings_panel.font_size', { defaultValue: 'Font Size' })}</Label>
+            <Label className="flex-shrink-0">{t('settings_panel.font_size')}</Label>
              <div className="w-full overflow-x-auto pb-2 -mb-2 sm:w-auto">
                 <div className="inline-flex w-max items-center rounded-lg border p-1 space-x-1">
                     <Button variant={fontSize === 'sm' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setFontSize('sm')}>
-                    <Text className="mr-2 h-3 w-3" /> {t('settings_panel.font_size_small', { defaultValue: 'Small' })}
+                    <Text className="mr-2 h-3 w-3" /> {t('settings_panel.font_size_small')}
                     </Button>
                     <Button variant={fontSize === 'base' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setFontSize('base')}>
-                    <Text className="mr-2 h-4 w-4" /> {t('settings_panel.font_size_default', { defaultValue: 'Default' })}
+                    <Text className="mr-2 h-4 w-4" /> {t('settings_panel.font_size_default')}
                     </Button>
                     <Button variant={fontSize === 'lg' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setFontSize('lg')}>
-                    <Text className="mr-2 h-5 w-5" /> {t('settings_panel.font_size_large', { defaultValue: 'Large' })}
+                    <Text className="mr-2 h-5 w-5" /> {t('settings_panel.font_size_large')}
                     </Button>
                 </div>
             </div>
           </div>
            <Separator />
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <Label className="flex-shrink-0">{t('settings_panel.accent_color', { defaultValue: 'Accent Color' })}</Label>
+            <Label className="flex-shrink-0">{t('settings_panel.accent_color')}</Label>
             <div className="overflow-x-auto pb-2 -mb-2">
               <div className="flex w-max flex-nowrap gap-3">
                 {ACCENT_COLORS.map(color => (
@@ -171,6 +173,20 @@ export function SettingsView() {
               </div>
             </div>
           </div>
+          <Separator />
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <Label className="flex-shrink-0">{t('settings_panel.card_style')}</Label>
+             <div className="w-full overflow-x-auto pb-2 -mb-2 sm:w-auto">
+                <div className="inline-flex w-max items-center rounded-lg border p-1 space-x-1">
+                    <Button variant={cardStyle === 'default' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setCardStyle('default')}>
+                      {t('settings_panel.style_default')}
+                    </Button>
+                    <Button variant={cardStyle === 'glass' ? 'secondary' : 'ghost'} size="sm" className="flex-shrink-0 px-3" onClick={() => setCardStyle('glass')}>
+                      {t('settings_panel.style_glass')}
+                    </Button>
+                </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
       
@@ -181,21 +197,21 @@ export function SettingsView() {
         </CardHeader>
         <CardContent>
             <div className="space-y-2">
-                <Label>{t('settings_panel.background_effect', { defaultValue: 'Background Effect' })}</Label>
+                <Label>{t('settings_panel.background_effect')}</Label>
                 <Select value={backgroundEffect} onValueChange={value => setBackgroundEffect(value as any)}>
                     <SelectTrigger>
                     <SelectValue placeholder={t('settings_panel.background_effect')} />
                     </SelectTrigger>
                     <SelectContent>
-                    <SelectItem value="none">{t('settings_panel.effect_none', { defaultValue: 'None' })}</SelectItem>
-                    <SelectItem value="aurora">{t('settings_panel.effect_aurora', { defaultValue: 'Aurora' })}</SelectItem>
-                    <SelectItem value="snowfall">{t('settings_panel.effect_snowfall', { defaultValue: 'Snowfall' })}</SelectItem>
-                    <SelectItem value="bubbles">{t('settings_panel.effect_bubbles', { defaultValue: 'Bubbles' })}</SelectItem>
-                    <SelectItem value="confetti">{t('settings_panel.effect_confetti', { defaultValue: 'Confetti' })}</SelectItem>
-                    <SelectItem value="static">{t('settings_panel.effect_static', { defaultValue: 'Static Noise' })}</SelectItem>
-                    <SelectItem value="stars">{t('settings_panel.effect_stars', { defaultValue: 'Shooting Stars' })}</SelectItem>
-                    <SelectItem value="grid">{t('settings_panel.effect_grid', { defaultValue: 'Subtle Grid' })}</SelectItem>
-                    <SelectItem value="gradient">{t('settings_panel.effect_gradient', { defaultValue: 'Moving Gradient' })}</SelectItem>
+                    <SelectItem value="none">{t('settings_panel.effect_none')}</SelectItem>
+                    <SelectItem value="aurora">{t('settings_panel.effect_aurora')}</SelectItem>
+                    <SelectItem value="snowfall">{t('settings_panel.effect_snowfall')}</SelectItem>
+                    <SelectItem value="bubbles">{t('settings_panel.effect_bubbles')}</SelectItem>
+                    <SelectItem value="confetti">{t('settings_panel.effect_confetti')}</SelectItem>
+                    <SelectItem value="static">{t('settings_panel.effect_static')}</SelectItem>
+                    <SelectItem value="stars">{t('settings_panel.effect_stars')}</SelectItem>
+                    <SelectItem value="grid">{t('settings_panel.effect_grid')}</SelectItem>
+                    <SelectItem value="gradient">{t('settings_panel.effect_gradient')}</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -204,12 +220,12 @@ export function SettingsView() {
 
       <Card>
         <CardHeader>
-            <CardTitle>{t('settings_panel.tabs.general', { defaultValue: 'General' })}</CardTitle>
+            <CardTitle>{t('settings_panel.tabs.general')}</CardTitle>
             <CardDescription>Manage language and other application settings.</CardDescription>
         </CardHeader>
         <CardContent>
             <div className="space-y-2">
-                <Label>{t('settings_panel.language', { defaultValue: 'Language' })}</Label>
+                <Label>{t('settings_panel.language')}</Label>
                 <Select value={language} onValueChange={value => setLanguage(value as any)}>
                 <SelectTrigger>
                     <SelectValue placeholder={t('settings_panel.language')} />
@@ -235,7 +251,7 @@ export function SettingsView() {
                 <p className="font-semibold text-foreground">Reset Settings</p>
                 <p className="text-sm text-muted-foreground">Reset all your customization to their default values.</p>
              </div>
-             <Button variant="destructive" onClick={handleReset}>{t('settings_panel.reset', { defaultValue: 'Reset Settings' })}</Button>
+             <Button variant="destructive" onClick={handleReset}>{t('settings_panel.reset')}</Button>
            </div>
         </CardContent>
       </Card>

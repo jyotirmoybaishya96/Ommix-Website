@@ -395,4 +395,24 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+
+  /* Card Styles */
+  .card {
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-300;
+  }
+
+  html[data-card-style='glass'] .card {
+    @apply bg-card/60 border-white/20 shadow-xl shadow-black/10;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .dark[data-card-style='glass'] .card {
+      @apply bg-card/70 border-white/10 shadow-black/20;
+  }
+
+  /* Ensure backdrop filter works on header/footer too */
+  html[data-card-style='glass'] .card > .card-header,
+  html[data-card-style='glass'] .card > .card-footer {
+    @apply bg-transparent;
+  }
 }
