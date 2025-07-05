@@ -1,5 +1,8 @@
 
-import { ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi, CheckCircle } from "lucide-react";
+import {
+  ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi, CheckCircle,
+  BrainCircuit, Users as UsersIcon, Wrench, MessageSquarePlus, MessagesSquare, Gift, Smile, EyeOff, Image as ImageIcon, Mic, Handshake, UserCircle as UserCircleIcon, Star, Voicemail, Milestone, FileText
+} from "lucide-react";
 
 export const NAV_LINKS = [
   { href: "/", label: "home" },
@@ -44,6 +47,42 @@ export const FEATURES = [
     ]
   },
   {
+    title: "Moderation",
+    description: "Powerful and easy-to-use moderation commands. From kicking and banning to muting members, Omnix provides all the tools you need to maintain a healthy community.",
+    Icon: User,
+    aiHint: "judge gavel",
+    details: [
+        "Comprehensive set of commands: ban, kick, mute, warn, and more.",
+        "Moderation case logging creates a history for each user.",
+        "Timed mutes and bans with clear, automated unmute/unban actions.",
+        "Bulk message deletion tools for quick channel cleanup."
+    ]
+  },
+  {
+    title: "Logging",
+    description: "Keep a detailed record of all server activity. Our comprehensive logging feature helps you monitor events, track moderation actions, and maintain accountability.",
+    Icon: FileText,
+    aiHint: "log file",
+    details: [
+        "Log everything from message edits/deletes to role changes.",
+        "Send logs to a specific channel for easy monitoring.",
+        "Highly configurable to log only the events you care about.",
+        "Secure and easy-to-read log formats.",
+    ]
+  },
+   {
+    title: "AI",
+    description: "Leverage the power of Artificial Intelligence. Omnix integrates GenAI for features like AI-powered support, FAQs, and intelligent conversation.",
+    Icon: BrainCircuit,
+    aiHint: "ai brain",
+    details: [
+        "AI-powered FAQ and support pages on the website.",
+        "Intelligent auto-responses within Discord.",
+        "Image generation and other creative AI tools.",
+        "Context-aware AI that learns from your server.",
+    ]
+  },
+  {
     title: "Ticketing",
     description: "A seamless ticketing system for user support. Members can create private support channels with a single click, allowing your staff to address issues efficiently.",
     Icon: Ticket,
@@ -55,16 +94,88 @@ export const FEATURES = [
         "Fully customizable messages, categories, and support roles."
     ]
   },
-  {
-    title: "Moderation",
-    description: "Powerful and easy-to-use moderation commands. From kicking and banning to muting members, Omnix provides all the tools you need to maintain a healthy community.",
-    Icon: User,
-    aiHint: "judge gavel",
+   {
+    title: "Autoresponder",
+    description: "Set up automatic replies to specific words or phrases. Perfect for answering common questions or triggering automated actions.",
+    Icon: MessagesSquare,
+    aiHint: "chat reply",
     details: [
-        "Comprehensive set of commands: ban, kick, mute, warn, and more.",
-        "Moderation case logging creates a history for each user.",
-        "Timed mutes and bans with clear, automated unmute/unban actions.",
-        "Bulk message deletion tools for quick channel cleanup."
+        "Create unlimited auto-response triggers.",
+        "Use wildcards for more flexible matching.",
+        "Send embed messages as responses.",
+        "Add variables to your responses.",
+    ]
+  },
+   {
+    title: "JoinDM",
+    description: "Automatically send a direct message to new members when they join your server. A great way to provide essential information.",
+    Icon: MessageSquarePlus,
+    aiHint: "welcome message",
+    details: [
+        "Craft a custom welcome message to be sent via DM.",
+        "Use embeds and variables for a rich message.",
+        "Guide new users to important channels or rules.",
+        "Toggle on or off easily.",
+    ]
+  },
+  {
+    title: "Welcomer",
+    description: "Create a warm and inviting atmosphere for new members with customizable welcome and leave messages. Make a great first impression!",
+    Icon: Handshake,
+    aiHint: "welcome handshake",
+    details: [
+        "Greet new members with personalized messages and images.",
+        "Send welcome messages in a specific channel or directly to the user.",
+        "Announce when members leave.",
+        "Use variables like username, server name, and member count.",
+    ]
+  },
+   {
+    title: "Giveaway",
+    description: "Easily host and manage giveaways in your server. Boost engagement and reward your community with our simple and fair giveaway system.",
+    Icon: Gift,
+    aiHint: "giveaway gift",
+    details: [
+        "Start giveaways with a simple command.",
+        "Set duration, number of winners, and prize.",
+        "Requirement options like requiring a certain role to enter.",
+        "Fair winner selection and announcement.",
+    ]
+  },
+  {
+    title: "Reaction Roles",
+    description: "Allow users to self-assign roles by reacting to a message. A simple and effective way to manage roles and channel access.",
+    Icon: Star,
+    aiHint: "reaction role",
+    details: [
+        "Set up multiple reaction role messages.",
+        "Supports standard and custom emojis.",
+        "Different modes: unique (one role per message) or multiple roles.",
+        "Easy-to-use setup menu.",
+    ]
+  },
+  {
+    title: "Custom Roles",
+    description: "Empower your community with custom roles. Allow users to create and manage their own unique roles, adding a layer of personalization.",
+    Icon: UsersIcon,
+    aiHint: "custom roles",
+    details: [
+        "Define who can create custom roles.",
+        "Set limits on the number of custom roles a user can have.",
+        "Users can set the role name and color.",
+        "Safe and secure implementation.",
+    ]
+  },
+    {
+    title: "VC Roles",
+    description: "Automatically assign a role to users when they join a voice channel, and remove it when they leave.",
+    Icon: Voicemail,
+    aiHint: "voice chat role",
+    details: [
+        "Great for indicating who is currently in a voice call.",
+        "Assign different roles for different voice channels.",
+        "Helps manage access to text channels for voice chat participants.",
+        "Seamless and instant role assignment.",
     ]
   },
   {
@@ -79,19 +190,104 @@ export const FEATURES = [
         "Premium users get access to volume control, 24/7 playback, and more."
     ]
   },
-  {
-    title: "And More...",
-    description: "Omnix is packed with dozens of other features, including welcome messages, logging, utility commands, and much more to enhance your Discord server.",
-    Icon: Bot,
-    aiHint: "plus icon",
+    {
+    title: "Voice",
+    description: "Advanced voice channel management tools. Create temporary voice channels, manage voice activity, and more.",
+    Icon: Mic,
+    aiHint: "voice channel",
     details: [
-        "Customizable welcome and leave messages with banner images.",
-        "Detailed logging for all server events.",
-        "Utility commands for user info, server stats, and more.",
-        "Reaction roles to let users self-assign roles."
+        "Auto-create temporary voice channels when a user joins a 'hub' channel.",
+        "Grant users permission to manage their own temporary channels.",
+        "Log voice channel activity.",
+        "Voice channel moderation commands.",
+    ]
+  },
+  {
+    title: "Media Channels",
+    description: "Designate channels as 'media-only' to enforce that only messages with images or videos can be sent.",
+    Icon: ImageIcon,
+    aiHint: "media only",
+    details: [
+        "Automatically delete messages without attachments in designated channels.",
+        "Perfect for art, photography, or meme channels.",
+        "Allow text with attachments if needed.",
+        "Simple setup command.",
+    ]
+  },
+    {
+    title: "Fun",
+    description: "Add a touch of fun to your server with a collection of entertaining commands. From memes to mini-games, keep your community entertained.",
+    Icon: Smile,
+    aiHint: "fun commands",
+    details: [
+        "Meme generators and random jokes.",
+        "Interactive games like trivia and hangman.",
+        "Image manipulation commands.",
+        "A wide variety of fun and engaging activities.",
+    ]
+  },
+  {
+    title: "Utility",
+    description: "A suite of powerful utility commands to get information and manage your server efficiently. Everything you need in one place.",
+    Icon: Wrench,
+    aiHint: "utility tools",
+    details: [
+        "Commands for user info, server info, and role info.",
+        "Avatar and profile picture lookup.",
+        "Tools for managing channels and roles.",
+        "And much more for day-to-day server management.",
+    ]
+  },
+  {
+    title: "General",
+    description: "A collection of general-purpose commands that make Omnix a versatile assistant for any server.",
+    Icon: Bot,
+    aiHint: "bot commands",
+    details: [
+        "Ping command to check bot latency.",
+        "Help command to list all available features.",
+        "Bot statistics and uptime information.",
+        "Server status command.",
+    ]
+  },
+   {
+    title: "Profile Pictures (Pfp)",
+    description: "Easily view and manage user profile pictures. Get high-resolution avatars for any user in the server.",
+    Icon: UserCircleIcon,
+    aiHint: "profile picture",
+    details: [
+        "Fetch the avatar of any user, even those not on the server (by ID).",
+        "Get server-specific avatars.",
+        "Download high-quality profile pictures.",
+        "View avatar history (premium feature).",
+    ]
+  },
+  {
+    title: "Counter",
+    description: "Set up dynamic channel counters to display server statistics like member count, online users, or role counts.",
+    Icon: Milestone,
+    aiHint: "member counter",
+    details: [
+        "Create channels that update their name with live stats.",
+        "Track total members, online members, bots, and more.",
+        "Customizable counter text formats.",
+        "Updates automatically at set intervals.",
+    ]
+  },
+   {
+    title: "Ignore",
+    description: "Tell the bot to ignore certain channels, roles, or users, preventing commands from being used where they shouldn't be.",
+    Icon: EyeOff,
+    aiHint: "ignore channel",
+    details: [
+        "Ignore commands in specific channels (e.g., announcement channels).",
+        "Prevent users with an ignored role from using the bot.",
+        "Add individual users to the ignore list.",
+        "Simple commands to manage the ignore list.",
     ]
   },
 ];
+
 
 export const TEAM_MEMBERS = [
     {
