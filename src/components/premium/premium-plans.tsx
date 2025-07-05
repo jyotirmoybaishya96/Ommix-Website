@@ -81,8 +81,8 @@ export function PremiumPlans() {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
   };
   
   const featureListVariants = {
@@ -132,73 +132,97 @@ export function PremiumPlans() {
           <motion.div
             key={plan.name}
             variants={cardVariants}
-            whileHover={{ y: -5, scale: 1.02, transition: { type: 'spring', stiffness: 300 } }}
+            className={cn(plan.isPopular && "relative")}
           >
-            <Card className={cn(
-              "flex h-full flex-col rounded-xl border shadow-sm transition-all duration-300",
-              plan.isPopular ? "border-2 border-primary shadow-lg shadow-primary/20" : "hover:shadow-xl"
-            )}>
-               {plan.isPopular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground">
-                    Most Popular
-                  </div>
-                )}
-              <CardHeader className="items-center text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                  <plan.icon className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="pt-2 font-headline text-2xl">{plan.name}</CardTitle>
-                <CardDescription>{plan.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-grow flex-col gap-6 text-center">
-                 <div className="relative h-12 font-headline text-5xl font-bold">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={isYearly ? 'yearly' : 'monthly'}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute inset-x-0"
-                      >
-                         ${isYearly ? plan.price.yearly : plan.price.monthly}
-                      </motion.span>
-                    </AnimatePresence>
-                  </div>
-                  <Button asChild className="w-full smooth-hover" variant={plan.button.variant as any} disabled={plan.button.disabled}>
-                      <Link href={plan.button.href}>{plan.button.text}</Link>
-                  </Button>
-              </CardContent>
-              <CardFooter className="flex-col !p-0">
-                  <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="item-1" className="border-t">
-                      <AccordionTrigger className="px-6 text-sm font-medium text-muted-foreground hover:no-underline">
-                        What's included
-                      </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-6">
-                        <motion.ul 
-                          className="space-y-3 text-left text-sm text-muted-foreground"
-                          variants={featureListVariants}
-                          initial="hidden"
-                          whileInView="visible"
-                          viewport={{ once: true }}
+            {plan.isPopular && (
+              <motion.div 
+                className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-primary via-accent to-primary opacity-75 blur-md" 
+                animate={{ 
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 4,
+                  ease: "linear",
+                  repeat: Infinity,
+                }}
+                style={{
+                  backgroundSize: '200% 200%'
+                }}
+              />
+            )}
+             <motion.div
+              className="relative h-full"
+              whileHover={{ y: -8, scale: 1.03, transition: { type: 'spring', stiffness: 300 } }}
+            >
+              <Card className={cn(
+                "flex h-full flex-col rounded-xl border shadow-sm transition-shadow",
+                 plan.isPopular ? "border-primary/20 shadow-primary/10" : "hover:shadow-2xl"
+              )}>
+                 {plan.isPopular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground">
+                      Most Popular
+                    </div>
+                  )}
+                <CardHeader className="items-center text-center">
+                  <motion.div whileHover={{ rotate: 15, scale: 1.2 }}>
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                      <plan.icon className="h-8 w-8 text-primary" />
+                    </div>
+                  </motion.div>
+                  <CardTitle className="pt-2 font-headline text-2xl">{plan.name}</CardTitle>
+                  <CardDescription>{plan.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-grow flex-col gap-6 text-center">
+                   <div className="relative h-12 font-headline text-5xl font-bold">
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={isYearly ? 'yearly' : 'monthly'}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute inset-x-0"
                         >
-                          {plan.features.map((feature) => (
-                            <motion.li 
-                                key={feature}
-                                className="flex items-start gap-3"
-                                variants={featureItemVariants}
-                              >
-                                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                                  <span>{feature}</span>
-                              </motion.li>
-                          ))}
-                        </motion.ul>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
-              </CardFooter>
-            </Card>
+                           ${isYearly ? plan.price.yearly : plan.price.monthly}
+                           <span className="text-base font-normal text-muted-foreground">/mo</span>
+                        </motion.span>
+                      </AnimatePresence>
+                    </div>
+                    <Button asChild className="w-full smooth-hover" variant={plan.button.variant as any} disabled={plan.button.disabled}>
+                        <Link href={plan.button.href}>{plan.button.text}</Link>
+                    </Button>
+                </CardContent>
+                <CardFooter className="flex-col !p-0">
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-1" className="border-t">
+                        <AccordionTrigger className="px-6 text-sm font-medium text-muted-foreground hover:no-underline">
+                          What's included
+                        </AccordionTrigger>
+                        <AccordionContent className="px-6 pb-6">
+                          <motion.ul 
+                            className="space-y-3 text-left text-sm text-muted-foreground"
+                            variants={featureListVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                          >
+                            {plan.features.map((feature) => (
+                              <motion.li 
+                                  key={feature}
+                                  className="flex items-start gap-3"
+                                  variants={featureItemVariants}
+                                >
+                                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                                    <span>{feature}</span>
+                                </motion.li>
+                            ))}
+                          </motion.ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                </CardFooter>
+              </Card>
+            </motion.div>
           </motion.div>
         ))}
       </motion.div>
