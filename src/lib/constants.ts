@@ -348,7 +348,9 @@ export const ACCENT_COLORS = [
   { name: 'Teal', color: '180 100% 25.1%' }, // #008080
   { name: 'Blue', color: '221.2 83.2% 53.3%' },
   { name: 'Green', color: '142.1 76.2% 36.3%' },
-  { name: "Rose", color: '346.8 77.2% 49.8%' },
+  { name: 'Rose', color: '346.8 77.2% 49.8%' },
+  { name: 'Orange', color: '24.6 95% 53.1%' },
+  { name: 'Yellow', color: '47.9 95.8% 53.1%' },
 ];
 
 export const PREMIUM_FEATURES = [

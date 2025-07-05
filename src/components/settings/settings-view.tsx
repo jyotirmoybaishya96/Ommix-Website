@@ -10,11 +10,12 @@ import {
 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ACCENT_COLORS } from '@/lib/constants';
-import { cn } from '@/lib/utils';
+import { cn, hexToHsl } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import React from 'react';
 
 const backgroundEffectsOptions = [
     { value: 'none', labelKey: 'settings_panel.effect_none', Icon: Ban },
@@ -170,7 +171,7 @@ export function SettingsView() {
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <Label className="flex-shrink-0">{t('settings_panel.accent_color')}</Label>
             <div className="overflow-x-auto pb-2 -mb-2">
-              <div className="flex w-max flex-nowrap gap-3">
+              <div className="flex w-max flex-nowrap items-center gap-3">
                 {ACCENT_COLORS.map(color => (
                   <button
                     key={color.name}
@@ -186,6 +187,28 @@ export function SettingsView() {
                     {accentColor === color.color && <Check className="h-5 w-5 text-primary-foreground" />}
                   </button>
                 ))}
+                {/* Custom Color Picker */}
+                <div className="relative h-8 w-8 flex-shrink-0">
+                    <label
+                        htmlFor="custom-color-picker"
+                        className="flex h-full w-full cursor-pointer items-center justify-center rounded-full border-2 border-dashed border-muted-foreground/50 transition-transform hover:scale-110"
+                        style={{
+                            backgroundImage: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
+                        }}
+                    >
+                        <Palette className="h-5 w-5 text-white drop-shadow-md" />
+                    </label>
+                    <input
+                        id="custom-color-picker"
+                        type="color"
+                        className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                        onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            const hex = e.target.value;
+                            const hsl = hexToHsl(hex);
+                            setAccentColor(hsl);
+                        }}
+                    />
+                </div>
               </div>
             </div>
           </div>
@@ -303,4 +326,3 @@ export function SettingsView() {
     </div>
   );
 }
-
