@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Início",
+    "features": "Recursos",
+    "premium": "Premium",
+    "status": "Status",
+    "team": "Equipe",
+    "support": "Suporte",
+    "faq": "FAQ",
+    "settings": "Configurações",
+    "invite": "Convidar para o Discord"
+  },
+  "guest_banner": {
+    "message": "Você está navegando como convidado. Faça login para salvar suas preferências.",
+    "login_button": "Fazer login",
+    "continue_button": "Continuar como convidado"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Personalização",
+      "general": "Geral"
+    },
+    "theme": "Tema",
+    "theme_light": "Claro",
+    "theme_dark": "Escuro",
+    "theme_system": "Sistema",
+    "font_size": "Tamanho da fonte",
+    "font_size_small": "Pequeno",
+    "font_size_default": "Padrão",
+    "font_size_large": "Grande",
+    "accent_color": "Cor de destaque",
+    "language": "Idioma",
+    "reset": "Redefinir todas as configurações",
+    "reset_success": "As configurações foram redefinidas.",
+    "background_effect": "Efeito de fundo",
+    "effect_none": "Nenhum",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Neve",
+    "effect_bubbles": "Bolhas",
+    "effect_confetti": "Confete",
+    "effect_static": "Ruído estático",
+    "effect_stars": "Estrelas cadentes",
+    "effect_grid": "Grade sutil",
+    "effect_gradient": "Gradiente em movimento",
+    "card_style": "Estilo do cartão",
+    "style_default": "Padrão",
+    "style_glass": "Vidro"
+  },
+  "hero": {
+    "title": "O Bot <1>Discord</1> Tudo-em-Um"
+  }
+}

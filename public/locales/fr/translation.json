@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Accueil",
+    "features": "Fonctionnalités",
+    "premium": "Premium",
+    "status": "Statut",
+    "team": "Équipe",
+    "support": "Support",
+    "faq": "FAQ",
+    "settings": "Paramètres",
+    "invite": "Inviter sur Discord"
+  },
+  "guest_banner": {
+    "message": "Vous naviguez actuellement en tant qu'invité. Connectez-vous pour enregistrer vos préférences.",
+    "login_button": "Se connecter",
+    "continue_button": "Continuer en tant qu'invité"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Personnalisation",
+      "general": "Général"
+    },
+    "theme": "Thème",
+    "theme_light": "Clair",
+    "theme_dark": "Sombre",
+    "theme_system": "Système",
+    "font_size": "Taille de la police",
+    "font_size_small": "Petite",
+    "font_size_default": "Défaut",
+    "font_size_large": "Grande",
+    "accent_color": "Couleur d'accentuation",
+    "language": "Langue",
+    "reset": "Réinitialiser tous les paramètres",
+    "reset_success": "Les paramètres ont été réinitialisés.",
+    "background_effect": "Effet d'arrière-plan",
+    "effect_none": "Aucun",
+    "effect_aurora": "Aurore",
+    "effect_snowfall": "Chute de neige",
+    "effect_bubbles": "Bulles",
+    "effect_confetti": "Confettis",
+    "effect_static": "Bruit statique",
+    "effect_stars": "Étoiles filantes",
+    "effect_grid": "Grille subtile",
+    "effect_gradient": "Dégradé animé",
+    "card_style": "Style de carte",
+    "style_default": "Défaut",
+    "style_glass": "Verre"
+  },
+  "hero": {
+    "title": "Le Bot <1>Discord</1> Tout-en-Un"
+  }
+}

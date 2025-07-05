@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Hem",
+    "features": "Funktioner",
+    "premium": "Premium",
+    "status": "Status",
+    "team": "Team",
+    "support": "Support",
+    "faq": "FAQ",
+    "settings": "Inställningar",
+    "invite": "Bjud in till Discord"
+  },
+  "guest_banner": {
+    "message": "Du surfar för närvarande som gäst. Logga in för att spara dina inställningar.",
+    "login_button": "Logga in",
+    "continue_button": "Fortsätt som gäst"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Anpassning",
+      "general": "Allmänt"
+    },
+    "theme": "Tema",
+    "theme_light": "Ljus",
+    "theme_dark": "Mörk",
+    "theme_system": "System",
+    "font_size": "Teckenstorlek",
+    "font_size_small": "Liten",
+    "font_size_default": "Standard",
+    "font_size_large": "Stor",
+    "accent_color": "Accentfärg",
+    "language": "Språk",
+    "reset": "Återställ alla inställningar",
+    "reset_success": "Inställningarna har återställts.",
+    "background_effect": "Bakgrundseffekt",
+    "effect_none": "Ingen",
+    "effect_aurora": "Norrsken",
+    "effect_snowfall": "Snöfall",
+    "effect_bubbles": "Bubblor",
+    "effect_confetti": "Konfetti",
+    "effect_static": "Statiskt brus",
+    "effect_stars": "Stjärnfall",
+    "effect_grid": "Subtilt rutnät",
+    "effect_gradient": "Rörlig gradient",
+    "card_style": "Kortstil",
+    "style_default": "Standard",
+    "style_glass": "Glas"
+  },
+  "hero": {
+    "title": "Allt-i-ett <1>Discord Bot</1>"
+  }
+}

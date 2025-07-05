@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Thuis",
+    "features": "Functies",
+    "premium": "Premium",
+    "status": "Status",
+    "team": "Team",
+    "support": "Ondersteuning",
+    "faq": "FAQ",
+    "settings": "Instellingen",
+    "invite": "Uitnodigen voor Discord"
+  },
+  "guest_banner": {
+    "message": "U browst momenteel als gast. Log in om uw voorkeuren op te slaan.",
+    "login_button": "Inloggen",
+    "continue_button": "Doorgaan als gast"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Aanpassing",
+      "general": "Algemeen"
+    },
+    "theme": "Thema",
+    "theme_light": "Licht",
+    "theme_dark": "Donker",
+    "theme_system": "Systeem",
+    "font_size": "Lettergrootte",
+    "font_size_small": "Klein",
+    "font_size_default": "Standaard",
+    "font_size_large": "Groot",
+    "accent_color": "Accentkleur",
+    "language": "Taal",
+    "reset": "Alle instellingen resetten",
+    "reset_success": "Instellingen zijn gereset.",
+    "background_effect": "Achtergrondeffect",
+    "effect_none": "Geen",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Sneeuwval",
+    "effect_bubbles": "Bellen",
+    "effect_confetti": "Confetti",
+    "effect_static": "Statische ruis",
+    "effect_stars": "Vallende sterren",
+    "effect_grid": "Subtiel raster",
+    "effect_gradient": "Bewegend verloop",
+    "card_style": "Kaartstijl",
+    "style_default": "Standaard",
+    "style_glass": "Glas"
+  },
+  "hero": {
+    "title": "De Alles-in-één <1>Discord Bot</1>"
+  }
+}

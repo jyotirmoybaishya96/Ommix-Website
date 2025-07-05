@@ -7,7 +7,7 @@ import { ACCENT_COLORS } from '@/lib/constants';
 
 type Theme = 'light' | 'dark' | 'system';
 type FontSize = 'sm' | 'base' | 'lg';
-type Language = 'en' | 'es' | 'hi';
+type Language = 'en' | 'es' | 'hi' | 'de' | 'fr' | 'ja' | 'ru' | 'pt' | 'zh-CN' | 'ar' | 'ko' | 'it' | 'nl' | 'tr' | 'pl' | 'sv' | 'vi' | 'id' | 'th';
 type BackgroundEffect = 'none' | 'aurora' | 'snowfall' | 'bubbles' | 'confetti' | 'static' | 'stars' | 'grid' | 'gradient';
 type CardStyle = 'default' | 'glass';
 

@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "홈",
+    "features": "기능",
+    "premium": "프리미엄",
+    "status": "상태",
+    "team": "팀",
+    "support": "지원",
+    "faq": "FAQ",
+    "settings": "설정",
+    "invite": "Discord에 초대"
+  },
+  "guest_banner": {
+    "message": "현재 게스트로 둘러보고 있습니다. 환경설정을 저장하려면 로그인하세요.",
+    "login_button": "로그인",
+    "continue_button": "게스트로 계속하기"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "사용자 정의",
+      "general": "일반"
+    },
+    "theme": "테마",
+    "theme_light": "라이트",
+    "theme_dark": "다크",
+    "theme_system": "시스템",
+    "font_size": "글꼴 크기",
+    "font_size_small": "작게",
+    "font_size_default": "기본값",
+    "font_size_large": "크게",
+    "accent_color": "강조 색상",
+    "language": "언어",
+    "reset": "모든 설정 재설정",
+    "reset_success": "설정이 재설정되었습니다.",
+    "background_effect": "배경 효과",
+    "effect_none": "없음",
+    "effect_aurora": "오로라",
+    "effect_snowfall": "눈",
+    "effect_bubbles": "거품",
+    "effect_confetti": "색종이 조각",
+    "effect_static": "정적 노이즈",
+    "effect_stars": "별똥별",
+    "effect_grid": "미세한 격자",
+    "effect_gradient": "움직이는 그라데이션",
+    "card_style": "카드 스타일",
+    "style_default": "기본값",
+    "style_glass": "유리"
+  },
+  "hero": {
+    "title": "올인원 <1>Discord 봇</1>"
+  }
+}

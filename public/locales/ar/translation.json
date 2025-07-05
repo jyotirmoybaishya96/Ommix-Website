@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "الرئيسية",
+    "features": "الميزات",
+    "premium": "بريميوم",
+    "status": "الحالة",
+    "team": "الفريق",
+    "support": "الدعم",
+    "faq": "الأسئلة الشائعة",
+    "settings": "الإعدادات",
+    "invite": "دعوة إلى ديسكورد"
+  },
+  "guest_banner": {
+    "message": "أنت تتصفح حاليًا كضيف. سجل الدخول لحفظ تفضيلاتك.",
+    "login_button": "تسجيل الدخول",
+    "continue_button": "المتابعة كضيف"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "تخصيص",
+      "general": "عام"
+    },
+    "theme": "المظهر",
+    "theme_light": "فاتح",
+    "theme_dark": "داكن",
+    "theme_system": "النظام",
+    "font_size": "حجم الخط",
+    "font_size_small": "صغير",
+    "font_size_default": "افتراضي",
+    "font_size_large": "كبير",
+    "accent_color": "اللون المميز",
+    "language": "اللغة",
+    "reset": "إعادة تعيين كافة الإعدادات",
+    "reset_success": "تمت إعادة تعيين الإعدادات.",
+    "background_effect": "تأثير الخلفية",
+    "effect_none": "لا شيء",
+    "effect_aurora": "الشفق القطبي",
+    "effect_snowfall": "تساقط الثلوج",
+    "effect_bubbles": "فقاعات",
+    "effect_confetti": "قصاصات ورقية",
+    "effect_static": "ضوضاء ثابتة",
+    "effect_stars": "شهب",
+    "effect_grid": "شبكة دقيقة",
+    "effect_gradient": "تدرج متحرك",
+    "card_style": "نمط البطاقة",
+    "style_default": "افتراضي",
+    "style_glass": "زجاجي"
+  },
+  "hero": {
+    "title": "بوت <1>ديسكورد</1> الكل في واحد"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Strona główna",
+    "features": "Funkcje",
+    "premium": "Premium",
+    "status": "Status",
+    "team": "Zespół",
+    "support": "Wsparcie",
+    "faq": "FAQ",
+    "settings": "Ustawienia",
+    "invite": "Zaproś na Discord"
+  },
+  "guest_banner": {
+    "message": "Przeglądasz jako gość. Zaloguj się, aby zapisać swoje preferencje.",
+    "login_button": "Zaloguj się",
+    "continue_button": "Kontynuuj jako gość"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Dostosowywanie",
+      "general": "Ogólne"
+    },
+    "theme": "Motyw",
+    "theme_light": "Jasny",
+    "theme_dark": "Ciemny",
+    "theme_system": "Systemowy",
+    "font_size": "Rozmiar czcionki",
+    "font_size_small": "Mały",
+    "font_size_default": "Domyślny",
+    "font_size_large": "Duży",
+    "accent_color": "Kolor akcentu",
+    "language": "Język",
+    "reset": "Zresetuj wszystkie ustawienia",
+    "reset_success": "Ustawienia zostały zresetowane.",
+    "background_effect": "Efekt tła",
+    "effect_none": "Brak",
+    "effect_aurora": "Zorza",
+    "effect_snowfall": "Opady śniegu",
+    "effect_bubbles": "Bąbelki",
+    "effect_confetti": "Konfetti",
+    "effect_static": "Szum statyczny",
+    "effect_stars": "Spadające gwiazdy",
+    "effect_grid": "Subtelna siatka",
+    "effect_gradient": "Ruchomy gradient",
+    "card_style": "Styl karty",
+    "style_default": "Domyślny",
+    "style_glass": "Szkło"
+  },
+  "hero": {
+    "title": "Uniwersalny <1>Bot Discord</1>"
+  }
+}

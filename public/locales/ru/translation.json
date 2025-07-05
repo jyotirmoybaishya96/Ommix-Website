@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Главная",
+    "features": "Функции",
+    "premium": "Премиум",
+    "status": "Статус",
+    "team": "Команда",
+    "support": "Поддержка",
+    "faq": "FAQ",
+    "settings": "Настройки",
+    "invite": "Пригласить в Discord"
+  },
+  "guest_banner": {
+    "message": "Вы просматриваете как гость. Войдите, чтобы сохранить ваши предпочтения.",
+    "login_button": "Войти",
+    "continue_button": "Продолжить как гость"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Кастомизация",
+      "general": "Общие"
+    },
+    "theme": "Тема",
+    "theme_light": "Светлая",
+    "theme_dark": "Темная",
+    "theme_system": "Системная",
+    "font_size": "Размер шрифта",
+    "font_size_small": "Маленький",
+    "font_size_default": "Стандартный",
+    "font_size_large": "Большой",
+    "accent_color": "Акцентный цвет",
+    "language": "Язык",
+    "reset": "Сбросить все настройки",
+    "reset_success": "Настройки были сброшены.",
+    "background_effect": "Фоновый эффект",
+    "effect_none": "Нет",
+    "effect_aurora": "Аврора",
+    "effect_snowfall": "Снегопад",
+    "effect_bubbles": "Пузыри",
+    "effect_confetti": "Конфетти",
+    "effect_static": "Статический шум",
+    "effect_stars": "Падающие звезды",
+    "effect_grid": "Тонкая сетка",
+    "effect_gradient": "Движущийся градиент",
+    "card_style": "Стиль карточки",
+    "style_default": "Стандартный",
+    "style_glass": "Стекло"
+  },
+  "hero": {
+    "title": "Универсальный <1>Discord Бот</1>"
+  }
+}

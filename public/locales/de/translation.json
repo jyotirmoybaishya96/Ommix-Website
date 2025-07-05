@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Startseite",
+    "features": "Funktionen",
+    "premium": "Premium",
+    "status": "Status",
+    "team": "Team",
+    "support": "Support",
+    "faq": "FAQ",
+    "settings": "Einstellungen",
+    "invite": "Zu Discord einladen"
+  },
+  "guest_banner": {
+    "message": "Sie sind derzeit als Gast angemeldet. Melden Sie sich an, um Ihre Einstellungen zu speichern.",
+    "login_button": "Anmelden",
+    "continue_button": "Als Gast fortfahren"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Anpassung",
+      "general": "Allgemein"
+    },
+    "theme": "Thema",
+    "theme_light": "Hell",
+    "theme_dark": "Dunkel",
+    "theme_system": "System",
+    "font_size": "Schriftgröße",
+    "font_size_small": "Klein",
+    "font_size_default": "Standard",
+    "font_size_large": "Groß",
+    "accent_color": "Akzentfarbe",
+    "language": "Sprache",
+    "reset": "Alle Einstellungen zurücksetzen",
+    "reset_success": "Einstellungen wurden zurückgesetzt.",
+    "background_effect": "Hintergrundeffekt",
+    "effect_none": "Keiner",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Schneefall",
+    "effect_bubbles": "Blasen",
+    "effect_confetti": "Konfetti",
+    "effect_static": "Statisches Rauschen",
+    "effect_stars": "Sternschnuppen",
+    "effect_grid": "Dezentes Gitter",
+    "effect_gradient": "Beweglicher Verlauf",
+    "card_style": "Kartenstil",
+    "style_default": "Standard",
+    "style_glass": "Glas"
+  },
+  "hero": {
+    "title": "Der All-in-One <1>Discord Bot</1>"
+  }
+}

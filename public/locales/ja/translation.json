@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "ホーム",
+    "features": "機能",
+    "premium": "プレミアム",
+    "status": "ステータス",
+    "team": "チーム",
+    "support": "サポート",
+    "faq": "FAQ",
+    "settings": "設定",
+    "invite": "Discordに招待"
+  },
+  "guest_banner": {
+    "message": "現在ゲストとして閲覧中です。設定を保存するにはログインしてください。",
+    "login_button": "ログイン",
+    "continue_button": "ゲストとして続行"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "カスタマイズ",
+      "general": "一般"
+    },
+    "theme": "テーマ",
+    "theme_light": "ライト",
+    "theme_dark": "ダーク",
+    "theme_system": "システム",
+    "font_size": "フォントサイズ",
+    "font_size_small": "小",
+    "font_size_default": "デフォルト",
+    "font_size_large": "大",
+    "accent_color": "アクセントカラー",
+    "language": "言語",
+    "reset": "すべての設定をリセット",
+    "reset_success": "設定がリセットされました。",
+    "background_effect": "背景エフェクト",
+    "effect_none": "なし",
+    "effect_aurora": "オーロラ",
+    "effect_snowfall": "降雪",
+    "effect_bubbles": "バブル",
+    "effect_confetti": "紙吹雪",
+    "effect_static": "静的ノイズ",
+    "effect_stars": "流れ星",
+    "effect_grid": "サブトルグリッド",
+    "effect_gradient": "動くグラデーション",
+    "card_style": "カードスタイル",
+    "style_default": "デフォルト",
+    "style_glass": "ガラス"
+  },
+  "hero": {
+    "title": "オールインワンの<1>Discordボット</1>"
+  }
+}

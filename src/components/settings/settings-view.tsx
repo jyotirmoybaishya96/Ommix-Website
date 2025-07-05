@@ -234,6 +234,22 @@ export function SettingsView() {
                     <SelectItem value="en">English</SelectItem>
                     <SelectItem value="es">Español</SelectItem>
                     <SelectItem value="hi">हिन्दी</SelectItem>
+                    <SelectItem value="de">Deutsch</SelectItem>
+                    <SelectItem value="fr">Français</SelectItem>
+                    <SelectItem value="ja">日本語</SelectItem>
+                    <SelectItem value="ru">Русский</SelectItem>
+                    <SelectItem value="pt">Português</SelectItem>
+                    <SelectItem value="zh-CN">简体中文</SelectItem>
+                    <SelectItem value="ar">العربية</SelectItem>
+                    <SelectItem value="ko">한국어</SelectItem>
+                    <SelectItem value="it">Italiano</SelectItem>
+                    <SelectItem value="nl">Nederlands</SelectItem>
+                    <SelectItem value="tr">Türkçe</SelectItem>
+                    <SelectItem value="pl">Polski</SelectItem>
+                    <SelectItem value="sv">Svenska</SelectItem>
+                    <SelectItem value="vi">Tiếng Việt</SelectItem>
+                    <SelectItem value="id">Bahasa Indonesia</SelectItem>
+                    <SelectItem value="th">ไทย</SelectItem>
                 </SelectContent>
                 </Select>
             </div>

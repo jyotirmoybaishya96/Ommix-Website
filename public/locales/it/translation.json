@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Home",
+    "features": "Funzionalità",
+    "premium": "Premium",
+    "status": "Stato",
+    "team": "Team",
+    "support": "Supporto",
+    "faq": "FAQ",
+    "settings": "Impostazioni",
+    "invite": "Invita su Discord"
+  },
+  "guest_banner": {
+    "message": "Stai navigando come ospite. Accedi per salvare le tue preferenze.",
+    "login_button": "Accedi",
+    "continue_button": "Continua come ospite"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Personalizzazione",
+      "general": "Generale"
+    },
+    "theme": "Tema",
+    "theme_light": "Chiaro",
+    "theme_dark": "Scuro",
+    "theme_system": "Sistema",
+    "font_size": "Dimensione carattere",
+    "font_size_small": "Piccolo",
+    "font_size_default": "Predefinito",
+    "font_size_large": "Grande",
+    "accent_color": "Colore accento",
+    "language": "Lingua",
+    "reset": "Reimposta tutte le impostazioni",
+    "reset_success": "Le impostazioni sono state reimpostate.",
+    "background_effect": "Effetto di sfondo",
+    "effect_none": "Nessuno",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Neve",
+    "effect_bubbles": "Bolle",
+    "effect_confetti": "Coriandoli",
+    "effect_static": "Rumore statico",
+    "effect_stars": "Stelle cadenti",
+    "effect_grid": "Griglia sottile",
+    "effect_gradient": "Gradiente mobile",
+    "card_style": "Stile scheda",
+    "style_default": "Predefinito",
+    "style_glass": "Vetro"
+  },
+  "hero": {
+    "title": "Il Bot <1>Discord</1> Tutto-in-Uno"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "主页",
+    "features": "功能",
+    "premium": "高级版",
+    "status": "状态",
+    "team": "团队",
+    "support": "支持",
+    "faq": "常见问题",
+    "settings": "设置",
+    "invite": "邀请到 Discord"
+  },
+  "guest_banner": {
+    "message": "您当前以访客身份浏览。登录以保存您的偏好设置。",
+    "login_button": "登录",
+    "continue_button": "以访客身份继续"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "定制",
+      "general": "通用"
+    },
+    "theme": "主题",
+    "theme_light": "浅色",
+    "theme_dark": "深色",
+    "theme_system": "系统",
+    "font_size": "字体大小",
+    "font_size_small": "小",
+    "font_size_default": "默认",
+    "font_size_large": "大",
+    "accent_color": "强调色",
+    "language": "语言",
+    "reset": "重置所有设置",
+    "reset_success": "设置已重置。",
+    "background_effect": "背景效果",
+    "effect_none": "无",
+    "effect_aurora": "极光",
+    "effect_snowfall": "降雪",
+    "effect_bubbles": "气泡",
+    "effect_confetti": "五彩纸屑",
+    "effect_static": "静态噪声",
+    "effect_stars": "流星",
+    "effect_grid": "精细网格",
+    "effect_gradient": "动态渐变",
+    "card_style": "卡片样式",
+    "style_default": "默认",
+    "style_glass": "玻璃"
+  },
+  "hero": {
+    "title": "一体化的 <1>Discord 机器人</1>"
+  }
+}

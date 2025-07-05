@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Beranda",
+    "features": "Fitur",
+    "premium": "Premium",
+    "status": "Status",
+    "team": "Tim",
+    "support": "Dukungan",
+    "faq": "FAQ",
+    "settings": "Pengaturan",
+    "invite": "Undang ke Discord"
+  },
+  "guest_banner": {
+    "message": "Anda saat ini menjelajah sebagai tamu. Masuk untuk menyimpan preferensi Anda.",
+    "login_button": "Masuk",
+    "continue_button": "Lanjutkan sebagai Tamu"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Kustomisasi",
+      "general": "Umum"
+    },
+    "theme": "Tema",
+    "theme_light": "Terang",
+    "theme_dark": "Gelap",
+    "theme_system": "Sistem",
+    "font_size": "Ukuran Font",
+    "font_size_small": "Kecil",
+    "font_size_default": "Default",
+    "font_size_large": "Besar",
+    "accent_color": "Warna Aksen",
+    "language": "Bahasa",
+    "reset": "Atur Ulang Semua Pengaturan",
+    "reset_success": "Pengaturan telah diatur ulang.",
+    "background_effect": "Efek Latar Belakang",
+    "effect_none": "Tidak ada",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Hujan Salju",
+    "effect_bubbles": "Gelembung",
+    "effect_confetti": "Konfeti",
+    "effect_static": "Kebisingan Statis",
+    "effect_stars": "Bintang Jatuh",
+    "effect_grid": "Kisi Halus",
+    "effect_gradient": "Gradien Bergerak",
+    "card_style": "Gaya Kartu",
+    "style_default": "Default",
+    "style_glass": "Kaca"
+  },
+  "hero": {
+    "title": "Bot <1>Discord</1> Serba Guna"
+  }
+}

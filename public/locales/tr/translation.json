@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Anasayfa",
+    "features": "Özellikler",
+    "premium": "Premium",
+    "status": "Durum",
+    "team": "Takım",
+    "support": "Destek",
+    "faq": "SSS",
+    "settings": "Ayarlar",
+    "invite": "Discord'a Davet Et"
+  },
+  "guest_banner": {
+    "message": "Şu anda misafir olarak geziniyorsunuz. Tercihlerinizi kaydetmek için giriş yapın.",
+    "login_button": "Giriş Yap",
+    "continue_button": "Misafir Olarak Devam Et"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Özelleştirme",
+      "general": "Genel"
+    },
+    "theme": "Tema",
+    "theme_light": "Açık",
+    "theme_dark": "Koyu",
+    "theme_system": "Sistem",
+    "font_size": "Yazı Tipi Boyutu",
+    "font_size_small": "Küçük",
+    "font_size_default": "Varsayılan",
+    "font_size_large": "Büyük",
+    "accent_color": "Vurgu Rengi",
+    "language": "Dil",
+    "reset": "Tüm Ayarları Sıfırla",
+    "reset_success": "Ayarlar sıfırlandı.",
+    "background_effect": "Arka Plan Efekti",
+    "effect_none": "Hiçbiri",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Kar Yağışı",
+    "effect_bubbles": "Baloncuklar",
+    "effect_confetti": "Konfeti",
+    "effect_static": "Statik Gürültü",
+    "effect_stars": "Kayan Yıldızlar",
+    "effect_grid": "Hafif Izgara",
+    "effect_gradient": "Hareketli Gradyan",
+    "card_style": "Kart Stili",
+    "style_default": "Varsayılan",
+    "style_glass": "Cam"
+  },
+  "hero": {
+    "title": "Hepsi Bir Arada <1>Discord Botu</1>"
+  }
+}

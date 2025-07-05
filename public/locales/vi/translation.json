@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Trang chủ",
+    "features": "Tính năng",
+    "premium": "Premium",
+    "status": "Trạng thái",
+    "team": "Đội ngũ",
+    "support": "Hỗ trợ",
+    "faq": "FAQ",
+    "settings": "Cài đặt",
+    "invite": "Mời vào Discord"
+  },
+  "guest_banner": {
+    "message": "Bạn hiện đang duyệt với tư cách khách. Đăng nhập để lưu tùy chọn của bạn.",
+    "login_button": "Đăng nhập",
+    "continue_button": "Tiếp tục với tư cách khách"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "Tùy chỉnh",
+      "general": "Chung"
+    },
+    "theme": "Chủ đề",
+    "theme_light": "Sáng",
+    "theme_dark": "Tối",
+    "theme_system": "Hệ thống",
+    "font_size": "Cỡ chữ",
+    "font_size_small": "Nhỏ",
+    "font_size_default": "Mặc định",
+    "font_size_large": "Lớn",
+    "accent_color": "Màu nhấn",
+    "language": "Ngôn ngữ",
+    "reset": "Đặt lại tất cả cài đặt",
+    "reset_success": "Đã đặt lại cài đặt.",
+    "background_effect": "Hiệu ứng nền",
+    "effect_none": "Không có",
+    "effect_aurora": "Cực quang",
+    "effect_snowfall": "Tuyết rơi",
+    "effect_bubbles": "Bong bóng",
+    "effect_confetti": "Pháo giấy",
+    "effect_static": "Nhiễu tĩnh",
+    "effect_stars": "Sao băng",
+    "effect_grid": "Lưới tinh tế",
+    "effect_gradient": "Gradient chuyển động",
+    "card_style": "Kiểu thẻ",
+    "style_default": "Mặc định",
+    "style_glass": "Thủy tinh"
+  },
+  "hero": {
+    "title": "Bot <1>Discord</1> Tất-cả-trong-một"
+  }
+}

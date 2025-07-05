@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "หน้าแรก",
+    "features": "คุณสมบัติ",
+    "premium": "พรีเมียม",
+    "status": "สถานะ",
+    "team": "ทีม",
+    "support": "สนับสนุน",
+    "faq": "คำถามที่พบบ่อย",
+    "settings": "การตั้งค่า",
+    "invite": "เชิญเข้าสู่ Discord"
+  },
+  "guest_banner": {
+    "message": "คุณกำลังเข้าชมในฐานะแขก เข้าสู่ระบบเพื่อบันทึกการตั้งค่าของคุณ",
+    "login_button": "เข้าสู่ระบบ",
+    "continue_button": "ดำเนินการต่อในฐานะแขก"
+  },
+  "settings_panel": {
+    "tabs": {
+      "customization": "การปรับแต่ง",
+      "general": "ทั่วไป"
+    },
+    "theme": "ธีม",
+    "theme_light": "สว่าง",
+    "theme_dark": "มืด",
+    "theme_system": "ระบบ",
+    "font_size": "ขนาดตัวอักษร",
+    "font_size_small": "เล็ก",
+    "font_size_default": "ค่าเริ่มต้น",
+    "font_size_large": "ใหญ่",
+    "accent_color": "สีเน้น",
+    "language": "ภาษา",
+    "reset": "รีเซ็ตการตั้งค่าทั้งหมด",
+    "reset_success": "รีเซ็ตการตั้งค่าแล้ว",
+    "background_effect": "เอฟเฟกต์พื้นหลัง",
+    "effect_none": "ไม่มี",
+    "effect_aurora": "ออโรร่า",
+    "effect_snowfall": "หิมะตก",
+    "effect_bubbles": "ฟองสบู่",
+    "effect_confetti": "กระดาษโปรย",
+    "effect_static": "สัญญาณรบกวน",
+    "effect_stars": "ดาวยิง",
+    "effect_grid": "ตารางบาง",
+    "effect_gradient": "ไล่ระดับสีเคลื่อนไหว",
+    "card_style": "สไตล์การ์ด",
+    "style_default": "ค่าเริ่มต้น",
+    "style_glass": "กระจก"
+  },
+  "hero": {
+    "title": "บอท <1>Discord</1> แบบครบวงจร"
+  }
+}
