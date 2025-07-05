@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -127,43 +128,49 @@ export function PremiumPlans() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {planData.map((plan) => (
+        {planData.map((plan, index) => (
           <motion.div
             key={plan.name}
             variants={cardVariants}
-            className={cn(plan.isPopular && "relative")}
+            className="group relative"
           >
-            {plan.isPopular && (
-              <motion.div 
-                className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-primary via-accent to-primary opacity-75 blur-md" 
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 4,
-                  ease: "linear",
-                  repeat: Infinity,
-                }}
-                style={{
-                  backgroundSize: '200% 200%'
-                }}
-              />
-            )}
+            <motion.div 
+              className={cn(
+                "absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-primary via-accent to-primary blur-md transition-opacity duration-300",
+                plan.isPopular ? "opacity-75" : "opacity-0 group-hover:opacity-75"
+              )}
+              animate={{ 
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{
+                duration: 4,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{
+                backgroundSize: '200% 200%'
+              }}
+            />
              <motion.div
               className="relative h-full"
               whileHover={{ y: -8, scale: 1.03, transition: { type: 'spring', stiffness: 300 } }}
             >
-              <Card className={cn(
-                "flex h-full flex-col rounded-xl border shadow-sm transition-shadow",
-                 plan.isPopular ? "border-primary/20 shadow-primary/10" : "hover:shadow-2xl"
-              )}>
+              <Card className="flex h-full flex-col overflow-hidden rounded-xl border bg-background shadow-lg transition-shadow hover:shadow-primary/20">
                  {plan.isPopular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground">
+                    <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground">
                       Most Popular
                     </div>
                   )}
                 <CardHeader className="items-center text-center">
-                  <motion.div whileHover={{ rotate: 15, scale: 1.2 }}>
+                  <motion.div
+                    animate={{ y: [-3, 3, -3] }}
+                    transition={{
+                      duration: 4,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      delay: index * 0.4,
+                    }}
+                  >
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                       <plan.icon className="h-8 w-8 text-primary" />
                     </div>
