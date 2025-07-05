@@ -10,12 +10,15 @@ import {
 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ACCENT_COLORS } from '@/lib/constants';
-import { cn, hexToHsl } from '@/lib/utils';
+import { cn, hexToHsl, hslToHex } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { HexColorPicker } from 'react-colorful';
+import { Input } from '@/components/ui/input';
 
 const backgroundEffectsOptions = [
     { value: 'none', labelKey: 'settings_panel.effect_none', Icon: Ban },
@@ -48,8 +51,9 @@ export function SettingsView() {
   } = useSettings();
   const { t } = useTranslation();
   const { toast } = useToast();
-  const colorInputRef = React.useRef<HTMLInputElement>(null);
-
+  
+  const hexColor = useMemo(() => hslToHex(accentColor), [accentColor]);
+  
   const handleReset = () => {
     resetSettings();
     toast({
@@ -188,27 +192,29 @@ export function SettingsView() {
                     {accentColor === color.color && <Check className="h-5 w-5 text-primary-foreground" />}
                   </button>
                 ))}
-                {/* Custom Color Picker */}
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 flex-shrink-0 rounded-full border-dashed transition-transform hover:scale-110"
-                  aria-label="Pick a custom color"
-                  onClick={() => colorInputRef.current?.click()}
-                >
-                  <Palette className="h-4 w-4" />
-                </Button>
-                <input
-                  ref={colorInputRef}
-                  id="custom-color-picker"
-                  type="color"
-                  className="invisible h-0 w-0"
-                  onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const hex = e.target.value;
-                      const hsl = hexToHsl(hex);
-                      setAccentColor(hsl);
-                  }}
-                />
+                 <Popover>
+                    <PopoverTrigger asChild>
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-8 w-8 flex-shrink-0 rounded-full border-dashed transition-transform hover:scale-110"
+                            aria-label="Pick a custom color"
+                        >
+                            <Palette className="h-4 w-4" />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-2">
+                       <HexColorPicker 
+                          color={hexColor} 
+                          onChange={(newHex) => setAccentColor(hexToHsl(newHex))} 
+                       />
+                       <Input
+                          value={hexColor}
+                          onChange={(e) => setAccentColor(hexToHsl(e.target.value))}
+                          className="mt-2 h-8"
+                       />
+                    </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
