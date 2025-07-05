@@ -64,9 +64,9 @@ export function FaqSection() {
             >
               <AccordionItem 
                 value={`item-${index}`} 
-                className="overflow-hidden rounded-lg border bg-card shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg data-[state=open]:border-primary data-[state=open]:shadow-xl"
+                className="overflow-hidden rounded-lg border-0 bg-card shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg data-[state=open]:shadow-xl"
               >
-                <AccordionTrigger className="w-full px-6 py-5 text-left font-headline text-lg transition-colors hover:no-underline data-[state=open]:bg-primary/5 data-[state=open]:text-primary">
+                <AccordionTrigger className="w-full px-6 py-5 text-left font-headline text-lg transition-colors hover:no-underline data-[state=open]:bg-gradient-to-r data-[state=open]:from-primary/10 data-[state=open]:via-transparent data-[state=open]:to-primary/10 data-[state=open]:text-primary">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-5 text-base text-muted-foreground">

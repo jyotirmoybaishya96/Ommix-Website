@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useSettings } from '../theme-provider';
 import { cn } from '@/lib/utils';
+import { Trans } from 'react-i18next';
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -98,7 +99,9 @@ export default function HeroSection() {
               ))}
             </motion.div>
           ) : (
-            "The All-in-One Discord Bot"
+            <Trans i18nKey="hero.title">
+              The All-in-One <span className="text-primary">Discord Bot</span>
+            </Trans>
           )}
         </h1>
         <motion.p
@@ -116,11 +119,13 @@ export default function HeroSection() {
               Invite to Discord
             </a>
           </Button>
-          <Button size="lg" variant="outline" asChild className="smooth-hover border-foreground/20 bg-background/50 backdrop-blur-sm">
-            <Link href="/features">
-              Explore Features
-            </Link>
-          </Button>
+          <div className="smooth-hover rounded-md bg-gradient-to-r from-primary/50 to-accent/50 p-px">
+            <Button size="lg" asChild className="bg-background/50 text-foreground backdrop-blur-sm hover:bg-accent/10">
+              <Link href="/features">
+                Explore Features
+              </Link>
+            </Button>
+          </div>
         </motion.div>
       </div>
     </motion.section>

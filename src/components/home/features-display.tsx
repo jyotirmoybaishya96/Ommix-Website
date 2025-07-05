@@ -44,25 +44,27 @@ const FeatureCard = ({
         transition: 'transform 0.1s ease-out',
       }}
       className={cn(
-        "relative group h-full w-full overflow-hidden rounded-xl border border-white/10 bg-card/60 p-6 shadow-2xl shadow-black/20",
+        "group relative h-full w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 via-transparent to-primary/20 p-px shadow-2xl shadow-black/20",
         className
       )}
     >
-      {/* Glare effect */}
-      <div 
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: 'radial-gradient(400px circle at var(--x) var(--y), hsl(var(--primary) / 0.15), transparent 40%)',
-        }}
-      />
-      
-      <div className="flex items-start gap-4">
-        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
-          <feature.Icon className="h-6 w-6 text-primary transition-transform duration-300 group-hover:scale-110" />
-        </div>
-        <div>
-          <h3 className="font-headline text-2xl font-bold">{feature.title}</h3>
-          <p className="mt-2 text-muted-foreground">{feature.description}</p>
+      <div className="relative z-10 h-full w-full rounded-[11px] bg-card/80 p-6 backdrop-blur-sm">
+        {/* Glare effect */}
+        <div 
+          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background: 'radial-gradient(400px circle at var(--x) var(--y), hsl(var(--primary) / 0.15), transparent 40%)',
+          }}
+        />
+        
+        <div className="flex items-start gap-4">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-all duration-300 group-hover:bg-primary/20">
+            <feature.Icon className="h-6 w-6 text-primary transition-transform duration-300 group-hover:scale-110" />
+          </div>
+          <div>
+            <h3 className="font-headline text-2xl font-bold">{feature.title}</h3>
+            <p className="mt-2 text-muted-foreground">{feature.description}</p>
+          </div>
         </div>
       </div>
     </motion.div>
