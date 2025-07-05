@@ -46,7 +46,6 @@ The Omnix web interface is built with a modern, performant, and scalable technol
 -   **Language:** [TypeScript](https://www.typescriptlang.org/)
 -   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 -   **Component Library:** [ShadCN UI](https://ui.shadcn.com/)
--   **Generative AI:** [Genkit for Firebase](https://firebase.google.com/docs/genkit)
 -   **Animation:** [Framer Motion](https://www.framer.com/motion/)
 -   **Internationalization:** [i18next](https://www.i18next.com/)
 
