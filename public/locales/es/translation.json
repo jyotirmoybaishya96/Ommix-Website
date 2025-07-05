@@ -1,23 +1,22 @@
-
 {
   "header": {
     "home": "Inicio",
-    "features": "Funciones",
+    "features": "Características",
     "premium": "Premium",
     "status": "Estado",
     "team": "Equipo",
     "support": "Soporte",
-    "faq": "FAQ",
+    "faq": "Preguntas",
     "settings": "Ajustes",
     "invite": "Invitar"
   },
-  "hero": {
-    "title": "El Bot de <1>Discord</1> Todo en Uno"
-  },
   "guest_banner": {
-    "message": "Actualmente navegas como invitado. Inicia sesión para guardar tus ajustes.",
+    "message": "Actualmente navegas como invitado. Inicia sesión para una experiencia personalizada.",
     "login_button": "Iniciar Sesión",
     "continue_button": "Continuar como Invitado"
+  },
+  "hero": {
+    "title": "El Bot de <1>Discord</1> Todo en Uno"
   },
   "settings_panel": {
     "tabs": {
@@ -34,7 +33,11 @@
     "font_size_large": "Grande",
     "accent_color": "Color de Acento",
     "language": "Idioma",
-    "reset": "Restablecer Todos los Ajustes",
-    "reset_success": "Los ajustes han sido restablecidos."
+    "reset": "Restablecer Ajustes",
+    "reset_success": "Los ajustes han sido restablecidos.",
+    "background_effect": "Efecto de Fondo",
+    "effect_none": "Ninguno",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Nevada"
   }
 }

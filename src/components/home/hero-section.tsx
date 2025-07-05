@@ -74,8 +74,6 @@ export default function HeroSection() {
       variants={containerVariants}
       className="relative w-full overflow-hidden py-32 text-center md:py-40 lg:py-48"
     >
-      <div className="aurora-background" />
-
       <div className="container relative z-10 mx-auto">
         <h1
           className="font-headline text-5xl font-bold tracking-tighter text-foreground sm:text-6xl md:text-7xl lg:text-8xl"

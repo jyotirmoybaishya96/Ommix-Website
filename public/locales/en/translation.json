@@ -1,4 +1,3 @@
-
 {
   "header": {
     "home": "Home",
@@ -11,13 +10,13 @@
     "settings": "Settings",
     "invite": "Invite"
   },
-  "hero": {
-    "title": "The All-in-One <1>Discord Bot</1>"
-  },
   "guest_banner": {
-    "message": "You are currently browsing as a guest. Log in to save your settings.",
+    "message": "You are currently browsing as a guest. Log in for a personalized experience.",
     "login_button": "Log In",
     "continue_button": "Continue as Guest"
+  },
+  "hero": {
+    "title": "The All-in-One <1>Discord Bot</1>"
   },
   "settings_panel": {
     "tabs": {
@@ -35,6 +34,10 @@
     "accent_color": "Accent Color",
     "language": "Language",
     "reset": "Reset All Settings",
-    "reset_success": "Settings have been reset."
+    "reset_success": "Settings have been reset.",
+    "background_effect": "Background Effect",
+    "effect_none": "None",
+    "effect_aurora": "Aurora",
+    "effect_snowfall": "Snowfall"
   }
 }

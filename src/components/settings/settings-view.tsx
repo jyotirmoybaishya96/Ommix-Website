@@ -24,6 +24,8 @@ export function SettingsView() {
     setLanguage,
     accentColor,
     setAccentColor,
+    backgroundEffect,
+    setBackgroundEffect,
     resetSettings,
     isMounted,
   } = useSettings();
@@ -134,6 +136,20 @@ export function SettingsView() {
                         ))}
                       </div>
                     </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <Label>{t('settings_panel.background_effect', { defaultValue: 'Background Effect' })}</Label>
+                    <Select value={backgroundEffect} onValueChange={value => setBackgroundEffect(value as any)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={t('settings_panel.background_effect')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">{t('settings_panel.effect_none', { defaultValue: 'None' })}</SelectItem>
+                        <SelectItem value="aurora">{t('settings_panel.effect_aurora', { defaultValue: 'Aurora' })}</SelectItem>
+                        <SelectItem value="snowfall">{t('settings_panel.effect_snowfall', { defaultValue: 'Snowfall' })}</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
               </TabsContent>

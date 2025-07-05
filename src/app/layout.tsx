@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { PageTransition } from '@/components/layout/page-transition';
 import { GuestBanner } from '@/components/layout/guest-banner';
 import { Suspense } from 'react';
+import { BackgroundRenderer } from '@/components/background-effects/background-renderer';
 
 export const metadata: Metadata = {
   title: 'Omnix - The All-in-One Discord Bot',
@@ -29,7 +30,8 @@ export default function RootLayout({
       <body className="font-body antialiased">
         <Suspense>
           <SettingsProvider>
-            <div className="flex min-h-screen flex-col">
+            <div className="relative flex min-h-screen flex-col">
+              <BackgroundRenderer />
               <GuestBanner />
               <Header />
               <PageTransition>
