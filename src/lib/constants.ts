@@ -1,7 +1,7 @@
 
 import {
   ShieldCheck, ShieldAlert, Ticket, User, Music, Bot, Github, Twitter, Linkedin, Server, Users, Clock, Wifi, CheckCircle,
-  BrainCircuit, Users as UsersIcon, Wrench, MessageSquarePlus, MessagesSquare, Gift, Smile, EyeOff, Image as ImageIcon, Mic, Handshake, UserCircle as UserCircleIcon, Star, Voicemail, Milestone, FileText
+  BrainCircuit, Users as UsersIcon, Wrench, MessageSquarePlus, MessagesSquare, Gift, Smile, EyeOff, Image as ImageIcon, Mic, Handshake, UserCircle as UserCircleIcon, Star, Voicemail, Milestone, FileText, Cog
 } from "lucide-react";
 
 export const NAV_LINKS = [
@@ -12,6 +12,7 @@ export const NAV_LINKS = [
   { href: "/team", label: "team" },
   { href: "/support", label: "support" },
   { href: "/faq", label: "faq" },
+  { href: "/settings", label: "settings" },
 ];
 
 export const LEGAL_LINKS = [

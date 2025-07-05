@@ -2,10 +2,9 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
-import { Cog, Menu, Bot } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Menu, Bot } from 'lucide-react';
 import { NAV_LINKS, DISCORD_INVITE_URL } from '@/lib/constants';
-import { SettingsPanel } from './settings-panel';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +13,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
   const pathname = usePathname();
   const { t, i18n } = useTranslation();
   const { isMounted } = useSettings();
@@ -55,27 +53,6 @@ export function Header() {
           <Button asChild>
             <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{isMounted ? t('header.invite') : 'Invite'}</a>
           </Button>
-          <Sheet open={isSettingsOpen} onOpenChange={setSettingsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Cog />
-                <span className="sr-only">Open Settings</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="flex flex-col">
-              <SheetHeader>
-                <SheetTitle>{isMounted ? t('header.settings.title') : 'Settings'}</SheetTitle>
-                <SheetDescription>
-                  {isMounted ? t('header.settings.description') : 'Customize your experience.'}
-                </SheetDescription>
-              </SheetHeader>
-              <ScrollArea className="flex-grow">
-                <div className="pr-4">
-                  <SettingsPanel />
-                </div>
-              </ScrollArea>
-            </SheetContent>
-          </Sheet>
         </nav>
 
         <div className="flex items-center md:hidden">
@@ -101,9 +78,6 @@ export function Header() {
                    <Button asChild className='mt-4'>
                       <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer">{isMounted ? t('header.invite') : 'Invite'}</a>
                   </Button>
-                  <div className='mt-4 border-t pt-4'>
-                     <SettingsPanel />
-                  </div>
                 </nav>
               </ScrollArea>
             </SheetContent>
