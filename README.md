@@ -17,21 +17,25 @@
   <img src="https://placehold.co/800x250.png" alt="Omnix Application Banner" data-ai-hint="application banner">
 </p>
 
-Welcome to the official web interface for **Omnix**, a powerful, reliable, and easy-to-use platform for server moderation, community engagement, AI assistance, and extensive customization.
+> Welcome to the official web interface for **Omnix**! We provide a powerful, reliable, and easy-to-use platform for server moderation, community engagement, AI assistance, and extensive customization.
 
 <img src="https://placehold.co/1200x600.png" alt="Omnix Hero Section" data-ai-hint="website homepage" />
 *<p align="center">A preview of the Omnix homepage.</p>*
+
+---
 
 ## ✨ Key Features
 
 Omnix provides a comprehensive suite of features to cover all your server needs:
 
--   🛡️ **Advanced Protection:** Keep your server safe with a state-of-the-art Anti-Nuke system and a fully customizable Auto-Mod to filter spam, inappropriate content, and more.
--   🤖 **AI-Powered Assistance:** Leverage the power of GenAI with AI-driven support, FAQs, and intelligent conversation capabilities.
--   🎫 **Seamless Support:** A built-in ticketing system allows users to create private support channels for efficient issue resolution.
--   🎶 **High-Fidelity Music:** Enjoy lag-free music streaming from various sources with a feature-rich music player, complete with playlists, queues, and DJ roles.
--   🎉 **Community Engagement:** Boost server activity with easy-to-host giveaways, self-assignable reaction roles, and fun, interactive commands.
--   🎨 **Deep Customization:** Tailor the website's appearance to your liking with customizable themes, accent colors, font sizes, and dynamic background effects.
+-   **🛡️ Advanced Protection:** Keep your server safe with a state-of-the-art Anti-Nuke system and a fully customizable Auto-Mod to filter spam, inappropriate content, and more.
+-   **🤖 AI-Powered Assistance:** Leverage the power of GenAI with AI-driven support, FAQs, and intelligent conversation capabilities.
+-   **🎫 Seamless Support:** A built-in ticketing system allows users to create private support channels for efficient issue resolution.
+-   **🎶 High-Fidelity Music:** Enjoy lag-free music streaming from various sources with a feature-rich music player, complete with playlists, queues, and DJ roles.
+-   **🎉 Community Engagement:** Boost server activity with easy-to-host giveaways, self-assignable reaction roles, and fun, interactive commands.
+-   **🎨 Deep Customization:** Tailor the website's appearance to your liking with customizable themes, accent colors, font sizes, and dynamic background effects.
+
+---
 
 ## 🚀 Tech Stack
 
@@ -46,6 +50,8 @@ The Omnix web interface is built with a modern, performant, and scalable technol
 -   **Animation:** [Framer Motion](https://www.framer.com/motion/)
 -   **Internationalization:** [i18next](https://www.i18next.com/)
 
+---
+
 ## ⚙️ Getting Started
 
 Follow these steps to get the project up and running on your local machine for development and testing purposes.
@@ -54,9 +60,9 @@ Follow these steps to get the project up and running on your local machine for d
 
 You'll need the following software installed on your machine:
 
--   [Node.js](https://nodejs.org/en/) (v18 or newer recommended)
--   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
--   [Git](https://git-scm.com/)
+-   **Node.js**: `v18` or newer is recommended.
+-   **Package Manager**: `npm` or `yarn`.
+-   **Git**: For cloning the repository.
 
 ### Installation
 
@@ -90,7 +96,9 @@ You'll need the following software installed on your machine:
     npm run dev
     ```
 
-The application should now be running at `http://localhost:9002` (or whichever port you specified in `.env`).
+> The application should now be running at `http://localhost:9002` (or whichever port you specified in `.env`).
+
+---
 
 ## 📜 Available Scripts
 
@@ -102,12 +110,14 @@ In the project directory, you can run:
 -   `npm run lint`: Runs the linter to check for code quality issues.
 -   `npm run typecheck`: Runs the TypeScript compiler to check for type errors.
 
+---
+
 ## 🤝 Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Don't forget to give the project a star! ⭐
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
