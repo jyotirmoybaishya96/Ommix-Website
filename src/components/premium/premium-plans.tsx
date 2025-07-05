@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -65,6 +64,51 @@ const planData = [
     isPopular: false,
   },
 ];
+
+const FireAnimation = () => {
+    const particles = Array.from({ length: 50 });
+    
+    return (
+        <div 
+            className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-48 h-48 pointer-events-none"
+            style={{ filter: 'blur(3px) contrast(12)' }}
+        >
+            <div className="relative w-full h-full flex items-center justify-center">
+                <div className="absolute bottom-0 w-24 h-1 bg-orange-400 rounded-full" />
+                
+                {particles.map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute bottom-0 rounded-full"
+                        style={{
+                            width: `${Math.random() * 20 + 5}px`,
+                            height: `${Math.random() * 20 + 5}px`,
+                            background: `rgba(255, ${Math.floor(Math.random() * 100 + 155)}, 0, 0.8)`,
+                        }}
+                        initial={{
+                            x: (Math.random() - 0.5) * 60,
+                            y: 0,
+                            scale: Math.random() * 0.6 + 0.4,
+                            opacity: 1,
+                        }}
+                        animate={{
+                            y: -100 - Math.random() * 80,
+                            x: (Math.random() - 0.5) * 100,
+                            scale: 0,
+                        }}
+                        transition={{
+                            duration: Math.random() * 1.5 + 1.5,
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            ease: "circOut",
+                            delay: Math.random() * 2
+                        }}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
 
 
 export function PremiumPlans() {
@@ -228,6 +272,7 @@ export function PremiumPlans() {
                     </Accordion>
                 </CardFooter>
               </Card>
+              {index === planData.length - 1 && <FireAnimation />}
             </motion.div>
           </motion.div>
         ))}
