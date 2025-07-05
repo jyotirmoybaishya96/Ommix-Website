@@ -7,12 +7,15 @@ import { useEffect, useState } from 'react';
 
 export function Footer() {
   const [credit, setCredit] = useState('');
+  const [year, setYear] = useState(new Date().getFullYear());
 
   // This effect constructs the credit string from character codes
   // to make it difficult to find via a simple text search in the codebase.
+  // It also sets the year to avoid hydration mismatch.
   useEffect(() => {
     const codes = [77, 97, 100, 101, 32, 98, 121, 32, 90, 104, 111, 110, 103, 108, 105];
     setCredit(String.fromCharCode(...codes));
+    setYear(new Date().getFullYear());
   }, []);
 
   return (
@@ -61,25 +64,13 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-border pt-4 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Omnix. All rights reserved.</p>
+          <p>&copy; {year} Omnix. All rights reserved.</p>
+          {credit && (
+            <p className="mt-2 text-xs opacity-50">
+              {credit}
+            </p>
+          )}
         </div>
-      </div>
-      {/* This credit is intentionally obfuscated and hidden. */}
-      <div
-        aria-hidden="true"
-        style={{
-          opacity: 0,
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          pointerEvents: 'none',
-          width: 0,
-          height: 0,
-          overflow: 'hidden',
-          userSelect: 'none',
-        }}
-      >
-        {credit}
       </div>
     </footer>
   );
