@@ -1,11 +1,12 @@
-
 'use client';
 
 import { useSettings } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Moon, Sun, Text, Check, Monitor } from 'lucide-react';
+import {
+  Moon, Sun, Text, Check, Monitor, Ban, Droplets, Grid3x3, Languages, Palette, PartyPopper, Paintbrush, Radio, Snowflake, Sparkles, Sunrise
+} from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ACCENT_COLORS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -200,18 +201,19 @@ export function SettingsView() {
                 <Label>{t('settings_panel.background_effect')}</Label>
                 <Select value={backgroundEffect} onValueChange={value => setBackgroundEffect(value as any)}>
                     <SelectTrigger>
-                    <SelectValue placeholder={t('settings_panel.background_effect')} />
+                        <Paintbrush className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <SelectValue placeholder={t('settings_panel.background_effect')} />
                     </SelectTrigger>
                     <SelectContent>
-                    <SelectItem value="none">{t('settings_panel.effect_none')}</SelectItem>
-                    <SelectItem value="aurora">{t('settings_panel.effect_aurora')}</SelectItem>
-                    <SelectItem value="snowfall">{t('settings_panel.effect_snowfall')}</SelectItem>
-                    <SelectItem value="bubbles">{t('settings_panel.effect_bubbles')}</SelectItem>
-                    <SelectItem value="confetti">{t('settings_panel.effect_confetti')}</SelectItem>
-                    <SelectItem value="static">{t('settings_panel.effect_static')}</SelectItem>
-                    <SelectItem value="stars">{t('settings_panel.effect_stars')}</SelectItem>
-                    <SelectItem value="grid">{t('settings_panel.effect_grid')}</SelectItem>
-                    <SelectItem value="gradient">{t('settings_panel.effect_gradient')}</SelectItem>
+                        <SelectItem value="none"><Ban className="mr-2 h-4 w-4" />{t('settings_panel.effect_none')}</SelectItem>
+                        <SelectItem value="aurora"><Sunrise className="mr-2 h-4 w-4" />{t('settings_panel.effect_aurora')}</SelectItem>
+                        <SelectItem value="snowfall"><Snowflake className="mr-2 h-4 w-4" />{t('settings_panel.effect_snowfall')}</SelectItem>
+                        <SelectItem value="bubbles"><Droplets className="mr-2 h-4 w-4" />{t('settings_panel.effect_bubbles')}</SelectItem>
+                        <SelectItem value="confetti"><PartyPopper className="mr-2 h-4 w-4" />{t('settings_panel.effect_confetti')}</SelectItem>
+                        <SelectItem value="static"><Radio className="mr-2 h-4 w-4" />{t('settings_panel.effect_static')}</SelectItem>
+                        <SelectItem value="stars"><Sparkles className="mr-2 h-4 w-4" />{t('settings_panel.effect_stars')}</SelectItem>
+                        <SelectItem value="grid"><Grid3x3 className="mr-2 h-4 w-4" />{t('settings_panel.effect_grid')}</SelectItem>
+                        <SelectItem value="gradient"><Palette className="mr-2 h-4 w-4" />{t('settings_panel.effect_gradient')}</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -228,6 +230,7 @@ export function SettingsView() {
                 <Label>{t('settings_panel.language')}</Label>
                 <Select value={language} onValueChange={value => setLanguage(value as any)}>
                 <SelectTrigger>
+                    <Languages className="mr-2 h-4 w-4 text-muted-foreground" />
                     <SelectValue placeholder={t('settings_panel.language')} />
                 </SelectTrigger>
                 <SelectContent>
