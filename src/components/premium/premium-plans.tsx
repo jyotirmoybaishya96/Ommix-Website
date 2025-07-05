@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -36,7 +35,7 @@ const planData = [
     name: 'Pro',
     icon: Gem,
     description: 'For growing servers that need more power and features.',
-    price: { monthly: 9.99, yearly: 8.49 },
+    price: { monthly: 799, yearly: 679 },
     button: { text: 'Upgrade to Pro', variant: 'default', disabled: false, href: '/purchase' },
     features: [
       'Everything in Free',
@@ -52,7 +51,7 @@ const planData = [
     name: 'Enterprise',
     icon: Rocket,
     description: 'For large-scale communities requiring dedicated solutions.',
-    price: { monthly: 29.99, yearly: 24.99 },
+    price: { monthly: 2499, yearly: 2129 },
     button: { text: 'Contact Sales', variant: 'outline', disabled: false, href: '/support' },
     features: [
       'Everything in Pro',
@@ -183,7 +182,7 @@ export function PremiumPlans() {
                           transition={{ duration: 0.2 }}
                           className="absolute inset-x-0"
                         >
-                           ${isYearly ? plan.price.yearly : plan.price.monthly}
+                           ₹{isYearly ? plan.price.yearly : plan.price.monthly}
                            <span className="text-base font-normal text-muted-foreground">/mo</span>
                         </motion.span>
                       </AnimatePresence>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -12,7 +11,7 @@ import Link from 'next/link';
 import { DISCORD_INVITE_URL } from '@/lib/constants';
 
 const UPI_ID = 'jyotimoy-baishya@fam';
-const PREMIUM_PRICE = '$9.99/mo';
+const PREMIUM_PRICE = '₹799/mo';
 
 export default function PurchasePage() {
   const [isCopied, setIsCopied] = useState(false);
