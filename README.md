@@ -14,13 +14,10 @@
 </p>
 
 <p align="center">
-  <img src="https://placehold.co/800x250.png" alt="Omnix Application Banner" data-ai-hint="application banner">
+  <img src="https://cdn.discordapp.com/banners/1208464388948893796/86277edd5ef29a626b8c6a7538142336.png?size=512" alt="Omnix Application Banner" data-ai-hint="application banner">
 </p>
 
 > Welcome to the official web interface for **Omnix**! We provide a powerful, reliable, and easy-to-use platform for server moderation, community engagement, AI assistance, and extensive customization.
-
-<img src="https://placehold.co/1200x600.png" alt="Omnix Hero Section" data-ai-hint="website homepage" />
-*<p align="center">A preview of the Omnix homepage.</p>*
 
 ---
 
