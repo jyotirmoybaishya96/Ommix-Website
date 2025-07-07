@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.discordapp.com/banners/1208464388948893796/86277edd5ef29a626b8c6a7538142336.png?size=512" alt="Omnix Logo" width="128" height="128" data-ai-hint="bot logo">
+  <img src="https://cdn.discordapp.com/avatars/1208464388948893796/a_fa05c1fa602c72977400df675b86feac.gif?size=1024" alt="Omnix Logo" width="128" height="128" data-ai-hint="bot logo">
 </p>
 
 <h1 align="center">Omnix</h1>
